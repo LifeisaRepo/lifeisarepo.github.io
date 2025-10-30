@@ -30,7 +30,8 @@ twitter_username:
 github_username: lifeisarepo
 
 # Build settings
-theme: minima
+theme: none
+markdown: kramdown
 plugins:
   - jekyll-feed
 # Exclude from processing.
