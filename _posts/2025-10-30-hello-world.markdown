@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hello World! 👨‍💻"
-date: 2025-10-31 00:35:00 +0530
+date: 2025-10-30 23:35:00 +0530
 categories: blog
 ---
 
