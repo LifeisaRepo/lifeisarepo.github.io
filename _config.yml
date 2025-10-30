@@ -30,7 +30,6 @@ twitter_username:
 github_username: lifeisarepo
 
 # Build settings
-theme: none
 markdown: kramdown
 plugins:
   - jekyll-feed
