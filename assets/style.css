@@ -174,10 +174,11 @@ blockquote p {
   margin: 5px;
 }
 
-/* --- Inline Code (`like this`) --- */
+/* Inline code (`like this`) */
 code {
   background-color: rgba(40, 45, 50, 0.8);
-  color: #00c8ff;
+  color: #e4e8ef;
+  /*color: #00c8ff;*/
   padding: 0.1rem 0.4rem;
   border-radius: 4px;
   font-family: "JetBrains Mono", monospace;
@@ -185,48 +186,194 @@ code {
   border: 1px solid rgba(0, 170, 255, 0.2);
 }
 
-/* --- Code Blocks (```...```) --- */
-pre {
-  background: linear-gradient(145deg, #101217, #141820);
-  color: #e0e0e0;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  overflow-x: auto;
+/* Block code (```multi-line```) */
+pre code {
+  display: block;
+  background: #111318;
+  color: #e4e8ef;
+  padding: 1rem 1.2rem;
   margin: 1.5rem 0;
-  border: 1px solid rgba(0, 170, 255, 0.15);
-  box-shadow: inset 0 0 15px rgba(0, 170, 255, 0.1);
-  font-family: "JetBrains Mono", monospace;
-  line-height: 1.5;
+  border-radius: 12px;
+  overflow-x: auto;
+  line-height: 1.6;
   font-size: 0.85rem;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-pre:hover {
-  box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
-  transform: translateY(-1px);
+/* Add slight highlight when hovered */
+pre code:hover {
+  border-color: rgba(0, 170, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.15);
+  background: #14171c;
 }
 
-/* --- Syntax Highlight Colors (optional custom Rouge tweaks) --- */
-.highlight .k,  /* keywords */
-.highlight .kd, /* data types */
-.highlight .kt  /* template keywords */ {
-  color: #00aaff;
+/* Optional: make the scrollbar minimal */
+pre code::-webkit-scrollbar {
+  height: 6px;
+}
+pre code::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+pre code::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
-.highlight .nf,
-.highlight .nc,
-.highlight .nn {
-  color: #46b8ff;
+/* ==========================================================================
+   Syntax Highlighting — Monokai-inspired (for dark Unreal-style theme)
+   ========================================================================== */
+.highlight {
+  background: #111318;
+  color: #f8f8f2;
 }
 
-.highlight .s,
-.highlight .s2 {
-  /* strings */
-  color: #ffbb66;
-}
-
-.highlight .c {
-  /* comments */
-  color: #6b7a8f;
+/* --- Comments --- */
+.highlight .cm,  /* Comment.Multiline */
+.highlight .cp,  /* Comment.Preproc */
+.highlight .c1,  /* Comment.Single */
+.highlight .cs {
+  /* Comment.Special */
+  color: #75715e;
   font-style: italic;
+}
+
+/* --- Generic --- */
+.highlight .gd {
+  color: #f92672;
+  background: rgba(255, 0, 0, 0.08);
+} /* Deleted */
+.highlight .gi {
+  color: #a6e22e;
+  background: rgba(0, 255, 0, 0.08);
+} /* Inserted */
+.highlight .ge {
+  font-style: italic;
+} /* Emphasized */
+.highlight .gs {
+  font-weight: bold;
+} /* Strong */
+.highlight .gr,
+.highlight .gt {
+  color: #f92672;
+} /* Error / Traceback */
+.highlight .gh,
+.highlight .gu {
+  color: #66d9ef;
+  font-weight: bold;
+} /* Headings/Subheadings */
+.highlight .go,
+.highlight .gp {
+  color: #75715e;
+} /* Output/Prompt */
+
+/* --- Keywords --- */
+.highlight .kc,  /* Keyword.Constant */
+.highlight .kd,  /* Keyword.Declaration */
+.highlight .kn,  /* Keyword.Namespace */
+.highlight .kp,  /* Keyword.Pseudo */
+.highlight .kr,  /* Keyword.Reserved */
+.highlight .kt {
+  /* Keyword.Type */
+  color: #66d9ef;
+}
+
+/* --- Literals --- */
+.highlight .m,   /* Literal.Number */
+.highlight .mf,  /* Literal.Number.Float */
+.highlight .mh,  /* Literal.Number.Hex */
+.highlight .mi,  /* Literal.Number.Integer */
+.highlight .mo,  /* Literal.Number.Oct */
+.highlight .il {
+  /* Literal.Number.Integer.Long */
+  color: #ae81ff;
+}
+
+/* --- Strings --- */
+.highlight .s,   /* Literal.String */
+.highlight .sb,  /* Literal.String.Backtick */
+.highlight .sc,  /* Literal.String.Char */
+.highlight .sd,  /* Literal.String.Doc */
+.highlight .s1,  /* Literal.String.Single */
+.highlight .s2,  /* Literal.String.Double */
+.highlight .se,  /* Literal.String.Escape */
+.highlight .sh,  /* Literal.String.Heredoc */
+.highlight .si,  /* Literal.String.Interpol */
+.highlight .sx,  /* Literal.String.Other */
+.highlight .sr,  /* Literal.String.Regex */
+.highlight .ss {
+  /* Literal.String.Symbol */
+  color: #e6db74;
+}
+
+/* --- Names --- */
+.highlight .na {
+  color: #a6e22e;
+} /* Attribute */
+.highlight .nb {
+  color: #66d9ef;
+} /* Builtin */
+.highlight .nc {
+  color: #a6e22e;
+  font-weight: bold;
+} /* Class */
+.highlight .no {
+  color: #fd971f;
+} /* Constant */
+.highlight .nd {
+  color: #fd971f;
+} /* Decorator */
+.highlight .ni {
+  color: #66d9ef;
+} /* Entity */
+.highlight .ne {
+  color: #f92672;
+  font-weight: bold;
+} /* Exception */
+.highlight .nf {
+  color: #a6e22e;
+} /* Function */
+.highlight .nl {
+  color: #f8f8f2;
+} /* Label */
+.highlight .nn {
+  color: #f8f8f2;
+} /* Namespace */
+.highlight .nt {
+  color: #f92672;
+} /* Tag */
+.highlight .nv,  /* Variable */
+.highlight .vc,  /* Variable.Class */
+.highlight .vg,  /* Variable.Global */
+.highlight .vi {
+  /* Variable.Instance */
+  color: #f8f8f2;
+}
+
+/* --- Operators, Punctuation, Whitespace --- */
+.highlight .ow {
+  color: #f92672;
+} /* Operator.Word */
+.highlight .o {
+  color: #f92672;
+} /* Operator */
+.highlight .p {
+  color: #f8f8f2;
+} /* Punctuation */
+.highlight .w {
+  color: #888888;
+} /* Whitespace */
+
+/* --- Builtin Pseudo --- */
+.highlight .bp {
+  color: #66d9ef;
+}
+
+.highlight {
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight:hover {
+  background: #14171c;
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.15);
 }
