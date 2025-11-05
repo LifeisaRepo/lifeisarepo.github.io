@@ -10,4 +10,4 @@ Hey, I’m **Sanjyot**, an Unreal Engine developer who loves building immersive 
 
 This site is my personal space for devlogs, experiments, and lessons from my journey with Unreal Engine.
 
-If you like what I’m doing, feel free to reach out or follow my GitHub for project updates.
+If you like what I’m doing, feel free to reach out at my socials in the footer or follow my GitHub for project updates.
