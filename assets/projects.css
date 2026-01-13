@@ -1,0 +1,454 @@
+
+/* --- Projects Grid --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0 4rem;
+}
+
+.project-card {
+  background: rgba(20, 25, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.15);
+  border-color: rgba(0, 170, 255, 0.3);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+
+.project-description {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.project-tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 170, 255, 0.1);
+  color: #00aaff;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 170, 255, 0.2);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.project-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  height: 100%;
+}
+.project-link:hover {
+  text-decoration: none;
+  border: none;
+  color: inherit;
+}
+
+/* --- Project Detail Page --- */
+
+.project-detail-container {
+    background-color: #0f0f12;
+    min-height: 100vh;
+}
+
+.project-hero {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 170, 255, 0.2);
+}
+
+.project-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    background: linear-gradient(to bottom, rgba(15, 15, 18, 0.3), #0f0f12);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 0 3rem 0;
+    align-items: center;
+    text-align: center;
+}
+
+.project-hero-overlay h1 {
+    font-size: 3.5rem;
+    margin: 0 0 1rem 0;
+    text-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+}
+
+.category-badge {
+    background: rgba(0, 170, 255, 0.2);
+    color: #00aaff;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+    border: 1px solid rgba(0, 170, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.project-content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #888;
+    font-size: 0.9rem;
+    border: none;
+}
+.back-link:hover {
+    color: #fff;
+    border: none;
+    transform: translateX(-5px);
+}
+
+/* Video Container */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Project Body Content */
+.project-body {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    color: #e0e0e0;
+}
+
+.project-body h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.project-tags-list h3 {
+    color: #888;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.tech-tag {
+    background: #1a1f26;
+    color: #ccc;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+    .project-hero {
+        height: 300px;
+    }
+    .project-hero-overlay h1 {
+        font-size: 2rem;
+    }
+}
+
+/* --- Image Carousel --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 500px; /* Cap height on large screens */
+    margin: 2rem 0;
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2); /* Subtle dark background for letterboxing area, or transparent as requested */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.carousel-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s ease;
+}
+
+.carousel-slide.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain; /* Keeps aspect ratio, letterboxes */
+    background: transparent;
+}
+
+/* Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 1rem 0.8rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.3s ease;
+    z-index: 10;
+    border-radius: 4px;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 170, 255, 0.6);
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+/* Dots */
+.carousel-dots {
+    position: absolute;
+    bottom: 2px; /* Moved back to bottom */
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 20; /* Ensure above caption */
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* ... existing code ... */
+
+/* --- Captions --- */
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #e0e0e0;
+    padding: 0.8rem 1rem 1.5rem; /* Added extra bottom padding for dots */
+    font-size: 0.9rem;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+.dot.active, .dot:hover {
+    background-color: #00aaff;
+    transform: scale(1.1);
+}
+
+/* --- Lightbox --- */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: none; /* Flex when active */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    display: block;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 10001;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-close:hover {
+    opacity: 1;
+    color: #00aaff;
+}
+
+.lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+    padding: 2rem;
+}
+
+.lightbox-btn:hover {
+    color: #00aaff;
+    transform: translateY(-50%) scale(1.1);
+    background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, transparent 70%);
+}
+
+.lightbox-btn.prev {
+    left: 20px;
+}
+
+.lightbox-btn.next {
+    right: 20px;
+}
+
+
+
+.lightbox-caption {
+    position: absolute;
+    bottom: -50px; /* Position below image */
+    left: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    display: none;
+}
+
+/* Adjust lightbox content to allow space for caption */
+.lightbox-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

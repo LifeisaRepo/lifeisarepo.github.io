@@ -2,7 +2,7 @@
 layout: post
 title: "Log it Right! - A look at custom log categories"
 date: 2025-11-05 04:24:00 +0530
-categories: devlogs
+category: devlogs
 cover: /assets/images/2025-11-04/cover.png
 cover_source: "Src: life is a repo"
 ---

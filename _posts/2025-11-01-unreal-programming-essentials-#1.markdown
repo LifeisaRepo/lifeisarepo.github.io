@@ -2,7 +2,7 @@
 layout: post
 title: "Unreal Programming Essentials #1"
 date: 2025-11-01 22:24:00 +0530
-categories: devlogs
+category: devlogs
 cover: /assets/images/2025-11-01/gameplay-schematic.png
 cover_source: '<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-framework-in-unreal-engine?application_version=5.6" target="_blank">Src: Unreal Engine Docs</a>'
 ---

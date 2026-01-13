@@ -1,0 +1,180 @@
+{% assign images = include.images | split: "," %}
+{% assign captions = include.captions | split: "::" %}
+<div class="carousel-container">
+    <div class="carousel-track">
+        {% for img in images %}
+        <div class="carousel-slide {% if forloop.first %}active{% endif %}">
+            <img src="{{ img | strip }}" alt="Project Image" data-caption="{{ captions[forloop.index0] | default: '' }}">
+            {% if captions[forloop.index0] %}
+            <div class="carousel-caption">{{ captions[forloop.index0] }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% if images.size > 1 %}
+    <button class="carousel-btn prev" aria-label="Previous Slide">❮</button>
+    <button class="carousel-btn next" aria-label="Next Slide">❯</button>
+    
+    <div class="carousel-dots">
+        {% for img in images %}
+        <span class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></span>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Lightbox Overlay (Shared across all carousels, generated once per include but we'll manage it dynamically) -->
+<!-- To avoid duplicating this modal for every carousel, we can add it dynamically via JS or check if it exists -->
+<!-- Simply putting it here means it might appear multiple times in DOM but we can handle that. -->
+
+<script>
+(function() {
+    if (window.carouselScriptLoaded) return;
+    window.carouselScriptLoaded = true;
+
+    // Create Lightbox DOM
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox-overlay';
+    lightbox.innerHTML = `
+        <button class="lightbox-close">×</button>
+        <button class="lightbox-btn prev">❮</button>
+        <div class="lightbox-content">
+            <img src="" alt="Full Screen Image">
+            <div class="lightbox-caption"></div>
+        </div>
+        <button class="lightbox-btn next">❯</button>
+    `;
+    document.body.appendChild(lightbox);
+
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    const lbNext = lightbox.querySelector('.next');
+    const lbPrev = lightbox.querySelector('.prev');
+    
+    let currentCarouselImages = [];
+    let currentCarouselCaptions = [];
+    let currentLightboxIndex = 0;
+
+    function openLightbox(images, captions, index) {
+        currentCarouselImages = images;
+        currentCarouselCaptions = captions;
+        currentLightboxIndex = index;
+        updateLightbox();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Disable scroll
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function updateLightbox() {
+        if (currentCarouselImages.length === 0) return;
+        
+        lightboxImg.src = currentCarouselImages[currentLightboxIndex];
+        const cap = currentCarouselCaptions[currentLightboxIndex];
+        lightboxCaption.textContent = cap ? cap : '';
+        lightboxCaption.style.display = cap ? 'block' : 'none';
+        
+        // Hide/Show buttons based on count
+        if (currentCarouselImages.length <= 1) {
+            lbNext.style.display = 'none';
+            lbPrev.style.display = 'none';
+        } else {
+            lbNext.style.display = 'block';
+            lbPrev.style.display = 'block';
+        }
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    
+    // Close on background click
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    lbNext.addEventListener('click', () => {
+        currentLightboxIndex = (currentLightboxIndex + 1) % currentCarouselImages.length;
+        updateLightbox();
+    });
+
+    lbPrev.addEventListener('click', () => {
+        currentLightboxIndex = (currentLightboxIndex - 1 + currentCarouselImages.length) % currentCarouselImages.length;
+        updateLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') lbNext.click();
+        if (e.key === 'ArrowLeft') lbPrev.click();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousels = document.querySelectorAll('.carousel-container');
+
+        carousels.forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const nextBtn = carousel.querySelector('.next');
+            const prevBtn = carousel.querySelector('.prev');
+            const dots = carousel.querySelectorAll('.dot');
+            
+            // Gather all image sources and captions for this carousel
+            const images = Array.from(slides).map(slide => slide.querySelector('img').src);
+            const captions = Array.from(slides).map(slide => slide.querySelector('img').getAttribute('data-caption') || '');
+
+            let currentIndex = 0;
+
+            function updateCarousel(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                if(dots.length > index) dots[index].classList.add('active'); // Checks if dots exist
+                
+                currentIndex = index;
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    let newIndex = currentIndex + 1;
+                    if (newIndex >= slides.length) newIndex = 0;
+                    updateCarousel(newIndex);
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    let newIndex = currentIndex - 1;
+                    if (newIndex < 0) newIndex = slides.length - 1;
+                    updateCarousel(newIndex);
+                });
+            }
+
+            if (dots) {
+                dots.forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        const index = parseInt(e.target.dataset.index);
+                        updateCarousel(index);
+                    });
+                });
+            }
+
+            // Add click event to images to open lightbox
+            slides.forEach((slide, index) => {
+                const img = slide.querySelector('img');
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', () => {
+                    // Open lightbox with this carousel's images starting at this index
+                    openLightbox(images, captions, index);
+                });
+            });
+        });
+    });
+})();
+</script>

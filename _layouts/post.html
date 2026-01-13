@@ -2,21 +2,34 @@
 layout: default
 ---
 
-<article class="post">
-  <h1>{{ page.title }}</h1>
-  <p class="post-date">{{ page.date | date: "%B %d, %Y" }}</p>
+<article class="post-layout">
+    <div class="post-container">
+        <header class="post-header">
+            <div class="post-meta">
+                {% if page.category %}
+                <span class="category-badge">{{ page.category }}</span>
+                <span class="meta-divider"> </span>
+                {% endif %}
+                <span class="post-date">{{ page.date | date: "%B %d, %Y" }}</span>
+            </div>
+            <h1 class="post-title-hero">{{ page.title }}</h1>
+        </header>
 
-  {% if page.cover %}
-  <div class="post-cover">
-    <img
-      src="{{ page.cover | relative_url }}"
-      alt="Cover image for {{ page.title }}"
-    />
-    {% if page.cover_source %}
-    <div class="cover-source-overlay">{{ page.cover_source }}</div>
-    {% endif %}
-  </div>
-  {% endif %}
+        {% if page.cover %}
+        <div class="post-cover">
+            <img src="{{ page.cover | relative_url }}" alt="Cover image for {{ page.title }}" />
+            {% if page.cover_source %}
+            <div class="cover-source-overlay">{{ page.cover_source }}</div>
+            {% endif %}
+        </div>
+        {% endif %}
 
-  <div class="post-content">{{ content }}</div>
+        <div class="post-content">
+            {{ content }}
+        </div>
+        
+        <div class="post-footer">
+            <a href="{{ '/' | relative_url }}" class="back-link">← Back to Home</a>
+        </div>
+    </div>
 </article>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+    <link rel="stylesheet" href="{{ '/assets/projects.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+</head>
+<body>
+    {% include header.html %}
+
+    <div class="project-detail-container">
+        <!-- Hero Section -->
+        <div class="project-hero" style="background-image: url('{{ page.image | relative_url }}');">
+            <div class="project-hero-overlay">
+                <h1>{{ page.title }}</h1>
+                <div class="project-meta">
+                    <span class="category-badge">{{ page.category }}</span>
+                </div>
+            </div>
+        </div>
+
+        <main class="project-content-wrapper">
+            <a href="/projects" class="back-link">← Back to Projects</a>
+            
+            <!-- YouTube Embed -->
+            {% if page.youtube_id %}
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/{{ page.youtube_id }}?rel=0" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            {% endif %}
+
+            <div class="project-body">
+                {{ content }}
+            </div>
+
+            <div class="project-tags-list">
+                <h3>Technologies Used</h3>
+                <div class="tags-container">
+                    {% for tag in page.tags %}
+                        <span class="tech-tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer? or just end -->
+    </div>
+</body>
+</html>
