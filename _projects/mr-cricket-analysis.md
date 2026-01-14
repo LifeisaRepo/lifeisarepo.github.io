@@ -35,7 +35,7 @@ I managed a cross-functional team of developers and artists through the entire d
 - Personally developed the interactive fielding table module, allowing experts to visualize and simulate strategic fielding positions for specific batsmen on a virtual mini cricket field.
 - Created custom Editor Utility Widgets to streamline pre-shoot setups and operator controls, ensuring stability during high-stakes live broadcasts.
 
-#### Learnings
-This project was a personal turning point because it forced me to move past the _"it works on my machine"_ stage of development. In the world of live TV, there is no "undo" button and no room for a system that is only almost ready.
+### Personal Notes
+_This project was a personal turning point as it was one my first large-scale projects. It forced me to move past the **"it works on my machine"** stage of development. In the world of live TV, there is no "undo" button and no room for a system that is only almost ready._
 
-Working under the intense, time-sensitive pressure of a live broadcast taught me that a truly production-ready product isn't just about cool features—it’s about absolute reliability. It was a humbling process of discovery that shifted my focus from just solving technical puzzles to building robust, resilient systems that can stand up to the most demanding real-world environments.
+_Working under the intense, time-sensitive pressure of live broadcast taught me that a truly production-ready product isn't just about cool features—it’s about absolute reliability. It was a humbling process of discovery that shifted my focus from just solving technical puzzles to building robust, resilient systems that can stand up to the most demanding real-world environments._

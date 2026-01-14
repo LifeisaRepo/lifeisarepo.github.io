@@ -28,5 +28,5 @@ As the sole developer, I was responsible for the entire technical pipeline, from
 - Developed a backend system to record and trigger operator presets, allowing for the instant recall of specific visual angles during a fast-paced live show.
 - Designed and implemented a Widget-based UI that provides real-time color grading and adjustment controls, ensuring the output feed matches the visual standard of the primary broadcast.
 
-### Learnings
-This project was born out of a desire of mine and my company founder to solve a real-world problem: how do we make immersive VR content useful for the millions watching on standard TV screens?. It was my most intensive dive into shader math and HLSL, teaching me that technical constraints often lead to the most creative visual solutions. Unfortunately due to unforeseen circumstances this project could not be deployed in a production environment :(.
+### Personal Notes
+_This project was born out of a desire of mine and my company founder to solve a real-world problem: how do we make immersive VR content useful for the millions watching on standard TV screens?. It was my most intensive dive into shader math and HLSL, teaching me that technical constraints often lead to the most creative visual solutions. Unfortunately due to unforeseen circumstances this project could not be deployed in a production environment :(._
