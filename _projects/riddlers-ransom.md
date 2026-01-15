@@ -15,7 +15,7 @@ Riddler's Ransom is a fully immersive VR Escape Room game made for Meta Quest 3.
 - **Role**: Technical Lead / CTO
 - **Engine**: Unreal Engine 5 (Meta-fork)
 - **Platform**: Meta Quest 3
-- **Team Size**: 5
+- **Team Size**: 7
 - **Duration**: 2 months
 
 Originally conceived as an internal PC-VR game-jam prototype, Riddler’s Ransom was never intended for public release. As the company moved toward the Meta Quest ecosystem, I spearheaded the architectural overhaul required to transform this unoptimized prototype into a polished, standalone consumer product.
@@ -25,7 +25,7 @@ Originally conceived as an internal PC-VR game-jam prototype, Riddler’s Ransom
     captions="Immersive puzzle environments::High-fidelity interactions with physics-based objects::Detailed environment art optimized for Quest 3"
 %}
 
-As the Technical Lead, I managed the cross-functional team of 5 and bridged the gap between the creative vision and the strict performance constraints of mobile VR hardware.
+As the Technical Lead, I managed the cross-functional team of 7 and bridged the gap between the creative vision and the strict performance constraints of mobile VR hardware.
 
 #### Key Achievements
 - The original PC-VR prototype ran at only 40 FPS. I led the optimization strategy—focusing on heavy asset refactoring, material simplification, and draw call reduction. This allowed us to achieve a rock-solid 72 FPS on standalone hardware.
