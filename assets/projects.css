@@ -452,3 +452,62 @@
     flex-direction: column;
     align-items: center;
 }
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* --- GitHub Project Link --- */
+.github-project-link,
+.drive-project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #e0e0e0;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.github-project-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.drive-project-link svg {
+    width: 20px;
+    height: 20px; /* Bit larger to match visual weight */
+}
+
+.github-project-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #00aaff; /* Neon Blue */
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 170, 255, 0.2);
+}
+
+.drive-project-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #0F9D58; /* Google Green to distinguish */
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(15, 157, 88, 0.2);
+}

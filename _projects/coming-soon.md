@@ -3,7 +3,7 @@ layout: project
 title: "Coming Soon!"
 description: ""
 category: "Personal"
-order: 1
+order: -1
 image: "/assets/images/projects/coming_soon.png"
 tags: []
 ---

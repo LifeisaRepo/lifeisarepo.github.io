@@ -13,6 +13,7 @@ Here are some of my Unreal Engine works and personal experiments:
 ## Professional Work
 <div class="projects-grid">
   {% for project in pro_projects %}
+  {% unless project.order == -1 %}
   <a href="{{ project.url | relative_url }}" class="project-link">
     <div class="project-card">
       <div class="project-image">
@@ -29,12 +30,14 @@ Here are some of my Unreal Engine works and personal experiments:
       </div>
     </div>
   </a>
+  {% endunless %}
   {% endfor %}
 </div>
 
 ## Personal Projects
 <div class="projects-grid">
   {% for project in personal_projects %}
+  {% unless project.order == -1 %}
   <a href="{{ project.url | relative_url }}" class="project-link">
     <div class="project-card">
       <div class="project-image">
@@ -51,10 +54,10 @@ Here are some of my Unreal Engine works and personal experiments:
       </div>
     </div>
   </a>
+  {% endunless %}
   {% endfor %}
 </div>
 
-_(More soon — check the devlogs for updates!)_
 
 <div class="disclaimer">
     The Professional projects featured in this portfolio were developed during my tenure at <a href="http://www.liminal.in" target="_blank">Liminal XR Solutions</a> for various global clients. All rights, titles, and interests in the underlying intellectual property belong to the respective owners. Content is shared here for the sole purpose of demonstrating my technical contributions and professional experience in real-time development and Unreal Engine.
