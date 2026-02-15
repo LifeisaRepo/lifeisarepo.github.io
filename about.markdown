@@ -28,7 +28,7 @@ permalink: /about/
                 <a href="mailto:sanjyot.code@gmail.com" class="btn-social">
                     ✉️ &nbsp; Email Me
                 </a>
-                <a href="/assets/docs/sanjyot-dahale.pdf" class="btn-social btn-resume">
+                <a href="/assets/docs/sanjyot-dahale-2.pdf" class="btn-social btn-resume">
                     📄 &nbsp; Resume
                 </a>
             </div>

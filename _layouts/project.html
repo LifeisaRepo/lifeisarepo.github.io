@@ -75,5 +75,22 @@
 
         <!-- Footer? or just end -->
     </div>
+
+    <script>
+        // Make all links in project content open in new tab
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectBody = document.querySelector('.project-body');
+            if (projectBody) {
+                const links = projectBody.querySelectorAll('a');
+                links.forEach(link => {
+                    // Only apply to external links (http/https)
+                    if (link.href && (link.href.startsWith('http://') || link.href.startsWith('https://'))) {
+                        link.setAttribute('target', '_blank');
+                        link.setAttribute('rel', 'noopener noreferrer');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
