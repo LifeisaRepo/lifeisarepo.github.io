@@ -30,7 +30,7 @@ permalink: /about/
                 <a href="mailto:sanjyot.code@gmail.com" class="btn-social">
                     ✉️ &nbsp; Email Me
                 </a>
-                <a href="/assets/docs/sanjyot-dahale-3.pdf" class="btn-social btn-resume">
+                <a href="/assets/docs/sanjyot-dahale-ue.pdf" class="btn-social btn-resume">
                     📄 &nbsp; Resume
                 </a>
                 <a href="https://www.linkedin.com/in/sanjyot-dahale" target="_blank" class="btn-social">
