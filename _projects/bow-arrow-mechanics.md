@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "Bow and Arrow Mechanics"
-description: "Bow and Arrow Mechanics with modular codebase"
+description: "Bow and Arrow Mechanics with modular codebase."
 category: "Personal"
 order: 1
 image: "/assets/images/projects/personal/bow-arrow/hero.png"

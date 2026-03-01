@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "UE_Gemma"
-description: "An Android game made in Unreal Engine, integrated with the FunctionGemma-270M model"
+description: "An Android game made in Unreal Engine, integrated with the FunctionGemma-270M model."
 category: "Personal"
 order: 2
 image: "/assets/images/projects/personal/ue-gemma/hero.png"

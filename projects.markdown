@@ -5,7 +5,7 @@ title: "Projects"
 
 # Projects
 
-Here are some of my Unreal Engine works and personal experiments:
+Projects have been divided into <strong>Professional</strong> and <strong>Personal</strong> categories. Please click on the project cards to view more details.
 
 {% assign pro_projects = site.projects | where: "category", "Professional" | sort: "order" %}
 {% assign personal_projects = site.projects | where: "category", "Personal" | sort: "order" %}

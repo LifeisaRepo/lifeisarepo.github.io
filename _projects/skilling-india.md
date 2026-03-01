@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "Skilling India: MR-based Training"
-description: "A MR based training simulation showcasing the future of education in India"
+description: "A MR based training simulation showcasing the future of education in India."
 category: "Professional"
 order: 5
 image: "/assets/images/projects/skilling-india/skilling-india-hero.jpg"

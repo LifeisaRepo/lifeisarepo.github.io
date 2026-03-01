@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "Riddler's Ransom Demo"
+title: "Riddler's Ransom Escape Horror"
 description: "A fully immersive VR Escape Room game born as a PC-VR gamejam prototype which we ended up publishing on the Meta Quest Store."
 category: "Professional"
 order: 1
@@ -9,7 +9,7 @@ youtube_id: "6Z24FtihEgM"
 tags: ["UE 5", "Blueprints", "Standalone VR", "Meta Quest 3"]
 ---
 
-Riddler's Ransom is a fully immersive VR Escape Room game made for Meta Quest 3.<a href="https://www.meta.com/en-gb/experiences/riddlers-ransom-demo/24702477826005564/" target="_blank"> Check it out here!</a>
+Riddler's Ransom is a fully immersive VR Escape Room game made for Meta Quest 3.<a href="https://www.meta.com/en-gb/experiences/riddlers-ransom-escape-horror/24702477826005564/" target="_blank"> Check it out here!</a>
 
 ### Project Details
 - **Role**: Technical Lead / CTO

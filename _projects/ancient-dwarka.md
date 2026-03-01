@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "Ancient Dwarka"
-description: "A VR 360° short film made in Unreal Engine 5"
+description: "A VR 360° short film made in Unreal Engine 5."
 category: "Professional"
 order: 6
 image: "/assets/images/projects/ancient-dwarka/ancient-dwarka-hero.jpg"

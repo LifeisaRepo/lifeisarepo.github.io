@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "Swadeshi: Local to Global"
-description: "A GenAI based application to blend Indian traditional art with modern western fashion"
+description: "A GenAI based application to blend Indian traditional art with modern western fashion."
 category: "Professional"
 order: 8
 image: "/assets/images/projects/ai-for-fashion/ai-for-fashion-hero.jpg"
