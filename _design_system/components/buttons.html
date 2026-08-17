@@ -1,0 +1,109 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; padding: 2rem; }
+    .label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #555; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; margin-top: 1.75rem; }
+    .label:first-child { margin-top: 0; }
+    .row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn {
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: rgba(0, 170, 255, 0.1);
+      color: #00aaff;
+      border-color: rgba(0, 170, 255, 0.3);
+    }
+    .btn-primary:hover {
+      background: rgba(0, 170, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+      color: #fff;
+      border-color: #00aaff;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #cbd5e1;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+    .btn-social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      text-decoration: none;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+    }
+    .btn-social:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: rgba(0, 170, 255, 0.5);
+    }
+    .btn-resume {
+      background: linear-gradient(90deg, rgba(0, 170, 255, 0.1) 0%, rgba(0, 170, 255, 0.2) 100%);
+      border-color: rgba(0, 170, 255, 0.3);
+      color: #00aaff;
+      font-weight: 600;
+    }
+    .btn-resume:hover {
+      background: linear-gradient(90deg, rgba(0, 170, 255, 0.2) 0%, rgba(0, 170, 255, 0.3) 100%);
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.25);
+    }
+    .pill-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,0,0,0.6);
+      color: #e0e0e0;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+      text-decoration: none;
+    }
+    .pill-link.github:hover { border-color: #00aaff; color: #fff; box-shadow: 0 5px 15px rgba(0,170,255,0.2); }
+    .pill-link.drive:hover  { border-color: #0F9D58; color: #fff; box-shadow: 0 5px 15px rgba(15,157,88,0.2); }
+  </style>
+</head>
+<body>
+  <div class="label">Hero CTAs</div>
+  <div class="row">
+    <a class="btn btn-primary" href="#">View Projects</a>
+    <a class="btn btn-secondary" href="#">Read the Blog</a>
+  </div>
+
+  <div class="label">Social / Contact</div>
+  <div class="row">
+    <a class="btn btn-social" href="#">✉ Email</a>
+    <a class="btn btn-social" href="#">in LinkedIn</a>
+    <a class="btn btn-social btn-resume" href="#">↓ Resume</a>
+  </div>
+
+  <div class="label">Project Page Pills</div>
+  <div class="row">
+    <a class="pill-link github" href="#">⌥ GitHub</a>
+    <a class="pill-link drive" href="#">▶ Play Build</a>
+  </div>
+</body>
+</html>

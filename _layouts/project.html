@@ -1,96 +1,770 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-    <link rel="stylesheet" href="{{ '/assets/projects.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-</head>
-<body>
-    {% include header.html %}
-
-    <div class="project-detail-container">
-        <!-- Hero Section -->
-        <div class="project-hero" style="background-image: url('{{ page.image | relative_url }}');">
-            <div class="project-hero-overlay">
-                <h1>{{ page.title }}</h1>
-                <div class="project-meta">
-                    <span class="category-badge">{{ page.category }}</span>
-                    
-                    <div class="project-links">
-                        {% if page.github_url %}
-                        <a href="{{ page.github_url }}" target="_blank" rel="noopener noreferrer" class="github-project-link" title="View Code on GitHub">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                            </svg>
-                            <span>View Code</span>
-                        </a>
-                        {% endif %}
-
-                        {% if page.game_build_url %}
-                        <a href="{{ page.game_build_url }}" target="_blank" rel="noopener noreferrer" class="drive-project-link" title="Download Game Build">
-                            <svg viewBox="0 0 64 64" fill="currentColor">
-                                <path d="M28.7 40.5L18 59h35.3L64 40.5H28.7z"/>
-                                <path d="M61 35.3L42.7 3.6H21.3l18.3 31.7H61z"/>
-                                <path d="M18.3 8.8L0 40.5 10.7 59 29 27.3z"/>
-                            </svg>
-                            <span>Game Build</span>
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <main class="project-content-wrapper">
-            <a href="/projects" class="back-link">← Back to Projects</a>
-            
-            <!-- YouTube Embed -->
-            {% if page.youtube_id %}
-            <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/{{ page.youtube_id }}?rel=0" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            {% endif %}
-
-            <div class="project-body">
-                {{ content }}
-            </div>
-
-            <div class="project-tags-list">
-                <h3>Technologies Used</h3>
-                <div class="tags-container">
-                    {% for tag in page.tags %}
-                        <span class="tech-tag">{{ tag }}</span>
-                    {% endfor %}
-                </div>
-            </div>
-        </main>
-
-        <!-- Footer? or just end -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title }} — Sanjyot Dahale</title>
+    <meta name="description" content="{{ page.description }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sansation:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}"
+    />
+    <style>
+      .doc {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        position: relative;
+        z-index: 1;
+      }
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--faint);
+        margin: 2.5rem 0 2rem;
+        transition: color 0.2s;
+      }
+      .back:hover {
+        color: var(--accent);
+      }
+      .back::before {
+        content: "←";
+        color: var(--accent);
+      }
+      .doc-head {
+        margin-bottom: 2.5rem;
+      }
+      .doc-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.1rem;
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+      }
+      .doc-meta .role {
+        color: var(--accent);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .doc-meta .sep {
+        color: var(--ghost);
+      }
+      .doc-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        margin-bottom: 1.1rem;
+      }
+      .doc-lede {
+        font-family: var(--font-display);
+        font-size: clamp(1.15rem, 2vw, 1.4rem);
+        font-weight: 500;
+        color: var(--muted);
+        line-height: 1.4;
+        text-wrap: pretty;
+      }
+      .doc-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1.5rem;
+      }
+      .doc-hero {
+        position: relative;
+        aspect-ratio: 16/9;
+        border: 1px solid var(--line-2);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+        background:
+          repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.022) 0 12px,
+            transparent 12px 24px
+          ),
+          radial-gradient(
+            circle at 65% 30%,
+            rgba(var(--accent-rgb), 0.12),
+            transparent 55%
+          ),
+          linear-gradient(160deg, var(--surface), var(--bg));
+      }
+      .doc-hero img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.55;
+      }
+      .doc-hero .gizmo {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        color: var(--wire);
+        z-index: 1;
+      }
+      .doc-hero .lbl {
+        position: relative;
+        z-index: 1;
+        font-family: var(--font-mono);
+        font-size: 0.66rem;
+        color: var(--faint);
+        background: rgba(0, 0, 0, 0.4);
+        padding: 0.3rem 0.6rem;
+        border-radius: 5px;
+        border: 1px solid var(--line);
+      }
+      .doc-grid {
+        display: grid;
+        grid-template-columns: 1fr 250px;
+        gap: 3rem;
+        align-items: start;
+      }
+      .doc-grid > aside {
+        align-self: stretch;
+      }
+      .doc-body {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+      .doc-body h2,
+      .doc-body h3,
+      .doc-body h4 {
+        font-family: var(--font-display);
+        color: #fff;
+        letter-spacing: -0.02em;
+        margin: 2rem 0 0.7rem;
+      }
+      .doc-body h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+      .doc-body h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+      }
+      .doc-body h4 {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      .doc-body h2:first-child {
+        margin-top: 0;
+      }
+      /* opt-in auto-numbered section — wrap markdown in <div class="doc-numbered" markdown="1"> */
+      .doc-numbered {
+        counter-reset: docsec;
+      }
+      .doc-numbered h2 {
+        counter-increment: docsec;
+      }
+      .doc-numbered h2::before {
+        content: counter(docsec, decimal-leading-zero);
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+        margin-right: 0.6rem;
+      }
+      .doc-numbered h3::before {
+        content: "#";
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-right: 0.5rem;
+      }
+      .doc-body p {
+        margin-bottom: 1.1rem;
+      }
+      .doc-body strong {
+        color: #fff;
+        font-weight: 600;
+      }
+      .doc-body a {
+        color: var(--accent);
+        border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+      }
+      .doc-body a:hover {
+        border-bottom-color: var(--accent);
+      }
+      .doc-body ul,
+      .doc-body ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.1rem;
+      }
+      .doc-body li {
+        margin-bottom: 0.4rem;
+      }
+      .doc-body code {
+        font-family: var(--font-mono);
+        font-size: 0.85em;
+        color: var(--accent);
+        background: rgba(var(--accent-rgb), 0.09);
+        border: 1px solid rgba(var(--accent-rgb), 0.18);
+        padding: 0.08em 0.4em;
+        border-radius: 5px;
+      }
+      .doc-body blockquote {
+        border-left: 2px solid var(--accent);
+        padding: 0.7rem 1.2rem;
+        margin: 1.5rem 0;
+        background: rgba(var(--accent-rgb), 0.04);
+        border-radius: 0 8px 8px 0;
+      }
+      .doc-body blockquote p {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+      /* sticky rail — keeps the facts panel + image tiles in view while the body scrolls */
+      .doc-rail {
+        position: sticky;
+        top: 90px;
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-right: 4px;
+      }
+      .doc-rail::-webkit-scrollbar {
+        width: 4px;
+      }
+      .doc-rail::-webkit-scrollbar-thumb {
+        background: rgba(var(--accent-rgb), 0.3);
+        border-radius: 4px;
+      }
+      .doc-rail::-webkit-scrollbar-thumb:hover {
+        background: rgba(var(--accent-rgb), 0.55);
+      }
+      .doc-rail::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      /* Firefox-only: it ignores ::-webkit-scrollbar, so hand it the standard
+         properties here — this @supports block is false in Chromium, so it
+         won't switch Chrome back to native rendering and undo the 4px above */
+      @supports (-moz-appearance: none) {
+        .doc-rail {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(var(--accent-rgb), 0.5) transparent;
+        }
+      }
+      .doc-aside {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--line);
+        flex-shrink: 0;
+      }
+      /* aside screenshot tiles — clickable, caption on hover, open in lightbox */
+      .doc-shot {
+        position: relative;
+        aspect-ratio: 16/9;
+        flex-shrink: 0;
+        margin-top: 1rem;
+        border: 1px solid var(--line-2);
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        background: linear-gradient(160deg, var(--surface), var(--bg));
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .doc-shot:hover,
+      .doc-shot:focus-visible {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        outline: none;
+      }
+      .doc-shot img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .doc-shot .gizmo {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.55rem;
+        z-index: 2;
+        font-family: var(--font-mono);
+        font-size: 0.55rem;
+        color: var(--faint);
+        background: rgba(0, 0, 0, 0.5);
+        padding: 0.12rem 0.38rem;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .doc-shot:hover .gizmo,
+      .doc-shot:focus-visible .gizmo {
+        opacity: 1;
+      }
+      .doc-shot .cap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        line-height: 1.35;
+        color: var(--muted);
+        padding: 1.5rem 0.65rem 0.5rem;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+        opacity: 0;
+        transform: translateY(6px);
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease;
+        pointer-events: none;
+      }
+      .doc-shot:hover .cap,
+      .doc-shot:focus-visible .cap {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* fullscreen lightbox */
+      .lightbox-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(8, 8, 10, 0.92);
+        backdrop-filter: blur(4px);
+        padding: clamp(1rem, 5vw, 4rem);
+      }
+      .lightbox-overlay.active {
+        display: flex;
+      }
+      .lightbox-content {
+        position: relative;
+        max-width: 1100px;
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.9rem;
+      }
+      .lightbox-content img {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        border: 1px solid var(--line-2);
+        border-radius: 8px;
+      }
+      @media (min-width: 1024px) {
+        .lightbox-content {
+          max-width: 1500px; /* 1100px + 25% */
+        }
+        .lightbox-content img {
+          max-height: 100vh; /* 80vh + 25%; still bounded by .lightbox-content's max-height: 100% and the overlay's padding */
+        }
+      }
+      .lightbox-caption {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--muted);
+        text-align: center;
+        max-width: 680px;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 1.1rem;
+        right: 1.3rem;
+        background: none;
+        border: none;
+        color: var(--faint);
+        font-size: 2rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .lightbox-close:hover {
+        color: var(--accent);
+      }
+      .lightbox-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--line);
+        color: #fff;
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .lightbox-btn:hover {
+        border-color: var(--accent);
+        background: rgba(0, 0, 0, 0.65);
+      }
+      .lightbox-btn.prev {
+        left: 1.3rem;
+      }
+      .lightbox-btn.next {
+        right: 1.3rem;
+      }
+      /* touch devices swipe instead of tapping arrows */
+      @media (hover: none) and (pointer: coarse) {
+        .lightbox-btn {
+          display: none !important;
+        }
+      }
+      .doc-cta {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin: 3rem 0 1rem;
+      }
+      .doc-video {
+        position: relative;
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 3rem;
+        border: 1px solid var(--line-2);
+      }
+      .doc-video iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      @media (max-width: 760px) {
+        .doc-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .doc-rail {
+          position: static;
+          max-height: none;
+          overflow: visible;
+        }
+      }
+    </style>
+  </head>
+  <body data-palette="amber" data-type="grotesk">
+    <div class="vp-frame" aria-hidden="true">
+      <span class="vp-corner tl"></span><span class="vp-corner tr"></span>
+      <span class="vp-corner bl"></span><span class="vp-corner br"></span>
     </div>
 
+    {% include header.html %}
+
+    <main class="doc">
+      {% if page.category == "Personal" %}
+      <a class="back" href="{{ '/' | relative_url }}#personal"
+        >all personal projects</a
+      >
+      {% else %}
+      <a class="back" href="{{ '/' | relative_url }}#client">all work</a>
+      {% endif %}
+
+      <header class="doc-head">
+        <div class="doc-meta">
+          {% if page.domain %}<span class="role">{{ page.domain }}</span
+          ><span class="sep">·</span>{% endif %} {% if page.status == "live"
+          %}<span class="badge badge-live" style="position: static"
+            ><span class="d"></span>live{% if page.status_note %} · {{
+            page.status_note }}{% endif %}</span
+          >
+          {% elsif page.status == "rnd" %}<span
+            class="badge badge-rnd"
+            style="position: static"
+            ><span class="d"></span>r&amp;d{% if page.status_note %} · {{
+            page.status_note }}{% endif %}</span
+          >{% endif %}
+        </div>
+        <h1 class="doc-title">{{ page.title }}</h1>
+        <p class="doc-lede">{{ page.description }}</p>
+        <div class="doc-tags">
+          {% for tag in page.tags %}
+          <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </header>
+
+      {% if page.youtube_id %}
+      <div class="doc-video">
+        <iframe
+          src="https://www.youtube.com/embed/{{ page.youtube_id }}?rel=0"
+          title="{{ page.title }}"
+          frameborder="0"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      {% elsif page.image %}
+      <div class="doc-hero">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+        <span class="gizmo">◢ capture · persp</span>
+        <span class="lbl">// {{ page.title | downcase }} →</span>
+      </div>
+      {% else %}
+      <div class="doc-hero">
+        <span class="gizmo">◢ capture · persp</span>
+        <span class="lbl">// project capture →</span>
+      </div>
+      {% endif %}
+
+      <div class="doc-grid">
+        <div class="doc-body">
+          {{ content }}
+
+          <div class="doc-cta">
+            {% if page.cta_primary_url and page.cta_primary_text %}
+            <a
+              class="btn btn-primary"
+              href="{{ page.cta_primary_url }}"
+              target="_blank"
+              rel="noopener"
+              >{{ page.cta_primary_text }}</a
+            >
+            {% endif %} {% if page.github_url %}
+            <a
+              class="btn btn-ghost"
+              href="{{ page.github_url }}"
+              target="_blank"
+              rel="noopener"
+              >⌥ source</a
+            >
+            {% endif %} {% if page.game_build_url %}
+            <a
+              class="btn btn-ghost"
+              href="{{ page.game_build_url }}"
+              target="_blank"
+              rel="noopener"
+              >↓ build</a
+            >
+            {% endif %} {% if page.cta_secondary_url and page.cta_secondary_text
+            %}
+            <a
+              class="btn btn-ghost"
+              href="{{ page.cta_secondary_url }}"
+              target="_blank"
+              rel="noopener"
+              >{{ page.cta_secondary_text }}</a
+            >
+            {% endif %}
+          </div>
+        </div>
+
+        <aside>
+          <div class="doc-rail">
+            <div class="doc-aside">
+              {% if page.role %}
+              <div class="fact">
+                <span class="fact-k">Role</span
+                ><span class="fact-v">{{ page.role }}</span>
+              </div>
+              {% endif %} {% if page.category %}
+              <div class="fact">
+                <span class="fact-k">Type</span
+                ><span class="fact-v">{{ page.category }}</span>
+              </div>
+              {% endif %} {% if page.status %}
+              <div class="fact">
+                <span class="fact-k">Status</span
+                ><span class="fact-v"
+                  >{% if page.status == "live" %}Shipped{% elsif page.status ==
+                  "rnd" %}R&D{% else %}{{ page.status | capitalize }}{% endif
+                  %}</span
+                >
+              </div>
+              {% endif %}
+            </div>
+            {% if page.gallery_images %} {% assign g_images =
+            page.gallery_images | split: "," %} {% assign g_caps =
+            page.gallery_captions | split: "::" %} {% for img in g_images %} {%
+            assign cap = g_caps[forloop.index0] | default: '' | strip %}
+            <figure
+              class="doc-shot"
+              data-src="{{ img | strip | relative_url }}"
+              data-caption="{{ cap | escape }}"
+              tabindex="0"
+              role="button"
+              aria-label="View image{% if cap != '' %}: {{ cap | escape }}{% endif %}"
+            >
+              <img
+                src="{{ img | strip | relative_url }}"
+                alt="{% if cap != '' %}{{ cap | escape }}{% else %}{{ page.title }} screenshot{% endif %}"
+                loading="lazy"
+              />
+              <span class="gizmo">◢ view</span>
+              {% if cap != '' %}
+              <figcaption class="cap">{{ cap }}</figcaption>
+              {% endif %}
+            </figure>
+            {% endfor %} {% endif %}
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    {% include footer.html %}
+
     <script>
-        // Make all links in project content open in new tab
-        document.addEventListener('DOMContentLoaded', function() {
-            const projectBody = document.querySelector('.project-body');
-            if (projectBody) {
-                const links = projectBody.querySelectorAll('a');
-                links.forEach(link => {
-                    // Only apply to external links (http/https)
-                    if (link.href && (link.href.startsWith('http://') || link.href.startsWith('https://'))) {
-                        link.setAttribute('target', '_blank');
-                        link.setAttribute('rel', 'noopener noreferrer');
-                    }
-                });
-            }
+      (function () {
+        const shots = Array.from(
+          document.querySelectorAll(".doc-shot[data-src]"),
+        );
+        if (!shots.length) return;
+
+        const items = shots.map((s) => ({
+          src: s.dataset.src,
+          caption: s.dataset.caption || "",
+        }));
+
+        const lightbox = document.createElement("div");
+        lightbox.className = "lightbox-overlay";
+        lightbox.innerHTML = `
+        <button class="lightbox-close" aria-label="Close">×</button>
+        <button class="lightbox-btn prev" aria-label="Previous image">❮</button>
+        <div class="lightbox-content">
+            <img src="" alt="" />
+            <div class="lightbox-caption"></div>
+        </div>
+        <button class="lightbox-btn next" aria-label="Next image">❯</button>
+    `;
+        document.body.appendChild(lightbox);
+
+        const lbImg = lightbox.querySelector("img");
+        const lbCap = lightbox.querySelector(".lightbox-caption");
+        const lbClose = lightbox.querySelector(".lightbox-close");
+        const lbNext = lightbox.querySelector(".next");
+        const lbPrev = lightbox.querySelector(".prev");
+        let index = 0;
+
+        function render() {
+          const it = items[index];
+          lbImg.src = it.src;
+          lbImg.alt = it.caption || "Project image";
+          lbCap.textContent = it.caption || "";
+          lbCap.style.display = it.caption ? "block" : "none";
+          const many = items.length > 1;
+          lbNext.style.display = many ? "block" : "none";
+          lbPrev.style.display = many ? "block" : "none";
+        }
+        function open(i) {
+          index = i;
+          render();
+          lightbox.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+        function close() {
+          lightbox.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        function next() {
+          index = (index + 1) % items.length;
+          render();
+        }
+        function prev() {
+          index = (index - 1 + items.length) % items.length;
+          render();
+        }
+
+        lbClose.addEventListener("click", close);
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) close();
         });
+        lbNext.addEventListener("click", next);
+        lbPrev.addEventListener("click", prev);
+        document.addEventListener("keydown", (e) => {
+          if (!lightbox.classList.contains("active")) return;
+          if (e.key === "Escape") close();
+          if (e.key === "ArrowRight") next();
+          if (e.key === "ArrowLeft") prev();
+        });
+
+        // swipe navigation (touch devices use this instead of the arrow buttons)
+        let touchX = null,
+          touchY = null;
+        lightbox.addEventListener(
+          "touchstart",
+          (e) => {
+            if (e.touches.length !== 1) {
+              touchX = null;
+              return;
+            }
+            touchX = e.touches[0].clientX;
+            touchY = e.touches[0].clientY;
+          },
+          { passive: true },
+        );
+        lightbox.addEventListener(
+          "touchend",
+          (e) => {
+            if (touchX === null) return;
+            const dx = e.changedTouches[0].clientX - touchX;
+            const dy = e.changedTouches[0].clientY - touchY;
+            if (
+              Math.abs(dx) > 45 &&
+              Math.abs(dx) > Math.abs(dy) &&
+              items.length > 1
+            ) {
+              if (dx < 0) next();
+              else prev();
+            }
+            touchX = null;
+          },
+          { passive: true },
+        );
+
+        shots.forEach((shot, i) => {
+          shot.addEventListener("click", () => open(i));
+          shot.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              open(i);
+            }
+          });
+        });
+      })();
     </script>
-</body>
+    <script src="{{ '/assets/js/nav.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  </body>
 </html>

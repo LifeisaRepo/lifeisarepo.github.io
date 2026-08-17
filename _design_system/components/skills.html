@@ -1,0 +1,186 @@
+<!-- @dsCard group="Sections" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; padding: 3rem 2.5rem; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: #00aaff;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Blueprint node grid — each node = one domain */
+    .nodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.06); /* gap colour */
+    }
+
+    .node {
+      background: #0f0f12;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Coloured node header — Blueprint-style */
+    .node-header {
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .node-header-icon { font-size: 0.9rem; }
+    .node-header-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Domain colour themes */
+    .node--engine  .node-header { background: rgba(0,170,255,0.12);  border-bottom: 1px solid rgba(0,170,255,0.2);  }
+    .node--engine  .node-header-label { color: #00aaff; }
+
+    .node--xr      .node-header { background: rgba(170,107,232,0.12); border-bottom: 1px solid rgba(170,107,232,0.2); }
+    .node--xr      .node-header-label { color: #aa6be8; }
+
+    .node--genai   .node-header { background: rgba(34,197,94,0.10);  border-bottom: 1px solid rgba(34,197,94,0.18);  }
+    .node--genai   .node-header-label { color: #22c55e; }
+
+    .node--vp      .node-header { background: rgba(251,146,60,0.10); border-bottom: 1px solid rgba(251,146,60,0.18); }
+    .node--vp      .node-header-label { color: #fb923c; }
+
+    .node--tools   .node-header { background: rgba(148,163,184,0.08); border-bottom: 1px solid rgba(148,163,184,0.15); }
+    .node--tools   .node-header-label { color: #94a3b8; }
+
+    /* Skill pins — output pin style */
+    .node-pins {
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .pin {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #94a3b8;
+    }
+    .pin::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1.5px solid currentColor;
+      opacity: 0.5;
+    }
+    .node--engine  .pin::before { color: #00aaff; }
+    .node--xr      .pin::before { color: #aa6be8; }
+    .node--genai   .pin::before { color: #22c55e; }
+    .node--vp      .pin::before { color: #fb923c; }
+    .node--tools   .pin::before { color: #94a3b8; }
+  </style>
+</head>
+<body>
+
+  <p class="section-label">// arsenal</p>
+  <h2 class="section-title">What I work with.</h2>
+
+  <div class="nodes-grid">
+
+    <div class="node node--engine">
+      <div class="node-header">
+        <span class="node-header-icon">⚙️</span>
+        <span class="node-header-label">Engine</span>
+      </div>
+      <div class="node-pins">
+        <div class="pin">Unreal Engine 5</div>
+        <div class="pin">Blueprint</div>
+        <div class="pin">C++</div>
+        <div class="pin">Gameplay Ability System</div>
+        <div class="pin">Niagara VFX</div>
+      </div>
+    </div>
+
+    <div class="node node--xr">
+      <div class="node-header">
+        <span class="node-header-icon">🥽</span>
+        <span class="node-header-label">XR</span>
+      </div>
+      <div class="node-pins">
+        <div class="pin">OpenXR</div>
+        <div class="pin">Meta Quest SDK</div>
+        <div class="pin">Hand Tracking</div>
+        <div class="pin">ARCore</div>
+        <div class="pin">Mixed Reality</div>
+      </div>
+    </div>
+
+    <div class="node node--genai">
+      <div class="node-header">
+        <span class="node-header-icon">🤖</span>
+        <span class="node-header-label">GenAI</span>
+      </div>
+      <div class="node-pins">
+        <div class="pin">LLM Integration</div>
+        <div class="pin">Google Gemma</div>
+        <div class="pin">Ollama</div>
+        <div class="pin">Prompt Engineering</div>
+        <div class="pin">AI NPC Systems</div>
+      </div>
+    </div>
+
+    <div class="node node--vp">
+      <div class="node-header">
+        <span class="node-header-icon">🎬</span>
+        <span class="node-header-label">Virtual Production</span>
+      </div>
+      <div class="node-pins">
+        <div class="pin">LED Volume</div>
+        <div class="pin">nDisplay</div>
+        <div class="pin">ICVFX</div>
+        <div class="pin">Live Link</div>
+        <div class="pin">Broadcast Pipelines</div>
+      </div>
+    </div>
+
+    <div class="node node--tools">
+      <div class="node-header">
+        <span class="node-header-icon">🛠</span>
+        <span class="node-header-label">Tools &amp; Pipeline</span>
+      </div>
+      <div class="node-pins">
+        <div class="pin">Perforce</div>
+        <div class="pin">Git</div>
+        <div class="pin">Rider / VS</div>
+        <div class="pin">Houdini</div>
+        <div class="pin">Python</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

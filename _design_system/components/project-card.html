@@ -1,0 +1,203 @@
+<!-- @dsCard group="Cards" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; padding: 2.5rem; }
+
+    /* Filter tabs */
+    .filter-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .filter-tab {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #64748b;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .filter-tab.active {
+      border-color: rgba(0,170,255,0.4);
+      color: #00aaff;
+      background: rgba(0,170,255,0.08);
+    }
+    .filter-tab:hover:not(.active) {
+      border-color: rgba(255,255,255,0.2);
+      color: #94a3b8;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Card */
+    .project-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+    }
+    .project-card:hover,
+    .project-card.hovered {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,170,255,0.15);
+      border-color: rgba(0,170,255,0.2);
+    }
+
+    /* Status badge */
+    .status-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      z-index: 1;
+    }
+    .badge-live {
+      background: rgba(34,197,94,0.15);
+      color: #22c55e;
+      border: 1px solid rgba(34,197,94,0.3);
+    }
+    .badge-indev {
+      background: rgba(148,163,184,0.1);
+      color: #94a3b8;
+      border: 1px solid rgba(148,163,184,0.2);
+    }
+    .badge-prototype {
+      background: rgba(170,107,232,0.12);
+      color: #aa6be8;
+      border: 1px solid rgba(170,107,232,0.25);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, #1a1f2e 0%, #0f0f12 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.83rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+    .card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #64748b;
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Filter tabs -->
+  <div class="filter-row">
+    <button class="filter-tab active">All</button>
+    <button class="filter-tab">UE5</button>
+    <button class="filter-tab">XR</button>
+    <button class="filter-tab">GenAI</button>
+    <button class="filter-tab">Virtual Production</button>
+  </div>
+
+  <!-- Cards grid -->
+  <div class="grid">
+
+    <!-- Live -->
+    <div class="project-card hovered">
+      <span class="status-badge badge-live">Live</span>
+      <div class="card-image">🎮</div>
+      <div class="card-body">
+        <h3 class="card-title">Riddler's Ransom</h3>
+        <p class="card-desc">A puzzle-adventure game built in UE5. Published on the Meta Quest Store.</p>
+        <div class="card-tags">
+          <span class="card-tag">UE5</span>
+          <span class="card-tag">XR</span>
+          <span class="card-tag">Blueprint</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- In Development -->
+    <div class="project-card">
+      <span class="status-badge badge-indev">In Dev</span>
+      <div class="card-image">📡</div>
+      <div class="card-body">
+        <h3 class="card-title">MR Cricket Analysis</h3>
+        <p class="card-desc">Live IPL broadcast pipeline using mixed reality overlays and real-time player data.</p>
+        <div class="card-tags">
+          <span class="card-tag">UE5</span>
+          <span class="card-tag">Virtual Production</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prototype -->
+    <div class="project-card">
+      <span class="status-badge badge-prototype">Prototype</span>
+      <div class="card-image">🤖</div>
+      <div class="card-body">
+        <h3 class="card-title">UE × Gemma</h3>
+        <p class="card-desc">In-engine GenAI NPC dialogue system using Google's Gemma model via local inference.</p>
+        <div class="card-tags">
+          <span class="card-tag">UE5</span>
+          <span class="card-tag">GenAI</span>
+          <span class="card-tag">C++</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

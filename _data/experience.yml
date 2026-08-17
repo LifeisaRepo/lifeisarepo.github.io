@@ -1,0 +1,18 @@
+- hash: "a3f9c21"
+  date_range: "Jan 2023 → present"
+  head: true
+  role: "Lead Unreal Engine Developer & Tech Lead"
+  company: "Liminal XR Solutions"
+  description: "Own architecture, build pipelines and technical direction across Games, XR, Virtual Production and GenAI workflows."
+
+- hash: "7b1e4d8"
+  date_range: "Sep 2020 → Jan 2023"
+  role: "Unreal Developer & Virtual Production Supervisor"
+  company: "Liminal XR Solutions"
+  description: "Shipped real-time UE experiences and ran on-set virtual production — LED volumes, nDisplay and live broadcast graphics for shows and events."
+
+- hash: "1c4a907"
+  date_range: "Aug 2019 → Sep 2020"
+  role: "Unity Developer"
+  company: "Liminal XR Solutions"
+  description: "Started building AR/VR apps in Unity, then helped move the studio's production pipeline over to Unreal Engine."

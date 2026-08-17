@@ -1,0 +1,47 @@
+<!-- @dsCard group="Tokens" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; padding: 2rem; }
+    h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: #555; margin-bottom: 1rem; }
+    .group { margin-bottom: 2rem; }
+    .palette { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .swatch { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+    .swatch-block { width: 72px; height: 72px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); }
+    .swatch-name { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #888; text-align: center; }
+    .swatch-hex  { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #e0e0e0; }
+  </style>
+</head>
+<body>
+  <div class="group">
+    <h3>Background</h3>
+    <div class="palette">
+      <div class="swatch"><div class="swatch-block" style="background:#0f0f12;"></div><div class="swatch-name">bg</div><div class="swatch-hex">#0f0f12</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#131318;"></div><div class="swatch-name">navbar</div><div class="swatch-hex">#131318</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#1a1f26;"></div><div class="swatch-name">surface</div><div class="swatch-hex">#1a1f26</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#111318;"></div><div class="swatch-name">code-bg</div><div class="swatch-hex">#111318</div></div>
+    </div>
+  </div>
+  <div class="group">
+    <h3>Accent</h3>
+    <div class="palette">
+      <div class="swatch"><div class="swatch-block" style="background:#00aaff;"></div><div class="swatch-name">electric-blue</div><div class="swatch-hex">#00aaff</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#aa6be8;"></div><div class="swatch-name">hero-purple</div><div class="swatch-hex">#aa6be8</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#7aa6ff;"></div><div class="swatch-name">link</div><div class="swatch-hex">#7aa6ff</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#9fd1ff;"></div><div class="swatch-name">link-hover</div><div class="swatch-hex">#9fd1ff</div></div>
+    </div>
+  </div>
+  <div class="group">
+    <h3>Text</h3>
+    <div class="palette">
+      <div class="swatch"><div class="swatch-block" style="background:#e0e0e0;"></div><div class="swatch-name">body</div><div class="swatch-hex">#e0e0e0</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#cfd8dc;"></div><div class="swatch-name">muted</div><div class="swatch-hex">#cfd8dc</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#8892b0;"></div><div class="swatch-name">meta</div><div class="swatch-hex">#8892b0</div></div>
+      <div class="swatch"><div class="swatch-block" style="background:#555555; border:1px solid rgba(255,255,255,0.1);"></div><div class="swatch-name">subtle</div><div class="swatch-hex">#555555</div></div>
+    </div>
+  </div>
+</body>
+</html>

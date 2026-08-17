@@ -3,19 +3,21 @@ layout: post
 title: "Unreal Programming Essentials #1"
 date: 2025-11-01 22:24:00 +0530
 category: devlogs
+tags: [UE5, C++, gameplay]
+read_time: 8
 cover: /assets/images/2025-11-01/gameplay-schematic.png
 cover_source: '<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-framework-in-unreal-engine?application_version=5.6" target="_blank">Src: Unreal Engine Docs</a>'
 ---
 
+<div class="doc-numbered" markdown="1">
+
+## Intro
+
 Imagine you want to make a car ...🤔. Your mind has probably started making a list of things that you would need to build a car. Now using my mystical powers of deduction I can say that the first few things that popped in your mind would be the **Engine/Electric Motor, Chassis, Wheels, Car Body, etc**. Certainly there are a lot more things that you need to build a car - but these are some parts without which you just can't make a car. This logic stays generally the same when developing anything <small>(_this is clearly a segue now.._)</small> and so it's also the same with creating an app in Unreal Engine.
 
-Unreal Engine has a few critically important classes which **have to be** a part of your application and each of them has a dedicated responsibility and a dedicated scope where it works. Either you add those classes yourself or Unreal will automatically add them for you, but without them the application just **DOES NOT WORK**. In this devlog we are gonna discuss about a few of these important classes <small>(_I will try not to be too boring but I can't promise anything lol 🤷‍♂️_)</small> which I have listed as follows,
+Unreal Engine has a few critically important classes which **have to be** a part of your application and each of them has a dedicated responsibility and a dedicated scope where it works. Either you add those classes yourself or Unreal will automatically add them for you, but without them the application just doesn't work. In this devlog we are gonna discuss about a few of these important classes. <small>(_I will try not to be too boring but I can't promise anything lol 🤷‍♂️_)</small>
 
-1. Game Mode/Game Mode Base
-1. Player Controller
-1. Pawn
-
-#### NOTE: See I'm not going to explain every single detail about these classes here, you can easily get that information in the [Unreal docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-6-documentation). My goal is to just explain their general purpose in a simple way which helps you use them in the right way.
+**NOTE**: See I'm not going to explain every single detail about these classes here, you can easily get that information in the [Unreal docs](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-6-documentation). My goal is to just explain their general purpose in a simple way which helps you use them in the right way. <br><br>
 
 ---
 
@@ -30,8 +32,8 @@ So in theory we would have multiple Game Mode classes such as `TDM_GameMode, Con
 Okay some important facts about the GameMode apart from my ramblings above,
 
 - There is a difference between GameMode and GameModeBase classes. For now, even I remember the difference using this simple thought in my head,
-  - Single-Player Game = Use `GameModeBase`
-  - Multiplayer Game = User `GameMode`
+  - **Single-Player Game** = Use `GameModeBase`
+  - **Multiplayer Game** = Use `GameMode`
 - The GameMode class spawns **only on the Server** <small>_(this information probably doesn't fall into the **"basics"** category but it's good to know none the less)_</small>. In a multiplayer game there are different types of Actors <small>_(I'm using the term Actor here as its the technically right term, but please understand that all Actors are basically classes/sub-classes)_</small> some of which are spawned only on the Server, some only on the Client and some exist on both. A GameMode class exists only on the Server so that no Client instance can tamper with it and the Server remains the single point of validation of the game using the Game Mode.
 - I will add more if I think of something interesting...
 
@@ -66,8 +68,10 @@ Some important facts,
 - As I said before Pawn is the most hackable class hence any critical data which can result in an unfair advantage to a player should either be validated by the server or it should just not be stored in the Pawn if that's an option.
 - If I remember anything else I will add it later...
 
-### Fin...
+## Fin...
 
 I guess thats all for this one. I'm too tired now, I'm not used to writing so much. Anyways the next one's not gonna be a part 2 of this - I will do that sometime later... the next one's gonna be a bit practical so hopefully y'all will not be as sleepy as you are by now.
 
 Have a nice weekend! Cheers 🍻!
+
+</div>

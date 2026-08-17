@@ -1,0 +1,72 @@
+---
+layout: null
+title: Devlog
+permalink: /devlog/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devlog — Sanjyot Dahale</title>
+  <meta name="description" content="Build logs, debugging trails, and the occasional rabbit hole — written while the context was still in my head." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sansation:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}" />
+  <style>
+    .doc { max-width:1140px; margin:0 auto; padding:0 var(--gutter); position:relative; z-index:1; }
+    .back { display:inline-flex; align-items:center; gap:0.5rem; font-family:var(--font-mono); font-size:0.74rem; color:var(--faint); margin:2.5rem 0 2rem; transition:color 0.2s; }
+    .back:hover { color:var(--accent); }
+    .back::before { content:'←'; color:var(--accent); }
+    .dl-head { margin-bottom:3rem; }
+    .dl-title { font-family:var(--font-display); font-size:clamp(2.2rem,5vw,3.2rem); font-weight:700; color:#fff; letter-spacing:-0.03em; margin:0.8rem 0; }
+    .dl-sub { color:var(--muted); font-size:1.02rem; max-width:560px; line-height:1.65; }
+    .empty-state { padding:3rem 0; font-family:var(--font-mono); font-size:0.82rem; color:var(--faint); }
+  </style>
+</head>
+<body data-palette="amber" data-type="grotesk">
+  <div class="vp-frame" aria-hidden="true">
+    <span class="vp-corner tl"></span><span class="vp-corner tr"></span>
+    <span class="vp-corner bl"></span><span class="vp-corner br"></span>
+  </div>
+
+  {% include header.html %}
+
+  <main class="doc">
+    <a class="back" href="{{ '/' | relative_url }}#devlog">home</a>
+    <header class="dl-head">
+      <div class="s-index"><span class="n">//</span><span class="ln"></span><span class="lbl">devlog</span></div>
+      <h1 class="dl-title">Working notes.</h1>
+      <p class="dl-sub">Build logs, debugging trails, and the occasional rabbit hole — written while the context was still in my head.</p>
+    </header>
+
+    {% if site.posts.size > 0 %}
+    <div class="posts">
+      {% for post in site.posts %}
+      <a class="post" href="{{ post.url | relative_url }}">
+        <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        <div class="post-main">
+          <span class="post-title">{{ post.title }}</span>
+          {% if post.tags.size > 0 %}
+          <div class="post-tags">
+            {% for tag in post.tags limit:4 %}
+            <span class="post-tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% if post.read_time %}<span class="post-rt">{{ post.read_time }} min</span>{% endif %}
+        <span class="post-arrow">→</span>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">// no posts yet — check back soon</div>
+    {% endif %}
+  </main>
+
+  {% include footer.html %}
+  <script src="{{ '/assets/js/nav.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+</body>
+</html>

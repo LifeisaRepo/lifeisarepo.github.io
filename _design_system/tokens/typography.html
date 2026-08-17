@@ -1,0 +1,54 @@
+<!-- @dsCard group="Tokens" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; padding: 2rem; line-height: 1.7; font-size: 1rem; }
+    .label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #555; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.4rem; margin-top: 1.8rem; }
+    .label:first-child { margin-top: 0; }
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 0.5rem 0 1.2rem; }
+    h1 { font-family: 'Sora', sans-serif; font-weight: 600; letter-spacing: 0.02em; color: #00aaff; font-size: 2.5rem; }
+    h2 { font-family: 'Sora', sans-serif; font-weight: 600; letter-spacing: 0.02em; color: #00aaff; font-size: 1.8rem; }
+    h3 { font-family: 'Sora', sans-serif; font-weight: 600; letter-spacing: 0.02em; color: #00aaff; font-size: 1.3rem; }
+    .body-text { font-size: 1rem; color: #e0e0e0; }
+    .muted-text { font-size: 0.95rem; color: #cfd8dc; }
+    .meta-text { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #8892b0; text-transform: uppercase; letter-spacing: 1px; }
+    .code-inline { background: rgba(40,45,50,0.8); color: #e4e8ef; padding: 0.1rem 0.4rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; border: 1px solid rgba(0,170,255,0.2); }
+    .code-block { display: block; background: #111318; color: #e4e8ef; padding: 1rem 1.2rem; border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.05); line-height: 1.6; }
+    .gradient-text { background: linear-gradient(135deg, #fff 0%, #aa6be8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.5rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="label">Heading 1 — Sora 600 / #00aaff</div>
+  <h1>Unreal Engine Developer</h1>
+
+  <div class="label">Heading 2 — Sora 600 / #00aaff</div>
+  <h2>Project Overview</h2>
+
+  <div class="label">Heading 3 — Sora 600 / #00aaff</div>
+  <h3>Technical Details</h3>
+
+  <div class="label">Hero gradient — white → #aa6be8</div>
+  <div class="gradient-text">Life is a Repo.</div>
+
+  <div class="label">Body — Sora 400 / #e0e0e0 / 1.7 lh</div>
+  <p class="body-text">Building immersive experiences at the intersection of game development, XR, and generative AI. Systems designer with a passion for real-time interaction.</p>
+
+  <div class="label">Muted — Sora 400 / #cfd8dc</div>
+  <p class="muted-text">Designed with AI assistance — "Antrigravity" — using Jekyll, vanilla JS, and custom CSS.</p>
+
+  <div class="label">Meta — JetBrains Mono / #8892b0 / uppercase</div>
+  <p class="meta-text">2026-06-21 · Devlog · 4 min read</p>
+
+  <div class="label">Inline code — JetBrains Mono 0.8rem</div>
+  <p><code class="code-inline">order: -1</code> hides a card from the grid.</p>
+
+  <div class="label">Code block — JetBrains Mono 0.85rem</div>
+  <pre><code class="code-block">layout: project
+title: "MetaHuman Pipeline"
+category: "Professional"
+order: 1</code></pre>
+</body>
+</html>

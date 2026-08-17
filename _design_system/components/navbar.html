@@ -1,0 +1,114 @@
+<!-- @dsCard group="Navigation" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 15, 18, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0 2.5rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .navbar-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .navbar-brand span { color: #00aaff; }
+    .navbar-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: #555;
+      letter-spacing: 0.04em;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .navbar-links a {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .navbar-links a:hover,
+    .navbar-links a.active { color: #fff; }
+
+    .btn-resume {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 170, 255, 0.35);
+      color: #00aaff;
+      background: rgba(0, 170, 255, 0.07);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+    }
+    .btn-resume:hover {
+      background: rgba(0, 170, 255, 0.15);
+      border-color: #00aaff;
+      box-shadow: 0 0 16px rgba(0, 170, 255, 0.2);
+    }
+
+    /* Preview context */
+    .preview-page {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a class="navbar-brand" href="#">life is a repo<span>.</span></a>
+      <span class="navbar-subtitle">Unreal Engine Developer &amp; Systems Designer</span>
+    </div>
+    <div class="navbar-right">
+      <ul class="navbar-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <a class="btn-resume" href="#">↓ Resume</a>
+    </div>
+  </nav>
+  <div class="preview-page">— page content below —</div>
+</body>
+</html>

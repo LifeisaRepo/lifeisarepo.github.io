@@ -20,14 +20,12 @@
 
 title: life is a repo
 email: sanjyot.code@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Unreal Engine Developer, Systems Designer, Solutions Architect, Game Dev, etc.
-  Just another developer looking to share his knowledge in the pursuit of gaining
-  some back.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://www.lifeisarepo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username:
-github_username: lifeisarepo
+description: >-
+  Games programmer building real-time experiences — games, XR, virtual production, and GenAI.
+baseurl: ""
+url: "https://lifeisarepo.github.io"
+github_username: LifeisaRepo
+linkedin_username: sanjyot-dahale
 
 # Build settings
 markdown: kramdown
@@ -48,14 +46,9 @@ collections:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - design_handoff_portfolio_site/
+  - Portfolio_Session_Log.md
+  - MR_Project_Answers_For_Claude.md
+  - CLAUDE.md
+  - _design_system/

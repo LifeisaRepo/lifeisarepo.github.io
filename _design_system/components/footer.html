@@ -1,0 +1,108 @@
+<!-- @dsCard group="Sections" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 3.5rem 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .footer-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .footer-name span { color: #00aaff; }
+    .footer-tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: #334155;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #475569;
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .footer-link:hover {
+      color: #cbd5e1;
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.03);
+    }
+    .footer-link.primary {
+      color: #00aaff;
+      border-color: rgba(0,170,255,0.25);
+      background: rgba(0,170,255,0.06);
+    }
+    .footer-link.primary:hover {
+      background: rgba(0,170,255,0.12);
+      border-color: rgba(0,170,255,0.5);
+    }
+    .footer-sep {
+      color: #1e293b;
+      font-size: 1rem;
+      user-select: none;
+    }
+
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: #1e293b;
+      letter-spacing: 0.06em;
+    }
+  </style>
+</head>
+<body>
+
+  <footer class="footer">
+
+    <div class="footer-brand">
+      <p class="footer-name">life is a repo<span>.</span></p>
+      <p class="footer-tagline">// sanjyot dahale — liminal xr solutions</p>
+    </div>
+
+    <div class="footer-links">
+      <a class="footer-link primary" href="mailto:sanjyot@liminal.in">✉ Email</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="#">in LinkedIn</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="#">⌥ GitHub</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="#">↓ Resume</a>
+    </div>
+
+    <p class="footer-copy">© 2026 Sanjyot Dahale — built with Jekyll &amp; too much caffeine</p>
+
+  </footer>
+
+</body>
+</html>

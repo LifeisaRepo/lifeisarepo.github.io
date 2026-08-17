@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; padding: 2.5rem; line-height: 1.7; }
+    blockquote {
+      position: relative;
+      background: rgba(20, 25, 30, 0.8);
+      border-left: 4px solid #00aaff;
+      padding: 1rem 1.5rem;
+      margin: 0 0 1.5rem;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #cfd8dc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 170, 255, 0.15);
+    }
+    blockquote::before {
+      content: "❝";
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      font-size: 2rem;
+      color: #00aaff;
+      opacity: 0.4;
+      padding-top: 5px;
+    }
+    blockquote.hovered {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.25);
+    }
+    blockquote p { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <blockquote>
+    <p>The best systems feel inevitable in hindsight — like they could never have been any other way.</p>
+  </blockquote>
+  <blockquote class="hovered">
+    <p>Crafting interaction is less about adding features and more about removing friction until the experience disappears into itself.</p>
+  </blockquote>
+</body>
+</html>

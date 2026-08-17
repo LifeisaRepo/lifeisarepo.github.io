@@ -1,34 +1,50 @@
 ---
 layout: project
-title: "Swadeshi: Local to Global"
-description: "A GenAI based application to blend Indian traditional art with modern western fashion."
+title: "Swadeshi — Local to Global"
+description: "A GenAI kiosk that reimagines western apparel in traditional Indian textiles, built for Vodafone Idea's India Mobile Congress 2025 booth."
 category: "Professional"
 order: 8
+domain: "GenAI Workflow & Prompt Engineering"
+role: "GenAI & Prompt Engineer"
+status: "rnd"
+filter_tags: "ai"
 image: "/assets/images/projects/ai-for-fashion/ai-for-fashion-hero.jpg"
 youtube_id: "AReWxYd4QTk"
-tags: ["Gemini Nano Banana", "Node-RED", "Python"]
+gallery_images: "/assets/images/projects/ai-for-fashion/ai-for-fashion-1.png,/assets/images/projects/ai-for-fashion/ai-for-fashion-2.png,/assets/images/projects/ai-for-fashion/ai-for-fashion-3.png"
+gallery_captions: "A Harrington jacket reimagined with Lucknowi Chikankari::A Skirt made from Paithani textile::A clutch design inspired by the Chikankari pattern"
+tags: ["Google Gemini", "Nano Banana", "Node-RED", "Prompt Engineering"]
 ---
-A Generative AI web application designed to reimagine luxury western apparel using traditional Indian textiles and art forms, blending cultural heritage with modern fashion.
+
+<div class="doc-numbered" markdown="1">
+
+## Overview
+
+Swadeshi was a generative-AI kiosk built for Vodafone Idea's booth at the India Mobile Congress 2025. A visitor chose a western garment or accessory (a kaftan, an evening gown, a bomber jacket, a clutch) and paired it with a traditional Indian textile or art style such as Lucknowi chikankari, Warli, or Patola. The kiosk then produced an editorial-style image of a model wearing that garment reimagined in the chosen textile, which the visitor could download to their phone by scanning a QR code.
+
+I worked on the generative-AI side of a three-person team. I researched which image-generation models could meet the quality and speed a live exhibition demanded, built a working prototype of the whole generation workflow, and designed the prompts that turned each visitor's two choices into a finished image. The web application itself was built by our web developer; the prototype I handed over was the logic he took to production.
 
 ### Project Details
-- **Role**: AI Integration and Prompt Engineering
-- **Platform**: Web Application
+
+- **Platform**: Web (exhibition kiosk)
 - **Client**: Vodafone Idea
+- **Team Size**: 3
+- **Duration**: 10-day development sprint (Sept–Oct 2025)
+- **Shipped**: Vi booth, India Mobile Congress 2025
 
-Developed for a high-profile exhibition, Swadeshi allowed users to interactively "redesign" fashion. Users selected their favorite western garments and paired them with traditional Indian textiles (like Ikat or Banarasi). The system then used a custom-tuned AI model to generate a unique, high-fidelity image of the reimagined apparel, which users could download and share via social media.
+## What I Built
 
-Following are some results from the application,
-{% include carousel.html 
-    images="/assets/images/projects/ai-for-fashion/ai-for-fashion-1.png,/assets/images/projects/ai-for-fashion/ai-for-fashion-2.png,/assets/images/projects/ai-for-fashion/ai-for-fashion-3.png" 
-    captions="A Harrington jacket reimagined with Lucknowi Chikankari::A Skirt made from Paithani textile ::A clutch design inspired by the Chikankari pattern"
-%}
+I had used generative-AI tools in my day-to-day work for a while, for drafting, for reading unfamiliar code, for generating images. This was the first client project where I had to design a generative-AI workflow that a customer would use directly, and make it dependable enough for a live exhibition floor.
 
-#### Technical Contributions
+#### Choosing the models
 
-- Developed a custom-defined prompt architecture fine-tuned for the Google Nano Banana model. This included defining complex JSON objects for user-defined inputs to ensure the AI interpreted fashion textures and garment shapes accurately.
-- Engineered the beta version of the entire backend workflow using **Node-RED**. This allowed for a fast, visual validation of the logic before handing it over to the web development team for final production implementation.
-- Conducted deep research into various Generative AI APIs to determine the most efficient model for real-time image generation within a high-traffic exhibition environment.
-- Successfully learned, prototyped, and implemented the GenAI APIs and backend logic within an intensive **10-day development sprint**.
+The first job was research: reading the image-generation APIs, understanding their JSON schemas, judging the quality each model could reach, and working out the per-image cost, which was the hardest figure to pin down. I settled on two hosted Google models with different jobs. Gemini Flash handled the text step, chosen for its response speed. Nano Banana generated the final image, chosen for being the state-of-the-art image model at the time. It was the more expensive option, and we accepted that deliberately: IMC draws high-net-worth and VVIP visitors, and Vi did not want to risk visible image-quality problems on the stand.
 
-### Personal Notes
-_This project was an exciting departure from my usual game engine work, pushing me to learn the nuances of Generative AI and Prompt Engineering in a short timeframe. It taught me that regardless of the medium—whether it's Games or AI, the core challenge is always the same: how to take a powerful, complex technology and make it feel like magic for the end user._
+#### Prototyping the workflow in Node-RED
+
+I looked for a fast, free way to build and test the workflow before any production code existed. That led me to Node-RED, an open-source, node-based flow tool. Coming from Blueprint in Unreal, the node graph was immediately familiar, and I could assemble the generation flow step by step and watch each stage run. Once the workflow produced the results we wanted, I handed the working implementation to our web developer, who reimplemented the logic in JavaScript for the production application.
+
+#### From two choices to a finished image
+
+The generation ran in two stages. Each visitor's selections filled the variables in a structured information block: the garment they picked and the textile or art style they wanted it rendered in. That block went to Gemini with instructions to turn it into a detailed, high-quality prompt written specifically for Nano Banana. Gemini returned the prompt, which was sent on to Nano Banana to render the final editorial-style image. The prompts were parameterised rather than hand-written per case, so the same design produced a coherent result across every garment-and-textile combination a visitor might choose.
+
+</div>

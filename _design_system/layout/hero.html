@@ -1,0 +1,199 @@
+<!-- @dsCard group="Layout" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; }
+
+    /* Navbar (condensed for context) */
+    .navbar {
+      background: rgba(15, 15, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 2.5rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar-left { display: flex; flex-direction: column; gap: 2px; }
+    .navbar-brand { font-size: 1rem; font-weight: 700; color: #fff; text-decoration: none; }
+    .navbar-brand span { color: #00aaff; }
+    .navbar-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #555; }
+    .navbar-right { display: flex; align-items: center; gap: 2rem; }
+    .navbar-links { display: flex; gap: 1.75rem; list-style: none; }
+    .navbar-links a { font-size: 0.88rem; color: #94a3b8; text-decoration: none; }
+    .navbar-links a.active { color: #fff; }
+    .btn-resume-nav { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; padding: 0.45rem 1.1rem; border-radius: 6px; border: 1px solid rgba(0,170,255,0.35); color: #00aaff; background: rgba(0,170,255,0.07); text-decoration: none; }
+
+    /* Hero */
+    .hero {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Atmospheric glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(170, 107, 232, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(0, 170, 255, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #00aaff;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 30%, #aa6be8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-bio {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 2.75rem;
+    }
+    .hero-bio strong {
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: rgba(0, 170, 255, 0.12);
+      color: #00aaff;
+      border-color: rgba(0, 170, 255, 0.35);
+    }
+    .btn-primary:hover {
+      background: rgba(0, 170, 255, 0.22);
+      border-color: #00aaff;
+      box-shadow: 0 0 24px rgba(0, 170, 255, 0.2);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: #64748b;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    .btn-secondary:hover {
+      color: #cbd5e1;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: #333;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, #333, transparent);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar for context -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a class="navbar-brand" href="#">life is a repo<span>.</span></a>
+      <span class="navbar-subtitle">Unreal Engine Developer &amp; Systems Designer</span>
+    </div>
+    <div class="navbar-right">
+      <ul class="navbar-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <a class="btn-resume-nav" href="#">↓ Resume</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-eyebrow">// games programmer</p>
+    <h1 class="hero-title">Sanjyot Dahale.</h1>
+    <p class="hero-bio">
+      I build things that run in real-time — <strong>games, XR experiences,
+      virtual production pipelines.</strong> Five years of shipping in Unreal Engine,
+      with a soft spot for systems that feel good to interact with.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#">View Projects</a>
+      <a class="btn btn-secondary" href="#">Read the Devlog</a>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+</body>
+</html>

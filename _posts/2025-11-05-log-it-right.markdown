@@ -3,11 +3,15 @@ layout: post
 title: "Log it Right! - A look at custom log categories"
 date: 2025-11-05 04:24:00 +0530
 category: devlogs
+tags: [UE5, C++, debugging]
+read_time: 6
 cover: /assets/images/2025-11-04/cover.png
 cover_source: "Src: life is a repo"
 ---
 
-### UE_LOG(LogTemp, Display, TEXT("Begin devlog"));
+<div class="doc-numbered" markdown="1">
+
+## UE_LOG(LogTemp, Display, TEXT("Begin devlog"));
 
 > I think there's atleast one Unreal C++ developer right now, who at this exact instant is using this line to figure out why their favorite piece of code has exploded and made their game crash... more power to you buddy 🙌.
 
@@ -44,11 +48,12 @@ If you observe the image you can see that the output log contains 2 values print
 
 ---
 
+<br>
 Once your game/application grows larger and there are multiple modules with multiple classes and sub-systems, it becomes really difficult to keep track of logs just using different verbosities or with the provided default filters like `LogTemp`. Here custom log categories come to the rescue, let's see how create one in multiple ways...
 
 > I'll explain the syntax for the macros later. First let's look at how to use all of them as I guess most people are here for that.
 
-### 1. Single Class Log Category
+## 1. Single Class Log Category
 
 This method works by just adding a single line of code to our existing `.cpp` file. The downside of this method is that you can use the defined log category only inside the file where it's created i.e. it's scope is only limited to that `.cpp` file. Hence this is good for creating a new category which will be used just in one place, otherwise not so great...
 
@@ -83,7 +88,7 @@ After compiling the above code and playing the game, you should see the followin
 And you can even check the filter, you should see `LogTestActorOnly` as a new filter,
 <img src="/assets/images/2025-11-04/StaticLogFilter.JPG">
 
-### 2. Log Category with a Wider Scope
+## 2. Log Category with a Wider Scope
 
 This method is a lot more complicated as it needs us to add not one but two whole lines of code, lol. No this is fairly straight-forward as well but the actual macro is different from the one we were using previously. Unlike the previous category we need to "declare" this macro in the `.h` file first and then we have to "define" it in the `.cpp` file. After that we can use this log wherever we want by just including the `.h` file. It looks like this...
 
@@ -190,3 +195,5 @@ Okay this is the last thing I promise 😅. I'm just gonna explain the syntax of
 
 <br>
 I guess that is all for this one. I know these devlogs are too long. I will try to keep it short and simple in the upcoming ones. Cheers 🍻!
+
+</div>

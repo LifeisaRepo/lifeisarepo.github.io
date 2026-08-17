@@ -1,0 +1,88 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Sora', sans-serif; background: #0f0f12; color: #e0e0e0; padding: 2rem; }
+    .label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #555; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; margin-top: 1.75rem; }
+    .label:first-child { margin-top: 0; }
+    .row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+    /* Project grid card tags */
+    .project-tag {
+      font-size: 0.72rem;
+      padding: 0.22rem 0.65rem;
+      background: rgba(0, 170, 255, 0.1);
+      color: #00aaff;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 170, 255, 0.2);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Category badge (project detail hero) */
+    .category-badge {
+      background: rgba(0, 170, 255, 0.2);
+      color: #00aaff;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      border: 1px solid rgba(0, 170, 255, 0.3);
+    }
+    /* Tech tags (project detail body) */
+    .tech-tag {
+      background: #1a1f26;
+      color: #ccc;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Skill items (homepage) */
+    .skill-item {
+      font-family: 'JetBrains Mono', monospace;
+      color: #8892b0;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+    .skill-item.hovered { color: #00aaff; border-color: rgba(0, 170, 255, 0.3); }
+  </style>
+</head>
+<body>
+  <div class="label">Project Card Tags (pill / #00aaff)</div>
+  <div class="row">
+    <span class="project-tag">UE 5</span>
+    <span class="project-tag">MetaHuman</span>
+    <span class="project-tag">XR</span>
+    <span class="project-tag">GenAI</span>
+    <span class="project-tag">Virtual Production</span>
+    <span class="project-tag">Blueprints</span>
+  </div>
+
+  <div class="label">Category Badge (project detail hero)</div>
+  <div class="row">
+    <span class="category-badge">Professional</span>
+    <span class="category-badge">Personal</span>
+  </div>
+
+  <div class="label">Tech Tags (project detail body)</div>
+  <div class="row">
+    <span class="tech-tag">Unreal Engine 5.4</span>
+    <span class="tech-tag">OpenXR</span>
+    <span class="tech-tag">Enhanced Input</span>
+    <span class="tech-tag">C++</span>
+  </div>
+
+  <div class="label">Skill Items (homepage grid)</div>
+  <div class="row">
+    <span class="skill-item">Unreal Engine</span>
+    <span class="skill-item">XR / AR / VR</span>
+    <span class="skill-item hovered">GenAI</span>
+    <span class="skill-item">Virtual Production</span>
+    <span class="skill-item">Systems Design</span>
+  </div>
+</body>
+</html>

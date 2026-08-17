@@ -3,7 +3,13 @@ layout: post
 title: "Hello World! 👨‍💻"
 date: 2025-10-30 23:35:00 +0530
 category: blog
+tags: [meta, blog]
+read_time: 2
 ---
+
+<div class="doc-numbered" markdown="1">
+
+## Hi!
 
 Blogging. It's been on my mind since ages now, but I was lazy. I liked to read and I liked to write (_hence turned to writing code..._) but you just end up losing some good habits along the way. But I guess now's a good time as any to kick myself in the ass and get going.
 
@@ -13,4 +19,6 @@ As Unreal Engine is my main muse I'm probably going to write mostly about that, 
 
 I think my brain has farted as much fart as it could fart so I guess I'm gonna end this one here. Also I guess it's quite obvious by now that I'm not going to keep my language super professional here. I will definitely try to avoid the use of profanities as much as possible - but I can't promise anything.
 
-Anyways, Cheers 🍻!
+Anyways, **Cheers 🍻!**
+
+</div>

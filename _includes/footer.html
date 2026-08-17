@@ -1,0 +1,36 @@
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <span class="footer-name">life is a repo<span class="dot">.</span></span>
+      <span class="footer-tag">// sanjyot dahale — game developer</span>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="mailto:{{ site.email }}">✉ email</a>
+      <a
+        class="footer-link"
+        href="https://www.linkedin.com/in/{{ site.linkedin_username }}/"
+        target="_blank"
+        rel="noopener"
+        >in linkedin</a
+      >
+      <a
+        class="footer-link"
+        href="https://github.com/{{ site.github_username }}"
+        target="_blank"
+        rel="noopener"
+        >⌥ github</a
+      >
+      <a
+        class="footer-link"
+        href="{{ '/assets/docs/Sanjyot-Dahale-Unreal-Programmer.pdf' | relative_url }}"
+        target="_blank"
+        rel="noopener"
+        >↓ resume</a
+      >
+    </div>
+  </div>
+  <p class="footer-copy">
+    © {{ 'now' | date: "%Y" }} sanjyot dahale · committed in the dark · build
+    v2.0
+  </p>
+</footer>

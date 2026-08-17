@@ -1,8 +1,30 @@
-<header class="navbar">
-  <h1><a href="{{ '/' | relative_url }}">Sanjyot Dahale</a></h1>
-  <nav>
-    <a href="{{ '/' | relative_url }}">Home</a>
-    <a href="{{ '/projects' | relative_url }}">Projects</a>
-    <a href="{{ '/about' | relative_url }}">About</a>
-  </nav>
-</header>
+<nav class="navbar">
+  <div class="wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="brand-name"
+        ><span class="brand-txt">life&nbsp;is&nbsp;a&nbsp;repo</span
+        ><span class="dot">.</span><span class="cur">_</span></span
+      >
+      <span class="brand-sub">game developer · unreal engine</span>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="{{ '/' | relative_url }}#skills">skills</a></li>
+        <li><a href="{{ '/' | relative_url }}#experience">experience</a></li>
+        <li><a href="{{ '/' | relative_url }}#client">work</a></li>
+        <li><a href="{{ '/' | relative_url }}#personal">personal</a></li>
+        <li><a href="{{ '/devlog' | relative_url }}">devlog</a></li>
+        <li><a href="{{ '/' | relative_url }}#about">about</a></li>
+      </ul>
+      <span class="nav-status"><span class="d"></span> open to work</span>
+      <a
+        class="btn-resume"
+        href="{{ '/assets/docs/Sanjyot-Dahale-Unreal-Programmer.pdf' | relative_url }}"
+        target="_blank"
+        rel="noopener"
+        >↓ resume</a
+      >
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</nav>

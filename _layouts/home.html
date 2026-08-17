@@ -1,69 +1,693 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-    <link rel="stylesheet" href="{{ '/assets/home.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-    <style>
-        /* Small override to hide the default header if we want a transparent one, 
-           but for now we keep the site header for consistency. */
-    </style>
-</head>
-<body>
-    {% include header.html %}
-
-    <div class="home-container">
-        
-        <!-- Hero Section -->
-        <section class="hero-section" {% if page.hero_background %}style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,1)), url('{{ page.hero_background | relative_url }}'); background-size: cover; background-position: center;"{% endif %}>
-            <h1 class="hero-title">Hi!</h1>
-            <p class="hero-subtitle">
-               I'm Sanjyot, an Unreal Engine Developer and Systems Designer with a passion for crafting high-fidelity interactive experiences.
-            </p>
-            <div class="hero-actions">
-                <a href="/projects" class="btn btn-primary">View Projects</a>
-                <a href="/about" class="btn btn-primary">About Me</a>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="skills-section">
-            <div class="skills-title">Core Technologies</div>
-            <div class="skills-grid">
-                <div class="skill-item">Unreal Engine 4/5</div>
-                <div class="skill-item">C++</div>
-                <div class="skill-item">Blueprints</div>
-                <div class="skill-item">Game Development</div>
-                <div class="skill-item">System Design</div>
-                <div class="skill-item">XR</div>
-                <div class="skill-item">Virtual Production</div>
-                <div class="skill-item">HLSL</div>
-                <div class="skill-item">OpenGL</div>
-                <div class="skill-item">Git</div>
-                <div class="skill-item">Perforce</div>
-                <div class="skill-item">Godot 4</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">GenAI</div>
-            </div>
-        </section>
-
-        <!-- Latest Posts Section -->
-        <section class="latest-section">
-            <div class="section-header">
-                <h2 class="section-title">Latest Devlogs</h2>
-                <!-- <a href="/blog" class="view-all">View Archive →</a> -->
-            </div>
-            
-            {% for post in site.posts limit:3 %}
-            <a href="{{ post.url }}" class="post-item">
-                <h3 class="post-title">{{ post.title }}</h3>
-                <div class="post-date">{{ post.date | date: "%B %d, %Y" }}</div>
-            </a>
-            {% endfor %}
-        </section>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Sanjyot Dahale | Game Developer - {{ page.title | default: "" }}
+    </title>
+    <meta name="description" content="{{ site.description }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sansation:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}"
+    />
+  </head>
+  <body
+    data-hero="left"
+    data-palette="amber"
+    data-type="grotesk"
+    data-motion="on"
+    data-layout="list"
+  >
+    <!-- ============ VIEWPORT FRAME ============ -->
+    <div class="vp-frame" aria-hidden="true">
+      <span class="vp-corner tl"></span><span class="vp-corner tr"></span>
+      <span class="vp-corner bl"></span><span class="vp-corner br"></span>
     </div>
-</body>
+
+    <!-- ============ LEFT SECTION RAIL ============ -->
+    <aside class="rail" aria-hidden="true">
+      <div class="rail-prog" id="railProg"></div>
+      <span class="rail-cap top">PERSP</span>
+      <nav class="rail-ticks" id="railTicks">
+        <a class="rail-tick" href="#skills"
+          ><span class="num">01</span><span class="bar"></span
+          ><span class="nm">Skills</span></a
+        >
+        <a class="rail-tick" href="#experience"
+          ><span class="num">02</span><span class="bar"></span
+          ><span class="nm">Experience</span></a
+        >
+        <a class="rail-tick" href="#client"
+          ><span class="num">03</span><span class="bar"></span
+          ><span class="nm">Client Work</span></a
+        >
+        <a class="rail-tick" href="#personal"
+          ><span class="num">04</span><span class="bar"></span
+          ><span class="nm">Personal &amp; R&amp;D</span></a
+        >
+        <a class="rail-tick" href="#devlog"
+          ><span class="num">05</span><span class="bar"></span
+          ><span class="nm">Devlog</span></a
+        >
+        <a class="rail-tick" href="#about"
+          ><span class="num">06</span><span class="bar"></span
+          ><span class="nm">About</span></a
+        >
+        <a class="rail-tick" href="#contact"
+          ><span class="num">07</span><span class="bar"></span
+          ><span class="nm">Contact</span></a
+        >
+      </nav>
+      <span class="rail-cap">LIT · 1.0</span>
+    </aside>
+
+    <!-- ============ BOTTOM-RIGHT LIVE READOUT ============ -->
+    <div class="readout" aria-hidden="true">
+      <span><span class="lbl">FPS</span> <b id="roFps">60</b></span>
+      <span class="sep">·</span>
+      <span><span class="lbl">TC</span> <b id="roTc">00:00:00:00</b></span>
+      <span class="sep">·</span>
+      <span><span class="lbl">RES</span> <b id="roRes">1920×1080</b></span>
+    </div>
+
+    <div class="page">
+      <!-- ============ NAVBAR ============ -->
+      {% include header.html %}
+
+      <!-- ============ HERO ============ -->
+      <header class="hero" id="top" data-screen-label="Hero">
+        <div class="wrap">
+          <div class="hero-inner">
+            <div class="hero-text">
+              <span
+                class="hero-tag"
+                data-roles='["game developer roles", "unreal engine developer roles", "game systems programmer roles", "xr developer roles", "tools programmer roles"]'
+                ><span class="d"></span>
+                <span class="mono"
+                  >open to
+                  <span class="hero-role-word">game developer roles</span
+                  ><span class="hero-tag-cur" aria-hidden="true">_</span></span
+                ></span
+              >
+              <h1 class="hero-name">
+                Sanjyot<br />Dahale<span class="obj">.</span>
+              </h1>
+              <p class="hero-role" aria-label="Game Developer / Unreal Engine">
+                <span class="arw">&gt;</span
+                ><span class="role-type">game developer</span
+                ><span class="dim"> · unreal engine · c++</span
+                ><span class="cur" aria-hidden="true"></span>
+              </p>
+              <p class="hero-line">
+                Unreal Engine developer with a career spanning six years across
+                <span class="hl">games, XR, and real-time production</span>
+                pipelines.
+              </p>
+              <div class="hero-ctas">
+                <a class="btn btn-primary" href="#client">view work</a>
+                <a class="btn btn-ghost" href="#contact">get in touch</a>
+              </div>
+              <div class="hero-stats">
+                <div class="hstat">
+                  <span class="v">6<span class="u">yrs</span></span
+                  ><span class="k">Unreal Engine</span>
+                </div>
+                <div class="hstat">
+                  <span class="v">10<span class="u">+</span></span
+                  ><span class="k">Shipped projects</span>
+                </div>
+                <div class="hstat">
+                  <span class="v">1<span class="u">★</span></span
+                  ><span class="k">Meta Quest title</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <span class="gizmo">◢ viewport · persp</span>
+              <span class="lbl">// showreel or hero capture →</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-scroll">
+          <div class="ln"></div>
+          <span>scroll to render</span>
+        </div>
+      </header>
+
+      <main id="flow">
+        <!-- ============ 01 · SKILLS ============ -->
+        <section
+          class="section-pad"
+          id="skills"
+          data-key="skills"
+          data-screen-label="Skills"
+        >
+          <div class="wrap">
+            <div class="s-head reveal">
+              <div class="s-index">
+                <span class="n">01</span><span class="ln"></span
+                ><span class="lbl">// skills</span>
+              </div>
+              <h2 class="s-title">Systems I run.</h2>
+              <p class="s-sub">
+                Most of the range here came through production work — a brief
+                landed in a new domain, and the skills followed.
+              </p>
+            </div>
+            <div class="sys-grid reveal">
+              <div class="sys core sys--engine">
+                <div class="sys-top">
+                  <div class="sys-id">
+                    <span class="dot"></span
+                    ><span class="nm">Engine &amp; Gameplay</span>
+                  </div>
+                  <span class="sys-stat">core</span>
+                </div>
+                <p class="sys-desc">
+                  Where I live — gameplay systems, architecture, physics and
+                  materials.
+                </p>
+                <div class="sys-chips">
+                  <span class="chip">Unreal Engine 5</span
+                  ><span class="chip">C++</span
+                  ><span class="chip">Blueprints</span
+                  ><span class="chip">Gameplay Ability System</span
+                  ><span class="chip">Replication</span
+                  ><span class="chip">Materials</span>
+                  <span class="chip">HLSL</span>
+                  <span class="chip">Anim Blueprints</span>
+                  <span class="chip">UMG</span>
+                </div>
+              </div>
+
+              <div class="sys sys--xr">
+                <div class="sys-top">
+                  <div class="sys-id">
+                    <span class="dot"></span
+                    ><span class="nm">XR / Spatial</span>
+                  </div>
+                  <span class="sys-stat">online</span>
+                </div>
+                <p class="sys-desc">
+                  Hands-on VR &amp; mixed-reality experiences, shipped to
+                  headset.
+                </p>
+                <div class="sys-chips">
+                  <span class="chip">OpenXR</span
+                  ><span class="chip">Meta Quest SDK</span
+                  ><span class="chip">HoloLens 2</span
+                  ><span class="chip">Mixed Reality</span>
+                </div>
+              </div>
+
+              <div class="sys sys--vp">
+                <div class="sys-top">
+                  <div class="sys-id">
+                    <span class="dot"></span
+                    ><span class="nm">Virtual Production</span>
+                  </div>
+                  <span class="sys-stat">online</span>
+                </div>
+                <p class="sys-desc">
+                  Real-time graphics for live shoots and on-set volumes.
+                </p>
+                <div class="sys-chips">
+                  <span class="chip">nDisplay</span
+                  ><span class="chip">ICVFX</span>
+                  <span class="chip">Live Chroma</span>
+                  <span class="chip">Live Link</span>
+                  <span class="chip">Camera Tracking</span>
+                  <span class="chip">MoCap</span>
+                </div>
+              </div>
+
+              <div class="sys sys--cast">
+                <div class="sys-top">
+                  <div class="sys-id">
+                    <span class="dot"></span
+                    ><span class="nm">Real-Time Broadcast</span>
+                  </div>
+                  <span class="sys-stat">online</span>
+                </div>
+                <p class="sys-desc">
+                  Low-latency 360° &amp; AR pipelines that went to air for live
+                  cricket matches.
+                </p>
+                <div class="sys-chips">
+                  <span class="chip">RTMP</span><span class="chip">SRT</span
+                  ><span class="chip">SMPTE</span
+                  ><span class="chip">360° Pipeline</span>
+                </div>
+              </div>
+
+              <div class="sys sys--ai">
+                <div class="sys-top">
+                  <div class="sys-id">
+                    <span class="dot"></span><span class="nm">GenAI</span>
+                  </div>
+                  <span class="sys-stat">online</span>
+                </div>
+                <p class="sys-desc">
+                  GenAI-based web apps, or local models wired straight into the
+                  engine and onto device.
+                </p>
+                <div class="sys-chips">
+                  <span class="chip">FunctionGemma</span
+                  ><span class="chip">ConvAi</span
+                  ><span class="chip">Runpod</span>
+                  <span class="chip">ElevenLabs</span>
+                  <span class="chip">Gemini</span>
+                  <span class="chip">Claude</span>
+                </div>
+              </div>
+
+              <div class="sys sys--tools">
+                <div class="sys-top">
+                  <div class="sys-id">
+                    <span class="dot"></span
+                    ><span class="nm">Tools &amp; Pipeline</span>
+                  </div>
+                  <span class="sys-stat">online</span>
+                </div>
+                <p class="sys-desc">
+                  Keeping a production moving, versioned and reproducible.
+                </p>
+                <div class="sys-chips">
+                  <span class="chip">Perforce</span
+                  ><span class="chip">Git LFS</span
+                  ><span class="chip">Python</span
+                  ><span class="chip">VS / VS Code</span
+                  ><span class="chip">JNI / Android</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 02 · EXPERIENCE ============ -->
+        <section
+          class="section-pad"
+          id="experience"
+          data-key="experience"
+          data-screen-label="Experience"
+        >
+          <div class="wrap">
+            <div class="s-head reveal">
+              <div class="s-index">
+                <span class="n">02</span><span class="ln"></span
+                ><span class="lbl">// experience</span>
+              </div>
+              <h2 class="s-title">Commit history.</h2>
+            </div>
+            <div class="repo reveal" id="repo">
+              <div class="repo-bar">
+                <span class="br">main</span><span>career.log</span
+                ><span class="sp"
+                  >{{ site.data.experience | size }} commits · 1
+                  contributor</span
+                >
+              </div>
+              <div class="commits">
+                {% for job in site.data.experience %}
+                <div class="commit{% if job.head %} head{% endif %}">
+                  <span class="commit-node"></span>
+                  <div class="commit-meta">
+                    <span class="commit-hash">{{ job.hash }}</span>
+                    <span class="commit-date">{{ job.date_range }}</span>
+                    {% if job.head %}<span class="commit-head-tag"
+                      >HEAD → main</span
+                    ><span class="commit-now">now</span>{% endif %}
+                  </div>
+                  <h3 class="commit-role">{{ job.role }}</h3>
+                  <p class="commit-co">{{ job.company }}</p>
+                  <p class="commit-desc">{{ job.description }}</p>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 03 · CLIENT WORK ============ -->
+        <section
+          class="section-pad"
+          id="client"
+          data-key="client"
+          data-screen-label="Client Work"
+        >
+          <div class="wrap">
+            <div class="s-head row reveal">
+              <div>
+                <div class="s-index">
+                  <span class="n">03</span><span class="ln"></span
+                  ><span class="lbl">// client work</span>
+                </div>
+                <h2 class="s-title">Shipped under fire.</h2>
+                <p class="s-sub">
+                  Client work spanning six years and a lot of different domains.
+                  I led the technical teams on all of these projects and built
+                  the systems end to end, from architecture to delivery.
+                </p>
+              </div>
+            </div>
+
+            <div class="filters reveal" id="filters">
+              <button class="filter active" data-filter="all">all</button>
+              <button class="filter" data-filter="ue5">UE5 / UE4</button>
+              <button class="filter" data-filter="vr">VR / MR</button>
+              <button class="filter" data-filter="cast">broadcast</button>
+              <button class="filter" data-filter="ai">genai</button>
+            </div>
+
+            <div class="proj-grid reveal" id="projGrid" data-layout="list">
+              {% assign client_projects = site.projects | where: "category",
+              "Professional" | where_exp: "p", "p.order > 0" | sort: "order" %}
+              {% for project in client_projects %}
+              <a
+                class="card"
+                href="{{ project.url | relative_url }}"
+                data-tags="{{ project.filter_tags }}"
+              >
+                <div class="card-media">
+                  {% if project.status == "live" %}
+                  <span class="badge badge-live"
+                    ><span class="d"></span>live</span
+                  >
+                  {% elsif project.status == "rnd" %}
+                  <span class="badge badge-rnd"
+                    ><span class="d"></span>r&amp;d</span
+                  >
+                  {% endif %} {% if project.image %}
+                  <img
+                    src="{{ project.image | relative_url }}"
+                    alt="{{ project.title }}"
+                    style="
+                      position: absolute;
+                      inset: 0;
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                    "
+                  />
+                  {% else %}
+                  <span class="lbl">// {{ project.domain | downcase }} →</span>
+                  {% endif %}
+                </div>
+                <div class="card-body">
+                  <p class="card-role">{{ project.domain }}</p>
+                  <h3 class="card-title">{{ project.title }}</h3>
+                  <p class="card-desc">{{ project.description }}</p>
+                  <div class="card-tags">
+                    {% for tag in project.tags limit:4 %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+                <span class="card-arrow">→</span>
+              </a>
+              {% endfor %}
+            </div>
+            <div class="more-wrap">
+              <button class="more" id="clientMore">show all →</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 04 · PERSONAL & R&D ============ -->
+        <section
+          class="section-pad"
+          id="personal"
+          data-key="personal"
+          data-screen-label="Personal Projects"
+        >
+          <div class="wrap">
+            <div class="s-head row reveal">
+              <div>
+                <div class="s-index">
+                  <span class="n">04</span><span class="ln"></span
+                  ><span class="lbl">// personal &amp; r&amp;d</span>
+                </div>
+                <h2 class="s-title">Built for myself.</h2>
+                <p class="s-sub">
+                  Personal experiments and prototypes that I've built along the
+                  way. These exist because something — a mechanic, a system, an
+                  architecture question — felt worth following all the way to a
+                  working implementation.
+                </p>
+              </div>
+            </div>
+            <div class="personal-grid reveal">
+              {% assign personal_projects = site.projects | where: "category",
+              "Personal" | where_exp: "p", "p.order > 0" | sort: "order" %} {%
+              for project in personal_projects %}
+              <div
+                class="pcard"
+                role="link"
+                tabindex="0"
+                style="cursor: pointer"
+                onclick="window.location='{{ project.url | relative_url }}'"
+                onkeydown="if(event.key==='Enter')window.location='{{ project.url | relative_url }}'"
+              >
+                <div class="pcard-media">
+                  {% if project.image %}
+                  <img
+                    src="{{ project.image | relative_url }}"
+                    alt="{{ project.title }}"
+                    style="
+                      position: absolute;
+                      inset: 0;
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                    "
+                  />
+                  {% else %}
+                  <span class="lbl">// {{ project.domain | downcase }} →</span>
+                  {% endif %}
+                </div>
+                <div class="pcard-body">
+                  <div class="pcard-head">
+                    <h3 class="pcard-title">{{ project.title }}</h3>
+                    <!--<span class="pcard-owned">solo</span>-->
+                  </div>
+                  <p class="pcard-desc">{{ project.description }}</p>
+                  <div class="pcard-sys">
+                    {% for tag in project.tags limit:5 %}
+                    <span class="psys">{{ tag }}</span>
+                    {% endfor %}
+                  </div>
+                  <div class="pcard-links">
+                    {% if project.github_url %}<a
+                      class="pcard-link"
+                      href="{{ project.github_url }}"
+                      target="_blank"
+                      rel="noopener"
+                      onclick="event.stopPropagation()"
+                      >source →</a
+                    >{% endif %} {% if project.game_build_url %}<a
+                      class="pcard-link"
+                      href="{{ project.game_build_url }}"
+                      target="_blank"
+                      rel="noopener"
+                      onclick="event.stopPropagation()"
+                      >build →</a
+                    >{% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 05 · DEVLOG ============ -->
+        <section
+          class="section-pad"
+          id="devlog"
+          data-key="devlog"
+          data-screen-label="Devlog"
+        >
+          <div class="wrap">
+            <div class="s-head row reveal">
+              <div>
+                <div class="s-index">
+                  <span class="n">05</span><span class="ln"></span
+                  ><span class="lbl">// devlog</span>
+                </div>
+                <h2 class="s-title">Working notes.</h2>
+              </div>
+              <a class="view-all" href="{{ '/devlog' | relative_url }}"
+                >view all →</a
+              >
+            </div>
+            {% if site.posts.size > 0 %}
+            <div class="posts reveal">
+              {% for post in site.posts limit:3 %}
+              <a class="post" href="{{ post.url | relative_url }}">
+                <span class="post-date"
+                  >{{ post.date | date: "%Y-%m-%d" }}</span
+                >
+                <div class="post-main">
+                  <span class="post-title">{{ post.title }}</span>
+                  {% if post.tags.size > 0 %}
+                  <div class="post-tags">
+                    {% for tag in post.tags limit:3 %}
+                    <span class="post-tag">{{ tag }}</span>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                </div>
+                {% if post.read_time %}<span class="post-rt"
+                  >{{ post.read_time }} min</span
+                >{% endif %}
+                <span class="post-arrow">→</span>
+              </a>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="posts reveal">
+              <div class="post" style="cursor: default">
+                <span class="post-date">coming soon</span>
+                <div class="post-main">
+                  <span class="post-title" style="color: var(--faint)"
+                    >Build logs and debugging trails — written while the context
+                    is still in my head.</span
+                  >
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </section>
+
+        <!-- ============ 06 · ABOUT ============ -->
+        <section
+          class="section-pad"
+          id="about"
+          data-key="about"
+          data-screen-label="About"
+        >
+          <div class="wrap">
+            <div class="s-head reveal">
+              <div class="s-index">
+                <span class="n">06</span><span class="ln"></span
+                ><span class="lbl">// whoami</span>
+              </div>
+              <h2 class="s-title">About.</h2>
+            </div>
+            <div class="about-grid">
+              <div class="about-body reveal">
+                <p>
+                  I'm an Unreal Engine developer and technical lead with six
+                  years of experience across AR/VR, virtual production, and
+                  real-time applications. I started out as a Unity developer
+                  building AR and VR applications, then moved to
+                  <span class="ac">Unreal Engine</span> and into a Virtual
+                  Production Supervisor role. There I helped clients integrate
+                  VP workflows into their production pipelines and worked on-set
+                  across several live productions.
+                </p>
+                <p>
+                  I now lead a cross-functional team shipping Unreal Engine
+                  applications and games across multiple platforms, while also
+                  leading R&D for GenAI-based applications. Some of the work I'm
+                  most proud of came from projects like the MR Cricket Analysis
+                  and the 360 VR Broadcast, which pushed me well outside my
+                  domain and meant picking up entirely new skills along the way.
+                </p>
+                <p>
+                  Through all of it,
+                  <span class="ac">game development</span> has stayed the
+                  constant. Alongside the games I've shipped professionally, I
+                  keep building prototypes in my own time to explore new systems
+                  and mechanics — and it's the kind of work I'd like to be doing
+                  more of.
+                </p>
+              </div>
+              <div class="about-portrait reveal">
+                <figure class="portrait-frame">
+                  <img
+                    src="{{ '/assets/images/about/sanjyot.jpg' | relative_url }}"
+                    alt="Sanjyot Dahale"
+                    loading="lazy"
+                  />
+                  <span class="pf-corner tl"></span
+                  ><span class="pf-corner tr"></span
+                  ><span class="pf-corner bl"></span
+                  ><span class="pf-corner br"></span>
+                </figure>
+                <div class="portrait-meta">
+                  <div class="pm-row">
+                    <span class="pm-k">Focus</span
+                    ><span class="pm-v">Systems &amp; Gameplay</span>
+                  </div>
+                  <div class="pm-row">
+                    <span class="pm-k">Based in</span
+                    ><span class="pm-v"
+                      >Mumbai, India · <span>open to relocation</span></span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ 07 · CONTACT ============ -->
+        <section class="section-pad" id="contact" data-screen-label="Contact">
+          <div class="wrap">
+            <div class="contact reveal">
+              <p class="contact-eye"><span class="d"></span> open to work</p>
+              <h2>Let's build <span class="hl">something together.</span></h2>
+              <p>
+                I'm looking for a full-time role in game development, and I'm
+                always open to a good collaboration. If you're working on
+                something and think I'd fit, I'd love to hear from you.
+              </p>
+              <div class="contact-actions">
+                <a class="sbtn primary" href="mailto:{{ site.email }}"
+                  ><span class="ic">✉</span> {{ site.email }}</a
+                >
+                <a
+                  class="sbtn"
+                  href="https://www.linkedin.com/in/{{ site.linkedin_username }}/"
+                  target="_blank"
+                  rel="noopener"
+                  ><span class="ic">in</span> LinkedIn</a
+                >
+                <a
+                  class="sbtn"
+                  href="https://github.com/{{ site.github_username }}"
+                  target="_blank"
+                  rel="noopener"
+                  ><span class="ic">⌥</span> GitHub</a
+                >
+                <a
+                  class="sbtn"
+                  href="{{ '/assets/docs/Sanjyot-Dahale-Unreal-Programmer.pdf' | relative_url }}"
+                  target="_blank"
+                  rel="noopener"
+                  ><span class="ic">↓</span> Resume</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ============ FOOTER ============ -->
+      {% include footer.html %}
+    </div>
+    <!-- /.page -->
+
+    <script src="{{ '/assets/js/nav.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  </body>
 </html>
