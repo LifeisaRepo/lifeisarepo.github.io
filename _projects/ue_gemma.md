@@ -3,7 +3,7 @@ layout: project
 title: "UE_Gemma"
 description: "An Android game made in Unreal Engine with the FunctionGemma-270M model running on-device — the LLM driving real gameplay actions."
 category: "Personal"
-order: 2
+order: 1
 domain: "Game + GenAI"
 role: "Solo Developer"
 engine_label: "UE · FunctionGemma"

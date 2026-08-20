@@ -3,7 +3,7 @@ layout: project
 title: "Aura - Master of Elements"
 description: "Top Down RPG made using Unreal's Gameplay Ability System"
 category: "Personal"
-order: 1
+order: 2
 domain: "Gameplay + Systems"
 role: "Solo Developer"
 engine_label: "UE5 · GAS"
