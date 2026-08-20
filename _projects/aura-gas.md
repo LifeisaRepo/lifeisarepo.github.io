@@ -102,4 +102,4 @@ Outside of the GAS system, I also learned a lot of other skills while making thi
 
 ## Final Notes
 
-_I intended this project to be a learning exercise primarily meant to teach me the Gameplay Ability System, but it taught me so much more along the way. Many of the features and frameworks that I implemented here actually changed my day-to-day coding practices. Apart from implementing the actual systems and mechanics, level design is the one thing which I have still not worked on much, so I'm going to continue working on this project and create a few more levels to teach myself some level design._
+_I intended this project to be a learning exercise primarily meant to teach me the Gameplay Ability System, but it taught me so much more along the way. Many of the features and frameworks that I implemented here actually changed my day-to-day coding practices. Now my next step is to expand the game further by building some more features which I can call as my own._
