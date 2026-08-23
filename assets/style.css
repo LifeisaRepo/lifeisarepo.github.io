@@ -129,6 +129,15 @@ img {
   max-width: 100%;
   display: block;
 }
+/* opt-in: ![alt](src){:.inline-icon} — flows inline with text like an emoji */
+img.inline-icon {
+  display: inline-block;
+  height: 1.2em;
+  width: auto;
+  max-width: none;
+  vertical-align: -0.25em;
+  margin: 0 0.1em;
+}
 
 .wrap {
   max-width: var(--maxw);
