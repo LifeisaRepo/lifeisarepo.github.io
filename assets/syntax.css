@@ -1,0 +1,156 @@
+/* Rouge syntax highlighting for devlog code blocks.
+   Scoped to .dl-body so it never touches inline `code` pills (those are
+   styled separately in style.css) or other pages. Colors are mapped to the
+   existing palette variables (style.css) rather than a stock theme so
+   highlighted code matches the site's dark/amber look. */
+
+.dl-body .highlight {
+  background: transparent;
+  color: inherit;
+}
+
+/* comments */
+.dl-body .highlight .c,
+.dl-body .highlight .ch,
+.dl-body .highlight .cm,
+.dl-body .highlight .cpf,
+.dl-body .highlight .c1,
+.dl-body .highlight .cs {
+  color: var(--faint);
+  font-style: italic;
+}
+
+/* preprocessor / directives (#include, etc.) */
+.dl-body .highlight .cp {
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* keywords */
+.dl-body .highlight .k,
+.dl-body .highlight .kd,
+.dl-body .highlight .kr,
+.dl-body .highlight .kn,
+.dl-body .highlight .kp,
+.dl-body .highlight .kv,
+.dl-body .highlight .kc {
+  color: var(--accent);
+}
+
+/* types / builtins */
+.dl-body .highlight .kt,
+.dl-body .highlight .nb,
+.dl-body .highlight .nc,
+.dl-body .highlight .nn {
+  color: #6cc6ff;
+}
+
+/* function / method names */
+.dl-body .highlight .nf,
+.dl-body .highlight .fm {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* decorators, attributes, tags, entities */
+.dl-body .highlight .nd,
+.dl-body .highlight .na,
+.dl-body .highlight .nt,
+.dl-body .highlight .ni {
+  color: var(--accent);
+}
+
+/* exceptions / errors */
+.dl-body .highlight .ne,
+.dl-body .highlight .gr,
+.dl-body .highlight .gt {
+  color: #ff5a5f;
+}
+
+/* lexer fallback for characters it can't classify (e.g. a bare `>` in a
+   `PS>` prompt) — left neutral so it doesn't read as a highlighted error */
+.dl-body .highlight .err {
+  color: inherit;
+}
+
+/* strings */
+.dl-body .highlight .s,
+.dl-body .highlight .sa,
+.dl-body .highlight .sb,
+.dl-body .highlight .sc,
+.dl-body .highlight .dl,
+.dl-body .highlight .sd,
+.dl-body .highlight .s2,
+.dl-body .highlight .se,
+.dl-body .highlight .sh,
+.dl-body .highlight .si,
+.dl-body .highlight .sx,
+.dl-body .highlight .sr,
+.dl-body .highlight .ss,
+.dl-body .highlight .s1 {
+  color: #7fd9a8;
+}
+
+/* numbers */
+.dl-body .highlight .m,
+.dl-body .highlight .mb,
+.dl-body .highlight .mf,
+.dl-body .highlight .mh,
+.dl-body .highlight .mi,
+.dl-body .highlight .mo,
+.dl-body .highlight .mx,
+.dl-body .highlight .il {
+  color: #c9a4ff;
+}
+
+/* names / variables — inherit the base code color */
+.dl-body .highlight .n,
+.dl-body .highlight .nx,
+.dl-body .highlight .py,
+.dl-body .highlight .nv,
+.dl-body .highlight .vc,
+.dl-body .highlight .vg,
+.dl-body .highlight .vi,
+.dl-body .highlight .vm,
+.dl-body .highlight .bp,
+.dl-body .highlight .nl,
+.dl-body .highlight .w {
+  color: inherit;
+}
+
+/* operators */
+.dl-body .highlight .o,
+.dl-body .highlight .ow {
+  color: var(--muted);
+}
+
+/* punctuation — de-emphasized so it doesn't compete with tokens */
+.dl-body .highlight .p {
+  color: var(--faint);
+}
+
+/* diff / generic output */
+.dl-body .highlight .gh,
+.dl-body .highlight .gu {
+  color: var(--muted);
+  font-weight: 600;
+}
+.dl-body .highlight .go,
+.dl-body .highlight .gp {
+  color: var(--faint);
+}
+.dl-body .highlight .ge {
+  font-style: italic;
+}
+.dl-body .highlight .gs,
+.dl-body .highlight .ges {
+  font-weight: 600;
+}
+.dl-body .highlight .gd {
+  color: #ff5a5f;
+  background: rgba(255, 90, 95, 0.08);
+}
+.dl-body .highlight .gi {
+  color: #7fd9a8;
+  background: rgba(127, 217, 168, 0.08);
+}
