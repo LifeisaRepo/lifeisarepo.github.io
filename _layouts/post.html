@@ -245,6 +245,16 @@
         padding: 1.05rem 1.15rem;
         overflow-x: auto;
       }
+      .dl-body img {
+        border: 1px solid var(--line-2);
+        border-radius: 10px;
+        margin: 0.5rem 0 1.7rem;
+        cursor: zoom-in;
+        transition: opacity 0.2s;
+      }
+      .dl-body img:hover {
+        opacity: 0.92;
+      }
       .dl-body blockquote {
         font-family: var(--font-display);
         font-size: clamp(1.25rem, 2.4vw, 1.7rem);
@@ -394,6 +404,25 @@
         );
         headings.forEach(function (h) {
           spy.observe(h);
+        });
+      })();
+    </script>
+    <script src="{{ '/assets/js/lightbox.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+    <script>
+      (function () {
+        var imgs = Array.from(document.querySelectorAll(".dl-body img"));
+        if (!imgs.length) return;
+
+        var items = imgs.map(function (im) {
+          return { src: im.currentSrc || im.src, caption: im.alt || "" };
+        });
+
+        var lb = window.Lightbox.create();
+
+        imgs.forEach(function (im, i) {
+          im.addEventListener("click", function () {
+            lb.open(items, i);
+          });
         });
       })();
     </script>

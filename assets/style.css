@@ -2100,3 +2100,115 @@ body[data-motion="off"] .commit-node {
     text-align: center;
   }
 }
+
+/* --- Lightbox (shared across project shots, devlog images, carousels) --- */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 8, 10, 0.92);
+  backdrop-filter: blur(4px);
+  padding: clamp(1rem, 5vw, 4rem);
+  /* zoomed images grow past .lightbox-content's box — clip at the viewport
+     edge, not the box hugging the image, or zoom looks like it's happening
+     inside a small window the size of the original image */
+  overflow: hidden;
+}
+.lightbox-overlay.active {
+  display: flex;
+}
+.lightbox-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  touch-action: none;
+}
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  cursor: zoom-in;
+  touch-action: none;
+  user-select: none;
+}
+.lightbox-content img.zoomed {
+  cursor: grab;
+  border-radius: 4px;
+}
+.lightbox-content img.dragging {
+  cursor: grabbing;
+}
+@media (min-width: 1024px) {
+  .lightbox-content {
+    max-width: 1500px; /* 1100px + 25% */
+  }
+  .lightbox-content img {
+    max-height: 100vh; /* 80vh + 25%; still bounded by .lightbox-content's max-height: 100% and the overlay's padding */
+  }
+}
+.lightbox-caption {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  text-align: center;
+  max-width: 680px;
+}
+.lightbox-close {
+  position: absolute;
+  z-index: 2;
+  top: 1.1rem;
+  right: 1.3rem;
+  background: none;
+  border: none;
+  color: var(--faint);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.lightbox-close:hover {
+  color: var(--accent);
+}
+.lightbox-btn {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--line);
+  color: #fff;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.lightbox-btn:hover {
+  border-color: var(--accent);
+  background: rgba(0, 0, 0, 0.65);
+}
+.lightbox-btn.prev {
+  left: 1.3rem;
+}
+.lightbox-btn.next {
+  right: 1.3rem;
+}
+/* touch devices swipe/pinch instead of tapping arrows */
+@media (hover: none) and (pointer: coarse) {
+  .lightbox-btn {
+    display: none !important;
+  }
+}

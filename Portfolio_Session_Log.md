@@ -999,3 +999,51 @@ Before committing, he asked whether anything beat both options, adding a constra
 **Handoff.** Build work moves to a **dedicated repo and a separate conversation** to keep this portfolio repo clean. A self-contained handoff prompt was supplied covering background, strategic framing, constraints, the locked phase-1 scope, the spike gate, the early decision points (FFmpeg vs libsrt licensing, decode threading, GPU colour conversion, `.Build.cs` packaging, reconnect behaviour), and an instruction to ask questions and write no implementation code on turn one — the failure mode being a fresh agent generating speculative `IMediaPlayer` code before the licensing decision is made.
 
 **Open item for this repo:** change Aura's `order` in `_projects/aura-gas.md` so it is no longer the first personal project shown. Not yet done.
+
+---
+
+### "How many years in the game industry?" — standard answer fixed (2026-09-10)
+
+Sanjyot flagged this as a question he repeatedly struggles with on applications. Diagnosed as having **three different true answers**, which is why no single number ever feels right: **7** (total professional, Aug 2019 → now, includes the Unity AR/VR year), **6** (Unreal Engine, Sep 2020 → now — and the figure already on the resume and LinkedIn), **~2** (games that actually shipped: Riddler's Ransom and Montra, both from mid-2024).
+
+**Rule adopted: give the number that survives "tell me more about that."** 7 collapses — the follow-up is "which studios?" and the answer is none, which retroactively makes every other claim sound inflated; **never use 7 for a games-specific question.** 6 holds under questioning. 2 is safe but fails 4–6 year filters and reads junior when he has six years of the skill being screened for.
+
+**Decision: numeric-only fields get 6**, because consistency with the resume and LinkedIn matters more than the exact figure. Free-text and conversation get the qualified version: *"Six years in Unreal Engine across games, XR and real-time production. Games have been my main focus for the last couple of years, including a title I took to the Meta Quest Store."*
+
+**Reframe recorded:** the question is a crude proxy for *"has this person shipped something?"* — so lead with the Meta Quest Store title and owning certification/submission where there's room, and let the years be context. Also noted that the question snags because it assumes a linear school→studio→ship path he didn't take; that's a flaw in the question, not in his answer.
+
+Written into `_career/master-resume.md` as **§10b** so it isn't re-derived per application.
+
+---
+
+### IGDC 2026 registration + resignation confirmed (2026-09-10)
+
+**Sanjyot has resigned.** On notice to end of October, free from **1 November**. IGDC runs **28–31 Oct**, so his notice ends the day the conference does. Fact base §1 availability row updated from prediction to fact.
+
+**Stale claim caught and fixed:** the Tanglewood covering message still said *"I'm on a two-month notice period"* (written 2026-08-02). Now reads *"I finish my notice at the end of October and am free from 1 November."* Worth noting the **Bangalore dev-support role**, previously scored 4/10 on practical fit purely because of its "Notice: Immediate" requirement, may now be revivable if still open.
+
+**IGDC registration form analysed** — 31 fields, schema extracted from JSON embedded in the TktPlz iframe (`tktplz.events/embed/gjdo4x-igdc-2026`); the parent-page save contained no form elements and WebFetch only ever returned the SPA shell. Guidance written to `_career/igdc-2026-registration.md`.
+
+**Framing problem identified:** the form is built for **studios**, not individual job-seekers — *Year Founded*, *Games Shipped*, *Team Size*, *Studio Expertise* and *Business Matchmaking* are all company-level. Resolution: answer company fields honestly about Liminal, steer matchmaking through the three genuinely personal fields (**Your Primary Role**, **Who are you looking to connect with**, **Session Topics**).
+
+**Five decisions that matter:** Primary Role → **Game Programmer / Engineer** (not Studio Head or C-Suite — same logic as the CTO-vs-Lead call); Years in the Game Industry → **5–10** (the §10b work paying off directly — the strict games-only answer would land in `1–3` and bucket him with juniors); Business Matchmaking → **leave blank**, since all four options are company-side and "We're hiring / looking for talent" would misroute him toward job-seekers rather than employers; Who to connect with → **Game Studios + Talent/Recruitment only**, because on a matchmaking system precision beats coverage; matchmaking consent → **tick**, it's the on/off switch for everything else. Also corrected an instinct: Games Shipped → **1–2**, not "None yet".
+
+**Elegant fix for the employer field:** Company = *"Liminal XR Solutions (through Oct 2026)"* — completely true, and it does the availability signalling for free in a plain text field. *Freelancer / Independent* on Organization Type would be false on the form date, so it stays **AR / VR / XR Studio**.
+
+**In-person line recorded:** *"My notice finishes the day this conference does."* Concrete, memorable, removes every timing objection — most job-hunting attendees are either months out or long unemployed.
+
+**Visibility concern now moot** — with the resignation done, LinkedIn's *Open to Work* can go public before the event.
+
+**Seniority question resolved (2026-09-10) — fact base §10c.** Sanjyot pushed back on the `5–10` recommendation, worried that if approached for a senior role he isn't genuinely equipped for one, and that he oscillates between presenting junior and senior.
+
+**Diagnosis: he's collapsing two axes into one number.** **Engineering judgment — genuinely senior** (owns systems end to end, made calls others built within, won a scope argument with a client on reasoning, was the technical ceiling for a studio, 10 hires interviewed, took a title through certification). **Games-domain depth — genuinely mid, and his instinct is correct**: no large mature codebase with conventions he didn't set, no depth in animation systems / AI at scale / designer tooling, no live-service or telemetry, no console, small shipped titles — and **the one actually underneath the worry: he has never been stretched by anyone more senior, because he has been the ceiling.** A real gap that years don't fix. Conclusion recorded: **a senior engineer with mid-level games-domain depth** — normal and hireable, not equivalent to an established-studio senior, nowhere near junior.
+
+**Three rules recorded:** never self-select down (present senior, state openness to mid, let studios level him — Tanglewood publishes three bands and does exactly this); **underselling is not the safe option**, it's a different mismatch, since six years plus a Lead title applying junior reads as confusing rather than modest; and **duration questions are not seniority claims** — "years in the game industry" is a time bucket and `5–10` is factual, with him sitting at its floor rather than claiming ten.
+
+**Line recorded for IGDC and interviews:** *"Six years in Unreal, but games specifically for the last two. I'd say my engineering judgment is senior and my games-domain depth is mid — I'd rather you level me than claim a band."* Noted that **accurate self-assessment is itself a senior behaviour** — juniors over- or under-claim, seniors calibrate — so the fact the question troubles him is evidence in his favour.
+
+**Company-field suggestion withdrawn (2026-09-10).** Sanjyot pointed out that the IGDC Company field **prints on the conference badge** — a consideration I'd missed when suggesting *"Liminal XR Solutions (through Oct 2026)"*. On a badge that parenthetical reads as a data-entry error, broadcasts his exit for four days, pre-empts the natural opener (*"Liminal XR, what do you do there?"*) before any rapport exists, and is off-key while he's still employed by and representing them at an industry event. **Corrected to plain `Liminal XR Solutions`.**
+
+Nothing is lost: availability has three better homes — the **matchmaking fields** (*Talent/Recruitment* + *Career Development*, which are what the algorithm actually reads), the **digital profile** (LinkedIn Open to Work + portfolio, checked after meeting), and **conversation** (*"My notice finishes the day this conference does"*, which lands far better spoken than printed since it comes with context and invites a follow-up).
+
+**"Year Founded/Started" clarified (2026-09-10).** It's a company field — "Founded" for studios, "/Started" as the fallback for individuals. Since Sanjyot answers the rest of that cluster (Company, Organization Type, Team Size, Games Shipped) about Liminal, this must match. **Warned against putting his own career start year**: read together, the profile would then assert a founding year for Liminal that is probably wrong, published on an industry directory. Also noted the field exists so investors and publishers can gauge studio maturity and does nothing for an individual job-seeker — so if it's skippable, skipping costs nothing.

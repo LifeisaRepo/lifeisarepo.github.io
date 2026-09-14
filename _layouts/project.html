@@ -353,99 +353,7 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* fullscreen lightbox */
-      .lightbox-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 200;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        background: rgba(8, 8, 10, 0.92);
-        backdrop-filter: blur(4px);
-        padding: clamp(1rem, 5vw, 4rem);
-      }
-      .lightbox-overlay.active {
-        display: flex;
-      }
-      .lightbox-content {
-        position: relative;
-        max-width: 1100px;
-        max-height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.9rem;
-      }
-      .lightbox-content img {
-        max-width: 100%;
-        max-height: 80vh;
-        object-fit: contain;
-        border: 1px solid var(--line-2);
-        border-radius: 8px;
-      }
-      @media (min-width: 1024px) {
-        .lightbox-content {
-          max-width: 1500px; /* 1100px + 25% */
-        }
-        .lightbox-content img {
-          max-height: 100vh; /* 80vh + 25%; still bounded by .lightbox-content's max-height: 100% and the overlay's padding */
-        }
-      }
-      .lightbox-caption {
-        font-family: var(--font-mono);
-        font-size: 0.74rem;
-        color: var(--muted);
-        text-align: center;
-        max-width: 680px;
-      }
-      .lightbox-close {
-        position: absolute;
-        top: 1.1rem;
-        right: 1.3rem;
-        background: none;
-        border: none;
-        color: var(--faint);
-        font-size: 2rem;
-        line-height: 1;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
-      .lightbox-close:hover {
-        color: var(--accent);
-      }
-      .lightbox-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid var(--line);
-        color: #fff;
-        width: 2.6rem;
-        height: 2.6rem;
-        border-radius: 50%;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition:
-          border-color 0.2s,
-          background 0.2s;
-      }
-      .lightbox-btn:hover {
-        border-color: var(--accent);
-        background: rgba(0, 0, 0, 0.65);
-      }
-      .lightbox-btn.prev {
-        left: 1.3rem;
-      }
-      .lightbox-btn.next {
-        right: 1.3rem;
-      }
-      /* touch devices swipe instead of tapping arrows */
-      @media (hover: none) and (pointer: coarse) {
-        .lightbox-btn {
-          display: none !important;
-        }
-      }
+      /* fullscreen lightbox — shared CSS lives in style.css (.lightbox-*) */
       .doc-cta {
         display: flex;
         gap: 0.7rem;
@@ -646,6 +554,7 @@
 
     {% include footer.html %}
 
+    <script src="{{ '/assets/js/lightbox.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
     <script>
       (function () {
         const shots = Array.from(
@@ -658,109 +567,14 @@
           caption: s.dataset.caption || "",
         }));
 
-        const lightbox = document.createElement("div");
-        lightbox.className = "lightbox-overlay";
-        lightbox.innerHTML = `
-        <button class="lightbox-close" aria-label="Close">×</button>
-        <button class="lightbox-btn prev" aria-label="Previous image">❮</button>
-        <div class="lightbox-content">
-            <img src="" alt="" />
-            <div class="lightbox-caption"></div>
-        </div>
-        <button class="lightbox-btn next" aria-label="Next image">❯</button>
-    `;
-        document.body.appendChild(lightbox);
-
-        const lbImg = lightbox.querySelector("img");
-        const lbCap = lightbox.querySelector(".lightbox-caption");
-        const lbClose = lightbox.querySelector(".lightbox-close");
-        const lbNext = lightbox.querySelector(".next");
-        const lbPrev = lightbox.querySelector(".prev");
-        let index = 0;
-
-        function render() {
-          const it = items[index];
-          lbImg.src = it.src;
-          lbImg.alt = it.caption || "Project image";
-          lbCap.textContent = it.caption || "";
-          lbCap.style.display = it.caption ? "block" : "none";
-          const many = items.length > 1;
-          lbNext.style.display = many ? "block" : "none";
-          lbPrev.style.display = many ? "block" : "none";
-        }
-        function open(i) {
-          index = i;
-          render();
-          lightbox.classList.add("active");
-          document.body.style.overflow = "hidden";
-        }
-        function close() {
-          lightbox.classList.remove("active");
-          document.body.style.overflow = "";
-        }
-
-        function next() {
-          index = (index + 1) % items.length;
-          render();
-        }
-        function prev() {
-          index = (index - 1 + items.length) % items.length;
-          render();
-        }
-
-        lbClose.addEventListener("click", close);
-        lightbox.addEventListener("click", (e) => {
-          if (e.target === lightbox) close();
-        });
-        lbNext.addEventListener("click", next);
-        lbPrev.addEventListener("click", prev);
-        document.addEventListener("keydown", (e) => {
-          if (!lightbox.classList.contains("active")) return;
-          if (e.key === "Escape") close();
-          if (e.key === "ArrowRight") next();
-          if (e.key === "ArrowLeft") prev();
-        });
-
-        // swipe navigation (touch devices use this instead of the arrow buttons)
-        let touchX = null,
-          touchY = null;
-        lightbox.addEventListener(
-          "touchstart",
-          (e) => {
-            if (e.touches.length !== 1) {
-              touchX = null;
-              return;
-            }
-            touchX = e.touches[0].clientX;
-            touchY = e.touches[0].clientY;
-          },
-          { passive: true },
-        );
-        lightbox.addEventListener(
-          "touchend",
-          (e) => {
-            if (touchX === null) return;
-            const dx = e.changedTouches[0].clientX - touchX;
-            const dy = e.changedTouches[0].clientY - touchY;
-            if (
-              Math.abs(dx) > 45 &&
-              Math.abs(dx) > Math.abs(dy) &&
-              items.length > 1
-            ) {
-              if (dx < 0) next();
-              else prev();
-            }
-            touchX = null;
-          },
-          { passive: true },
-        );
+        const lb = window.Lightbox.create();
 
         shots.forEach((shot, i) => {
-          shot.addEventListener("click", () => open(i));
+          shot.addEventListener("click", () => lb.open(items, i));
           shot.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
-              open(i);
+              lb.open(items, i);
             }
           });
         });

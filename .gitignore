@@ -6,3 +6,4 @@ vendor
 *.vsix
 /design_handoff_portfolio_site/
 /_career/
+.vscode/settings.json

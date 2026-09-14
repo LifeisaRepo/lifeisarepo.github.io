@@ -24,119 +24,37 @@
     {% endif %}
 </div>
 
-<!-- Lightbox Overlay (Shared across all carousels, generated once per include but we'll manage it dynamically) -->
-<!-- To avoid duplicating this modal for every carousel, we can add it dynamically via JS or check if it exists -->
-<!-- Simply putting it here means it might appear multiple times in DOM but we can handle that. -->
-
+<!-- Lightbox comes from the shared window.Lightbox widget (assets/js/lightbox.js),
+     loaded by the layout. This include only wires the carousel + hands it images. -->
 <script>
 (function() {
     if (window.carouselScriptLoaded) return;
     window.carouselScriptLoaded = true;
 
-    // Create Lightbox DOM
-    const lightbox = document.createElement('div');
-    lightbox.className = 'lightbox-overlay';
-    lightbox.innerHTML = `
-        <button class="lightbox-close">×</button>
-        <button class="lightbox-btn prev">❮</button>
-        <div class="lightbox-content">
-            <img src="" alt="Full Screen Image">
-            <div class="lightbox-caption"></div>
-        </div>
-        <button class="lightbox-btn next">❯</button>
-    `;
-    document.body.appendChild(lightbox);
-
-    const lightboxImg = lightbox.querySelector('img');
-    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
-    const closeBtn = lightbox.querySelector('.lightbox-close');
-    const lbNext = lightbox.querySelector('.next');
-    const lbPrev = lightbox.querySelector('.prev');
-    
-    let currentCarouselImages = [];
-    let currentCarouselCaptions = [];
-    let currentLightboxIndex = 0;
-
-    function openLightbox(images, captions, index) {
-        currentCarouselImages = images;
-        currentCarouselCaptions = captions;
-        currentLightboxIndex = index;
-        updateLightbox();
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Disable scroll
-    }
-
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    function updateLightbox() {
-        if (currentCarouselImages.length === 0) return;
-        
-        lightboxImg.src = currentCarouselImages[currentLightboxIndex];
-        const cap = currentCarouselCaptions[currentLightboxIndex];
-        lightboxCaption.textContent = cap ? cap : '';
-        lightboxCaption.style.display = cap ? 'block' : 'none';
-        
-        // Hide/Show buttons based on count
-        if (currentCarouselImages.length <= 1) {
-            lbNext.style.display = 'none';
-            lbPrev.style.display = 'none';
-        } else {
-            lbNext.style.display = 'block';
-            lbPrev.style.display = 'block';
-        }
-    }
-
-    closeBtn.addEventListener('click', closeLightbox);
-    
-    // Close on background click
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-    });
-
-    lbNext.addEventListener('click', () => {
-        currentLightboxIndex = (currentLightboxIndex + 1) % currentCarouselImages.length;
-        updateLightbox();
-    });
-
-    lbPrev.addEventListener('click', () => {
-        currentLightboxIndex = (currentLightboxIndex - 1 + currentCarouselImages.length) % currentCarouselImages.length;
-        updateLightbox();
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowRight') lbNext.click();
-        if (e.key === 'ArrowLeft') lbPrev.click();
-    });
-
     document.addEventListener('DOMContentLoaded', function() {
+        const lb = window.Lightbox && window.Lightbox.create();
         const carousels = document.querySelectorAll('.carousel-container');
 
         carousels.forEach(carousel => {
-            const track = carousel.querySelector('.carousel-track');
             const slides = carousel.querySelectorAll('.carousel-slide');
             const nextBtn = carousel.querySelector('.next');
             const prevBtn = carousel.querySelector('.prev');
             const dots = carousel.querySelectorAll('.dot');
-            
+
             // Gather all image sources and captions for this carousel
             const images = Array.from(slides).map(slide => slide.querySelector('img').src);
             const captions = Array.from(slides).map(slide => slide.querySelector('img').getAttribute('data-caption') || '');
+            const items = images.map((src, i) => ({ src, caption: captions[i] }));
 
             let currentIndex = 0;
 
             function updateCarousel(index) {
                 slides.forEach(slide => slide.classList.remove('active'));
                 dots.forEach(dot => dot.classList.remove('active'));
-                
+
                 slides[index].classList.add('active');
                 if(dots.length > index) dots[index].classList.add('active'); // Checks if dots exist
-                
+
                 currentIndex = index;
             }
 
@@ -170,8 +88,7 @@
                 const img = slide.querySelector('img');
                 img.style.cursor = 'pointer';
                 img.addEventListener('click', () => {
-                    // Open lightbox with this carousel's images starting at this index
-                    openLightbox(images, captions, index);
+                    if (lb) lb.open(items, index);
                 });
             });
         });
