@@ -23,6 +23,10 @@ email: sanjyot.code@gmail.com
 description: >-
   Games programmer building real-time experiences — games, XR, virtual production, and GenAI.
 baseurl: ""
+
+# Build in IST. Without this, GitHub builds in UTC and any post dated
+# between 00:00 and 05:30 IST rolls back a day — wrong date AND wrong URL.
+timezone: Asia/Kolkata
 url: "https://lifeisarepo.github.io"
 github_username: LifeisaRepo
 linkedin_username: sanjyot-dahale

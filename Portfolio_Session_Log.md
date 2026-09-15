@@ -1230,3 +1230,32 @@ The one genuine con: Google's source label above a result comes from `og:site_na
 **The one page still short of everything is `/about/`** — the last remaining `<meta http-equiv="refresh">` stub, the same dead-end problem `/projects/` had. Flagged as the next piece of work; not a blocker.
 
 **Verdict given: ready to push,** with the standing caveat that no links should be shared on LinkedIn until `og-default.png` exists, since LinkedIn caches a missing preview image for roughly a week.
+
+---
+
+### Pushed; sitemap live; timezone bug found and fixed (2026-09-15)
+
+**Push succeeded and the Jekyll 3.10 canary passed** — `jekyll-sitemap` ran on GitHub's builder, so the local-4.4.1 vs live-3.10 version gap is a non-issue. (The browser's *"This XML file does not appear to have any style information"* banner is normal for XML with no stylesheet, not an error.) 23 URLs, `coming-soon` and `404.html` correctly absent, all 11 project pages present including the three formerly orphaned personal ones. Resume PDF listed, which is desirable — recruiters can find it directly.
+
+**Real bug found by reading the live sitemap: a UTC/IST date shift.**
+
+**GitHub builds in UTC; Sanjyot writes in +0530**, and Jekyll derives both a post's URL and its displayed date from that timestamp. His posts are almost all written at night:
+
+| post | IST | UTC | shift |
+|---|---|---|---|
+| hello-world | 23:35 | 18:05 | same day |
+| essentials #1 | 22:24 | 16:54 | same day |
+| **log-it-right** | **04:24** | **22:54 prev** | **rolls back a day** |
+| ipstream 1–4 | 19:15–23:15 | 13:45–17:45 | same day |
+
+`log-it-right` is the only post written before 05:30 IST, so it was the only one affected — the **live site showed it as November 4 at `/devlogs/2025/11/04/`** despite being dated November 5 and named that in the filename. Confirmed by fetching the live devlog index.
+
+**Three reasons this mattered more than one wrong date:** it will **recur** on any future post written between midnight and 05:30, and he demonstrably writes in the small hours; the displayed date contradicts his intent; and **local builds silently diverged from live**, which quietly undermined the build-and-diff verification method used throughout this workstream — the local devlog index diff after the fix was **empty**, because his machine is already on IST, which is exactly why the problem was invisible locally.
+
+**Fixed:** `timezone: Asia/Kolkata` added to `_config.yml`. Verified all four hardcoded inter-post links point to posts that do **not** shift, and nothing anywhere links to `log-it-right`, so the URL change breaks nothing. Timing was deliberate — the sitemap was submitted the same day, so Google had almost certainly not yet recorded `/devlogs/2025/11/04/`; the same fix in a month would have stranded an indexed URL.
+
+**Also fixed:** `/about/` was being advertised in the sitemap while still a `<meta http-equiv="refresh">` stub. Added `sitemap: false` until it becomes a real page. Sitemap now 22 URLs.
+
+**Noted as a non-issue:** four URLs carry no `lastmod` (`/`, `/devlog/`, `/projects/`, and formerly `/about/`) because those pages have no date. Google falls back to crawl data; harmless.
+
+**Requires a second push.**
