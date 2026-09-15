@@ -7,6 +7,7 @@
       Sanjyot Dahale | Game Developer - {{ page.title | default: "" }}
     </title>
     <meta name="description" content="{{ site.description }}" />
+    {% include head-meta.html %}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -689,5 +690,6 @@
 
     <script src="{{ '/assets/js/nav.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  {% include analytics.html %}
   </body>
 </html>

@@ -1,0 +1,8 @@
+{%- comment -%}
+  Privacy-friendly visit counting (GoatCounter). No cookies, no consent banner
+  required, nothing rendered. Remove `goatcounter_url` from _config.yml to
+  disable site-wide. See also: Google Search Console verification in head-meta.
+{%- endcomment -%}
+{%- if site.goatcounter_url %}
+<script data-goatcounter="{{ site.goatcounter_url }}" async src="//gc.zgo.at/count.js"></script>
+{%- endif -%}

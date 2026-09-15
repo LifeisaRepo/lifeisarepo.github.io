@@ -4,6 +4,8 @@ title: "Coming Soon!"
 description: ""
 category: "Personal"
 order: -1
+sitemap: false      # placeholder — keep out of sitemap
+noindex: true       # ...and out of search results
 image: "/assets/images/projects/coming_soon.png"
 tags: []
 ---

@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.title }} — Sanjyot Dahale</title>
+    <title>{{ page.title }}</title>
     <meta
       name="description"
       content="{{ page.excerpt | strip_html | truncate: 160 }}"
     />
+    {% include head-meta.html %}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -303,6 +304,16 @@
         color: var(--accent);
         border-left-color: var(--accent);
       }
+      /* phones: long technical titles stack badly at the desktop size, and
+         `balance` makes every line equally narrow. Smaller + `pretty` instead. */
+      @media (max-width: 720px) {
+        .dl-title {
+          font-size: clamp(1.6rem, 6.6vw, 2.1rem);
+          line-height: 1.14;
+          letter-spacing: -0.02em;
+          text-wrap: pretty;
+        }
+      }
       @media (max-width: 900px) {
         .dl-grid {
           grid-template-columns: 1fr;
@@ -427,5 +438,6 @@
       })();
     </script>
     <script src="{{ '/assets/js/nav.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  {% include analytics.html %}
   </body>
 </html>

@@ -1,0 +1,32 @@
+{%- comment -%}
+  One project card. Markup mirrors the client-work card in _layouts/home.html
+  so both surfaces stay visually identical. Usage:
+      {% include project-card.html project=project %}
+  Note: deliberately no `reveal` class — that starts at opacity:0 and is only
+  un-hidden by main.js, which standalone pages don't load.
+{%- endcomment -%}
+<a class="card" href="{{ include.project.url | relative_url }}" data-tags="{{ include.project.filter_tags }}">
+  <div class="card-media">
+    {% if include.project.status == "live" %}
+    <span class="badge badge-live"><span class="d"></span>live</span>
+    {% elsif include.project.status == "rnd" %}
+    <span class="badge badge-rnd"><span class="d"></span>r&amp;d</span>
+    {% endif %}
+    {% if include.project.image %}
+    <img src="{{ include.project.image | relative_url }}" alt="{{ include.project.title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+    {% else %}
+    <span class="lbl">// {{ include.project.domain | downcase }} &rarr;</span>
+    {% endif %}
+  </div>
+  <div class="card-body">
+    <p class="card-role">{{ include.project.domain }}</p>
+    <h3 class="card-title">{{ include.project.title }}</h3>
+    <p class="card-desc">{{ include.project.description }}</p>
+    <div class="card-tags">
+      {% for tag in include.project.tags limit:4 %}
+      <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  <span class="card-arrow">&rarr;</span>
+</a>

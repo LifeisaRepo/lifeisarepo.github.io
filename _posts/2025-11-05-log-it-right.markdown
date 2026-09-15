@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Log it Right! - A look at custom log categories"
+title: "Custom Log Categories in Unreal Engine (Log it Right)"
 date: 2025-11-05 04:24:00 +0530
 category: devlogs
 tags: [UE5, C++, debugging]

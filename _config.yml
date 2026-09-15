@@ -27,11 +27,22 @@ url: "https://lifeisarepo.github.io"
 github_username: LifeisaRepo
 linkedin_username: sanjyot-dahale
 
+# Default social-preview card, used when a page has no image of its own.
+# Must be 1200x630. See _includes/head-meta.html for the resolution order.
+og_image: "/assets/images/og-default.png"
+
+google_site_verification: "ONwa3ytefd0nplYNn7heS-mqjI1lEzdvlJWU8J7peg4"
+
+# GoatCounter — privacy-friendly visit counts. Dashboard:
+#   https://lifeisarepo.goatcounter.com
+goatcounter_url: "https://lifeisarepo.goatcounter.com/count"
+
 # Build settings
 markdown: kramdown
 highlighter: rouge
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
 
 collections:
   projects:

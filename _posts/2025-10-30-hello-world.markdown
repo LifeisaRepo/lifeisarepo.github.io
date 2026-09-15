@@ -2,7 +2,7 @@
 layout: post
 title: "Hello World! 👨‍💻"
 date: 2025-10-30 23:35:00 +0530
-category: blog
+category: devlogs
 tags: [meta, blog]
 read_time: 2
 ---

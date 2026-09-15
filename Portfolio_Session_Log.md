@@ -1047,3 +1047,186 @@ Written into `_career/master-resume.md` as **§10b** so it isn't re-derived per 
 Nothing is lost: availability has three better homes — the **matchmaking fields** (*Talent/Recruitment* + *Career Development*, which are what the algorithm actually reads), the **digital profile** (LinkedIn Open to Work + portfolio, checked after meeting), and **conversation** (*"My notice finishes the day this conference does"*, which lands far better spoken than printed since it comes with context and invites a follow-up).
 
 **"Year Founded/Started" clarified (2026-09-10).** It's a company field — "Founded" for studios, "/Started" as the fallback for individuals. Since Sanjyot answers the rest of that cluster (Company, Organization Type, Team Size, Games Shipped) about Liminal, this must match. **Warned against putting his own career start year**: read together, the profile would then assert a founding year for Liminal that is probably wrong, published on an industry directory. Also noted the field exists so investors and publishers can gauge studio maturity and does nothing for an individual job-seeker — so if it's skippable, skipping costs nothing.
+
+---
+
+### Site exposure audit + discoverability/analytics plan (2026-09-15)
+
+**Question raised:** how much exposure does the portfolio currently have, how to grow it *without active outreach*, and can a unique-visitor / view counter be added.
+
+**Diagnosis — exposure is effectively zero, and it is structural rather than bad luck.** Four checks: a literal search for `"lifeisarepo.github.io"` returns nothing (a literal-URL search surfaces a domain if *any* page is indexed); a name + role search surfaces **LinkedIn**, YouTube and other people's portfolios but not the site — and the UE-Gemma description that came back was scraped from LinkedIn, meaning **the site is losing its own content to LinkedIn**; `/robots.txt` → 404; `/sitemap.xml` → 404. Not verified in Search Console either, so there is no data and no submission path.
+
+**Blockers found in the repo, ordered by ROI:**
+- **No social preview cards anywhere** — no `og:image`/`og:title`/`og:description`/`twitter:card` in any of the four layouts. Every link pasted into LinkedIn/Discord/WhatsApp renders as a bare grey box. Highest ROI because it multiplies the channel already in use, and the hero/cover images already exist.
+- No sitemap, robots.txt, or canonical URLs. `jekyll-sitemap` is GH-Pages-whitelisted.
+- Not in Google Search Console or Bing Webmaster Tools.
+- **Orphaned pages** — personal project cards use `onclick="window.location=..."` at `_layouts/home.html:455` instead of `<a href>`; client cards at `:375` do it correctly. Those detail pages have no crawlable inbound link from anywhere.
+- `/about/` and `/projects/` are `<meta http-equiv="refresh">` redirects to homepage anchors — `/projects/` is the most guessable URL on the site and is a crawler dead end.
+- URL split: `hello-world` has `category: blog` → `/blog/2025/...` while everything else is `/devlogs/...`.
+- `_layouts/default.html:6` hardcodes "— Gameplay Programmer" against the site-wide "Unreal Engine Developer" branding; homepage title renders with a trailing `- Home`.
+- No JSON-LD (`Person`/`BlogPosting`) — part of why answers about him get sourced from LinkedIn rather than his own pages.
+
+**Strategic caveat stated plainly:** even fully fixed, organic search will not be the main channel — seven posts on a new domain will not win broad Unreal terms. Technical SEO buys **name-search dominance and long-tail capture**, i.e. converting people who already have his resume. For *strangers* without outreach, the passive engines are the plugin repo, syndication with canonicals, and the GitHub profile README. Noted honestly that "no active outreach" caps the ceiling and these are one-time setups rather than ongoing publicity.
+
+**Four decisions taken:**
+- **Audience → both** recruiters/hiring managers **and** fellow Unreal/XR devs. Served by different phases rather than competing.
+- **Counter → private analytics only for now.** GoatCounter (free, cookieless, no consent banner). Reasoning accepted: a visible low number on a job-hunting portfolio is a *negative* signal — it tells a hiring manager nobody reads it. Instrument now so data accrues from today, display later, and if ever displayed do it as a **per-devlog "reads" count**, not a site-wide hit counter. GoatCounter's public `/counter/<path>.json` endpoint means the same install can drive that later without a second service.
+- **Plugin → public GitHub repo, and eventually Fab / Epic Developer Community.** Strongest available answer: `unreal rtsp plugin` and `ffmpeg unreal engine` are high-intent, low-competition queries, and repos/Fab listings outrank github.io pages substantially.
+- **Domain → undecided,** detail requested.
+
+**Correction recorded — the "move now or lose your indexing" claim was wrong.** Verified empirically that GitHub Pages issues a whole-path **301 permanent redirect** from `username.github.io` to a configured custom domain (`sindresorhus.github.io` → `sindresorhus.com`, `holman.github.io` → `zachholman.com`). A 301 passes ranking signals and keeps old links alive, so **there is no urgency penalty** — which is the fact his decision actually hinged on.
+
+**Domain tradeoff as presented.** Real arguments *for*: portability (the resume at `_career/base-resume.md:79` already prints `lifeisarepo.github.io`, and on github.io a host change kills every shared link); recruiter credibility (github.io reads as side project); name-search capture. Argument deliberately **not** made because it is overstated: authority inheritance — `github.io` is on the Public Suffix List, so Google treats every `*.github.io` as a separate site and he is neither helped nor harmed by neighbours. Costs: ~$10–12/yr at Cloudflare Registrar (at-cost, no renewal markup; `.com` ≈ $9.77, `.dev` ≈ $12), ~30–60 min of one-time DNS, and the standing risk that a lapsed domain is worse than none. **Recommendation: buy it, but do not let it block anything** — start on the current URL and let the 301 carry the work over. **`sanjyot.dev` suggested over `lifeisarepo.dev`**, because his *name* is the query worth owning for the recruiter audience; "life is a repo" stays as the brand.
+
+**Phased plan proposed:** *Phase 0* measurement first (Search Console, Bing Webmaster Tools — the latter specifically because Bing's index feeds ChatGPT search and Copilot, GoatCounter) since data only accrues from install day. *Phase 1* eligibility — a shared `_includes/head.html` consolidating the four layouts' duplicated font/stylesheet/title markup and housing og/twitter/canonical/JSON-LD (**hand-rolled rather than `jekyll-seo-tag`**, since the titles are bespoke and the plugin would fight them, and it matches the custom-CSS constraint), plus `jekyll-sitemap`, robots.txt, a 1200×630 fallback OG image, the orphan-link fix, a real `/projects/` index page, and the category/title fixes. *Phase 2* the plugin funnel — README written for the target queries, repo topics, and a devlog↔repo link loop. *Phase 3* syndication to dev.to/Hashnode with `canonical_url`.
+
+**Phase 4 — the free change worth more than most of the rest:** devlog titles are *series* titles ("Unreal IPStreamMedia - Devlog #4") and **nobody searches for "devlog #4"**. Carrying the technical subject in the title costs nothing going forward — e.g. *"Decoding an RTSP Stream to a UTexture2D in Unreal Engine 5 — IPStreamMedia #4"*. Same series identity, now findable by the dev audience.
+
+**Caveat recorded on the metric itself:** "unique visitors" is always an estimate on a cookieless static site — GoatCounter hashes IP + user-agent on a daily rotation, so one person across two days counts twice and two people behind one NAT may count once. Trend line, not ledger.
+
+**Assessment given:** Phase 0 plus the og:image work is ~80% of the near-term gain, since he already shares links on LinkedIn and every one currently renders as a grey box. Phase 2 is the one that compounds. **Nothing executed** — awaiting a call on whether to start with Phase 0 or scope the Phase 1 `head.html` refactor first.
+
+---
+
+### Phase 1 discoverability plumbing built (2026-09-15)
+
+**Three standing terms set by Sanjyot for this workstream:** (1) don't visually break anything currently working, (2) flag anything that costs money *before* integrating — the domain excepted, he'll buy that himself, (3) supply a creative-asset list per phase so he can prepare them.
+
+**Cost verified up front: the entire plan is free.** Google Search Console, Bing Webmaster Tools, sitemap and all code work cost nothing; GoatCounter's own terms state *"Running your personal website or small-to-medium business on it is fine"*, and Cloudflare Web Analytics is free on all plans. Only the domain involves money. Recorded so it isn't re-checked.
+
+**Method adopted for term 1 — build-and-diff.** Snapshotted all 24 built pages to scratchpad before touching anything, then rebuilt and diffed after every change with cache-buster timestamps normalised out. Any unintended change surfaces as a removed line. Local `bundle exec jekyll build` confirmed working (Ruby 3.4.7, Bundler 2.7.2), so the loop is reliable.
+
+**Own plan downgraded on purpose.** The earlier proposal to consolidate the four layouts' duplicated `<head>` blocks into one shared file was dropped: it means rewriting the font and stylesheet lines, and one error there renders the site unstyled. Under term 1 that trade isn't worth it. Replaced with a **purely additive** `_includes/head-meta.html` plus a one-line include in each head — it emits only `<meta>`, `<link>` and JSON-LD, so it cannot affect rendering. The tidy-up was a preference, not a requirement.
+
+**Built:**
+- `_includes/head-meta.html` — canonical URL, Open Graph, Twitter cards, `article:` tags, and JSON-LD (`Person` on home, `BlogPosting` on posts, `CreativeWork` on projects). Image resolution order `page.og_image → page.image → page.cover → site.og_image`. Hardcoded `og:image:width/height` were deliberately **removed** rather than declared — project heroes are 16:9, not 1.91:1, and lying to scrapers is worse than omitting.
+- Wired into all five heads (`default`, `home`, `post`, `project`, `devlog.html`); only `404.html` uses `default`.
+- `robots.txt` with sitemap reference; `jekyll-sitemap` added to `_config.yml` and Gemfile (GH-Pages-whitelisted, so production is fine).
+- `site.og_image` default and a commented `google_site_verification` slot in `_config.yml`.
+- `noindex:` page-level support; applied with `sitemap: false` to the empty **"Coming Soon!"** placeholder, which was generating a junk indexable page.
+- `default.html` title corrected from *"Gameplay Programmer"* to *"Unreal Engine Developer"* for site-wide consistency.
+- `hello-world` `category: blog → devlogs`, ending the `/blog/…` vs `/devlogs/…` URL split. Done **now precisely because indexation is zero** — there is nothing to break, and it only gets more costly later.
+
+**Verification results:** first diff — 22 of 24 pages changed, **zero lines removed** anywhere, i.e. provably additive. Second diff — only the two intended changes (404 title, hello-world URL move, with the devlog index link auto-updating). All **20 JSON-LD blocks parse as valid JSON**. Sitemap generates 23 URLs. No dangling `/blog/2025` references remain.
+
+**Planned change abandoned after inspection — and worth remembering why.** The plan called for swapping the personal-project cards at `_layouts/home.html:455` from a `div` with an `onclick` to a real `<a href>`. Inspection first showed those cards **already contain `<a>` tags** (`source →`, `build →` to GitHub and the game build). Nested anchors are invalid HTML and browsers actively re-parse them, which would have visibly wrecked the cards — **the original `div`+`onclick` was a deliberate workaround, not an oversight.** Replacement plan: build a **real `/projects/` index page** (currently a meta-refresh dead end) that links every project with plain anchors — fixes the orphaned-pages problem *and* the `/projects/` dead end without touching the homepage. Term 1 earned its keep here.
+
+**Outstanding from Sanjyot:** (a) Google Search Console "HTML tag" verification string — slot already waiting in `_config.yml`; (b) chosen GoatCounter site code. Bing deliberately deferred until GSC is verified, since it can then import in two clicks.
+
+**Creative assets requested — one required:** a **1200×630** default social card carrying "life is a repo" + his name + "Unreal Engine Developer", legible at thumbnail size (`/assets/images/og-default.png`). *Optional:* covers for the five posts lacking them (hello-world + all four IPStream), and a 1200×630 replacement for **Riddler's Ransom**, whose hero is 3000×900 (3.33:1) and will crop badly — every other project hero is 16:9 and crops cleanly.
+
+**Content note raised, his call:** devlog social cards currently pull `subtitle`, so Devlog #4's preview reads *"Finally the adventure begins! 👨‍💻"* — charming but tells a recruiter or dev nothing. A one-line `description:` in post frontmatter overrides it and makes a far better card.
+
+**Nothing is deployed** — all changes are local until pushed.
+
+---
+
+### Devlog retitling + analytics wired (2026-09-15)
+
+**Sanjyot rejected the `description:` approach and proposed a better split.** He wants subtitles to stay **human and mildly humorous** on purpose: *"Reading an article about programming is not exactly the most exciting thing in the world, so it just lightens things up."* His counter-proposal: change the **titles** instead, as originally suggested in Phase 4. Accepted, and it's the better design — **titles carry the information, subtitles carry the personality**, one field doing the work instead of two, which is how tech blogs that actually get read are structured. The card then reads as an informative headline with a human second line.
+
+**Two risks checked before drafting, both clear:**
+- **Retitling does not change URLs.** Proven by his own post: `unreal-programming-essentials-#1.markdown` is titled *"Unreal Programming Essentials #1"* but lives at `/devlogs/2025/11/01/unreal-programming-essentials-1.html` — Jekyll builds post URLs from the **filename**, not the title. No links break.
+- **Longer titles don't break the devlog list.** `.post` rows are a grid with no fixed height, and `.post-title` has no `nowrap`/`ellipsis`, so long titles simply wrap.
+
+All seven posts were **read in full** before drafting rather than titled from their existing titles, and the copy guide's **no-em-dash rule** was followed.
+
+**Applied (6 of 7):**
+| Was | Now |
+|---|---|
+| Unreal IPStreamMedia - Devlog #1 | Why Unreal Engine Can't Receive an RTSP Stream (IPStreamMedia #1) |
+| Unreal IPStreamMedia - Devlog #2 | I-Frames, P-Frames, and Why GOP Length Controls Stream Latency (IPStreamMedia #2) |
+| Unreal IPStreamMedia - Devlog #3 | Inspecting a Live RTSP Stream with ffprobe (IPStreamMedia #3) |
+| Unreal IPStreamMedia - Devlog #4 | Decoding an RTSP Stream to a UTexture2D in Unreal (IPStreamMedia #4) |
+| Unreal Programming Essentials #1 | Game Mode, Player Controller and Pawn: Unreal's Core Gameplay Classes (Essentials #1) |
+| Log it Right! - A look at custom log categories | Custom Log Categories in Unreal Engine C++ (Log it Right) |
+
+**`Hello World! 👨‍💻` deliberately left alone** — no technical subject exists in it to surface, and forcing one would misrepresent the post. Not every post needs to be search bait.
+
+**Flagged for later:** Devlog #4 carries two substantial things, and the title could only take one. The **FFmpeg DLL load failure** (`GetLastError=126`, missing `avutil-61.dll`, MinGW GNU-format vs MSVC short-import-format libraries, regenerating with `lib.exe` from the shipped `.def` files) is arguably the most searchable thing he has written — a specific, painful, poorly-documented error that anyone building an FFmpeg-based Unreal plugin will paste straight into Google. **It would pull far more traffic as its own short post** than as a section inside Devlog #4.
+
+**Credentials received and wired:** Google Search Console verification token into `_config.yml` (consumed by `head-meta.html`), and GoatCounter at `https://lifeisarepo.goatcounter.com/count` via a new `_includes/analytics.html`, wired before `</body>` in all five heads. Both are config-driven, so removing the key disables either site-wide. Verified present on all 22 real pages; the only two without are the `/about/` and `/projects/` meta-refresh stubs, which are slated for replacement anyway.
+
+**Build-diff result:** 22 pages changed, and **every removed line was a title-bearing line that was meant to change** — no collateral edits.
+
+**Cover-image question answered: no, they are not necessary.** Established that `cover:` is **never rendered on the page** — nothing read it until `head-meta.html` started using it, so it is purely a social-card field and has zero effect on how the site looks. The `og-default` card covers every post lacking one. The only cost of skipping is that all devlogs share an identical preview image. The obvious cheap workaround — point `cover:` at an image already in the post — was **checked and rejected**: #1 has only a small inline meme icon, #2 a table screenshot, #3 no images at all, #4 a Blueprint grab. All turn to mush cropped to thumbnail. Recommendation: skip covers entirely; revisit only if he starts regularly sharing individual devlogs, and then as one templated series card rather than per-post artwork.
+
+**Still outstanding:** the `og-default.png` (1200×630) asset, and the real `/projects/` page. **Nothing is deployed yet** — and Search Console verification will *fail* until the site is pushed, since the tag isn't on the live site.
+
+---
+
+### Real /projects/ page built (2026-09-15)
+
+**Replaces the `<meta http-equiv="refresh">` stub** that redirected `/projects/` to `/#client` and was a crawler dead end.
+
+**Three traps found by inspecting the existing components before reusing them:**
+1. **`.reveal` starts at `opacity: 0`** and is only un-hidden by `main.js` adding `.in`. Copying the homepage card markup verbatim onto a page that doesn't load `main.js` would have rendered **every card invisible**. The class is deliberately omitted.
+2. **Filters and the `show all` button are `main.js`-driven** (`if (grid && moreBtn && filtersEl)`, `DEFAULT = 4`), so they were omitted rather than shipped dead.
+3. **`.proj-grid[data-layout="list"]` is gated to `@media (min-width: 721px)`** — phones always fall back to plain cards. Used `data-layout="list"` to match the homepage exactly, so both the desktop list variant and the mobile card variant are already-proven code paths.
+
+**Built:** `projects.html` (mirroring `devlog.html`'s page chrome) plus a new `_includes/project-card.html` so the homepage and the projects page can't visually drift apart. Two sections, client work and personal, each reusing the **already-approved copy verbatim** from `home.html` per the copy-guide process rather than inventing new lines.
+
+**Result: all 11 visible projects now have real crawlable `<a href>` links**, including `ue-gemma`, `aura-gas` and `bow-arrow-mechanics` — the three personal projects that no search engine could previously reach, since the homepage links them only via `onclick`. The orphan problem is solved **without touching the homepage at all**, which was the point of choosing this route over the abandoned `div`→`<a>` swap.
+
+**Validation:** old redirect gone, no `reveal` class, no dead filter controls, navbar/footer/canonical/analytics all present, 11 of 11 images lazy-loaded, 17.2 KB. Anchor nesting re-checked after a **false positive** — the first checker missed that `header.html` and `footer.html` split closing tags as `</a\n>`; corrected check shows max nesting depth 1 and perfect balance, so no nested links.
+
+**Preview served** at `http://127.0.0.1:4001/` via `python -m http.server` from `_site`. Note `bundle exec jekyll serve` **fails on this machine** — Ruby 3 dropped `webrick` from stdlib and Jekyll 4.4 needs it. Deliberately not added to the Gemfile, since that would modify his dependencies for a preview convenience; serving the built output sidesteps it entirely.
+
+**Awaiting his decision on two things:** the one genuinely new line of copy (`h1` "The work." + sub "Client projects and personal builds, all in one place.") which per the copy process is his call, and whether the navbar's `work` link should now point at `/projects/` instead of `/#client`.
+
+---
+
+### Devlog headline wrapping fixed (2026-09-15)
+
+**Sanjyot reported** that the balanced wrapping of the new devlog titles looked bad on the article pages, especially on small screens, and asked to either solve it or shrink the titles, "whichever has lesser disadvantages."
+
+**Cause was my own retitling.** `.dl-title` in `_layouts/post.html` is `clamp(2.1rem, 4.6vw, 3.2rem)` with `text-wrap: balance` and `line-height: 1.06` — tuned for short titles like *"Log it Right!"*. Below a 730px viewport the `vw` term never wins, so phones render a **flat 33.6px**. At that size the new 65–85 character titles ran to **4–5 lines**, and `balance` made every line equally narrow, producing a tall uniform column.
+
+**Measuring it surfaced a second problem I had missed.** Google renders roughly **60 characters** of a title tag, and the template appends `" — Sanjyot Dahale"` (17 more). The new titles were **78–102 characters** — every one truncated in search results, with his **name being the part cut off**. So the titles were too long for the page *and* for the thing they were written for. Both problems pointed the same way, which made shortening the better lever rather than a compromise.
+
+**Fix applied on both axes:**
+
+1. **Titles trimmed** (65–85 → 52–60 chars), keeping the searchable terms at the front and the series marker last, since truncation eats the end:
+
+| Trimmed to |
+|---|
+| Why Unreal Engine Can't Play RTSP Streams (IPStreamMedia #1) |
+| I-Frames, P-Frames and GOP Length (IPStreamMedia #2) |
+| Inspecting an RTSP Stream with ffprobe (IPStreamMedia #3) |
+| Decoding RTSP to a UTexture2D in Unreal (IPStreamMedia #4) |
+| Game Mode, Player Controller and Pawn (Essentials #1) |
+| Custom Log Categories in Unreal Engine (Log it Right) |
+
+2. **Phone-only CSS rule** added at `@media (max-width: 720px)`: `clamp(1.6rem, 6.6vw, 2.1rem)`, `line-height: 1.14`, looser tracking, and **`text-wrap: pretty` instead of `balance`** — `pretty` only prevents orphans rather than forcing every line to equal width. **Desktop rules deliberately untouched**, so the large balanced headline he already approved is unchanged above 720px.
+
+**Result: 2–3 lines at every width** (was 3–5), verified at 390px / 720px / 1440px. Output confirms the phone rule present and the desktop block byte-identical.
+
+**Open question raised, not acted on:** even trimmed, titles sit at **69–77 chars** with the `" — Sanjyot Dahale"` suffix, so the suffix is still truncated away in search results. Dropping it on **post pages only** would bring them to 52–60 and make the whole title visible; his name would still appear in `og:title`, the JSON-LD author, the visible byline and the homepage title. Left for him to decide since it changes the browser tab text.
+
+---
+
+### Title suffix dropped + pre-push verification (2026-09-15)
+
+**Decision: drop `" — Sanjyot Dahale"` from post-page titles only; leave `og:site_name` as "life is a repo".**
+
+**Con analysis, since he asked whether any con outweighs the pros.** His name appears on a devlog page in **six** places (`<title>`, `og:title`, `meta author`, JSON-LD author, visible byline, footer). Dropping the title suffix removes it from exactly **two** surfaces: the Google result line and the browser tab. **The social card is unaffected** — `og:title` is set independently in `head-meta.html` and keeps `· Sanjyot Dahale`.
+
+The one genuine con: Google's source label above a result comes from `og:site_name`, which is **"life is a repo"** and does not contain his name, so devlog results would carry no visible attribution to him. Real cost for a job search. **But it doesn't outweigh, because he wasn't receiving that benefit anyway** — at 69–77 chars the name was already truncated before display. He was paying 17 characters for something the reader mostly never sees. Uncertainty stated honestly: Google truncates by *pixel width*, not a hard character count, so on shorter titles the name may sometimes squeeze in partially — "usually cut", not "always cut". Secondary con noted and judged minor: seven fewer title tags carrying his name slightly reduces name-search surface, but the homepage keeps its suffix and is the page that should win that query.
+
+**Refinement raised but deliberately deferred:** setting `og:site_name` to "Sanjyot Dahale" would put his name in every result *above* the title at zero character cost. Not done — it trades away the "life is a repo" branding, which is a branding call, not a technical one. Revisit once Search Console has real data.
+
+**Result: post titles now 16–60 chars, all within Google's display width.**
+
+**Project pages deliberately keep the suffix** — measured at **25–52 chars** with it, only one of twelve exceeding 60. They fit comfortably, so they gain the attribution that posts couldn't afford. Scope was *not* silently expanded to them.
+
+**Full pre-push verification, whole site:**
+- **448 internal links checked, 0 broken**
+- sitemap.xml, robots.txt, feed.xml all present
+- Search Console verification tag present
+- analytics / canonical / og:image on **23 of 24** pages
+- **20 JSON-LD blocks, all valid**
+- **Cumulative diff against the original untouched site: 0 pages with unexpected removed content.** The single moved page is `hello-world`, intentional.
+
+**The one page still short of everything is `/about/`** — the last remaining `<meta http-equiv="refresh">` stub, the same dead-end problem `/projects/` had. Flagged as the next piece of work; not a blocker.
+
+**Verdict given: ready to push,** with the standing caveat that no links should be shared on LinkedIn until `og-default.png` exists, since LinkedIn caches a missing preview image for roughly a week.
