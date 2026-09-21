@@ -7,6 +7,7 @@ tags: [UE5, C++, debugging]
 read_time: 6
 cover: /assets/images/2025-11-04/cover.png
 cover_source: "Src: life is a repo"
+description: "Why UE_LOG's default LogTemp category doesn't scale, and how to create custom log categories in Unreal Engine C++ for cleaner console output."
 ---
 
 <div class="doc-numbered" markdown="1">

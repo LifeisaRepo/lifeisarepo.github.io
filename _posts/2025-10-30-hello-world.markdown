@@ -5,6 +5,7 @@ date: 2025-10-30 23:35:00 +0530
 category: devlogs
 tags: [meta, blog]
 read_time: 2
+description: "Kicking off the devlog: a loose, casual log covering Unreal Engine, sports broadcast, virtual production, and GenAI experiments."
 ---
 
 <div class="doc-numbered" markdown="1">

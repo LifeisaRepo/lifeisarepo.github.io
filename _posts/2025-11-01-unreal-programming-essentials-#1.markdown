@@ -7,6 +7,7 @@ tags: [UE5, C++, gameplay]
 read_time: 8
 cover: /assets/images/2025-11-01/gameplay-schematic.png
 cover_source: '<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-framework-in-unreal-engine?application_version=5.6" target="_blank">Src: Unreal Engine Docs</a>'
+description: "A plain-English rundown of Unreal Engine's core gameplay framework classes — Game Mode, Player Controller, and Pawn — and what each is responsible for."
 ---
 
 <div class="doc-numbered" markdown="1">

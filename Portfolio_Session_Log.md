@@ -1259,3 +1259,15 @@ The one genuine con: Google's source label above a result comes from `og:site_na
 **Noted as a non-issue:** four URLs carry no `lastmod` (`/`, `/devlog/`, `/projects/`, and formerly `/about/`) because those pages have no date. Google falls back to crawl data; harmless.
 
 **Requires a second push.**
+
+---
+
+### Phase 0 + 1 confirmed live (2026-09-16)
+
+Second push deployed. Verified against the live site: sitemap returns **HTTP 200** as `application/xml` and parses cleanly under a strict XML parser, 22 URLs; `robots.txt` is live, allows all, and carries the `Sitemap:` line; **the timezone fix worked on GitHub's builder** — `log-it-right` now serves from `/devlogs/2025/11/05/` — and `/about/` is correctly absent.
+
+**GoatCounter confirmed collecting.** Search Console verification succeeded (implied — a sitemap cannot be submitted to an unverified property).
+
+**Search Console reported "Sitemap could not be read."** Diagnosed as **not a site problem**, since every server-side check passes. Two candidate causes given: most likely GSC simply hasn't processed it yet (that status is routinely shown right after submission and resolves within hours to days), or the classic trap where the sitemap field **already contains the domain as a fixed prefix** and pasting the full URL records `https://lifeisarepo.github.io/https://lifeisarepo.github.io/sitemap.xml`. He can spot the latter in the "Submitted sitemaps" table and fix it by re-adding just `sitemap.xml`. Reassurance given that this blocks nothing either way: `robots.txt` already advertises the sitemap, which is Google's other discovery route.
+
+**Phase 0 and Phase 1 are done.** Remaining: `og-default.png` from Sanjyot (blocking LinkedIn sharing only), a real `/about/` page, Bing import, and Phase 2 (the plugin repo funnel), which is the piece that actually compounds.
