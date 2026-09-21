@@ -1271,3 +1271,29 @@ Second push deployed. Verified against the live site: sitemap returns **HTTP 200
 **Search Console reported "Sitemap could not be read."** Diagnosed as **not a site problem**, since every server-side check passes. Two candidate causes given: most likely GSC simply hasn't processed it yet (that status is routinely shown right after submission and resolves within hours to days), or the classic trap where the sitemap field **already contains the domain as a fixed prefix** and pasting the full URL records `https://lifeisarepo.github.io/https://lifeisarepo.github.io/sitemap.xml`. He can spot the latter in the "Submitted sitemaps" table and fix it by re-adding just `sitemap.xml`. Reassurance given that this blocks nothing either way: `robots.txt` already advertises the sitemap, which is Google's other discovery route.
 
 **Phase 0 and Phase 1 are done.** Remaining: `og-default.png` from Sanjyot (blocking LinkedIn sharing only), a real `/about/` page, Bing import, and Phase 2 (the plugin repo funnel), which is the piece that actually compounds.
+
+---
+
+### Custom domain bought: sanjyotdahale.dev (2026-09-21)
+
+**Sanjyot bought `sanjyotdahale.dev`** — the full name rather than the `sanjyot.dev` suggested earlier, which is an exact match for the query that matters most to the job search. Registered on **Cloudflare** (nameservers `harleigh`/`lee.ns.cloudflare.com`); **no DNS records yet**, so the domain currently resolves nowhere.
+
+**Scope of the repo change is tiny, and proven so before touching anything.** A grep of all published files found exactly **one** hardcoded reference to the old address: `url:` in `_config.yml`. A **rehearsal build** into scratch with only that line overridden produced a site with **zero** remaining references to `lifeisarepo.github.io` (resume PDF aside) — canonical URLs, OG images, JSON-LD `Person.url`, sitemap (22 URLs), feed (24), and `robots.txt` all switch automatically. That's the payoff of routing everything through `absolute_url`. The LinkedIn draft routine builds the site and reads `feed.xml`, so its drafted links follow the new domain with no change.
+
+**Sequencing is the hard part, because `.dev` is HSTS-preloaded** — browsers refuse plain HTTP entirely, so without a certificate the site is simply unreachable. And once the custom domain is set, GitHub **301s `lifeisarepo.github.io` to it**. Pushing the `CNAME` before DNS is live would therefore redirect every visitor into a dead domain. Agreed order:
+
+1. **Cloudflare DNS** (Sanjyot): 4 `A` + 4 `AAAA` records for the apex and a `www` `CNAME` → `lifeisarepo.github.io`, **all set to "DNS only" (grey cloud)**. Cloudflare defaults new records to Proxied, which hides GitHub's IPs and blocks its Let's Encrypt certificate. IPs confirmed from GitHub's docs: `185.199.108–111.153`, `2606:50c0:8000–8003::153`. No wildcard records (GitHub flags them as a takeover risk).
+2. **GitHub account-level domain verification** (Sanjyot, recommended by GitHub *before* adding the domain to a repo): a TXT record that stops anyone else claiming the domain on Pages.
+3. **Propagation check** (Claude, via DNS lookup).
+4. **Repo change** (Claude): `CNAME` file + the `url:` line, build-and-diff, then Sanjyot pushes. Deliberately **not** prepared in advance — he pushes devlogs regularly, and a staged `CNAME` sitting in the working tree could ship early by accident.
+5. **Enforce HTTPS** once GitHub issues the certificate (usually within the hour; GitHub documents up to 24h). A brief window where the site may be unreachable is unavoidable — avoid doing it right before sending an application.
+6. **Search Console**: add a **Domain** property (DNS-verified, covers https/www/everything) and resubmit the sitemap; keep the github.io property. **Bing**: import from GSC.
+7. **Update external links**: LinkedIn website field, GitHub profile, and eventually the resume.
+
+**Found during the check:** the published **resume PDF** (`assets/docs/Sanjyot-Dahale-Unreal-Programmer.pdf`) contains the old address, as do the `_career/` sources (`base-resume.md`, `master-resume.md`, the Tanglewood variant, `linkedin-audit.md`, the IGDC notes). Not urgent — the 301 keeps printed copies working — but the next resume revision should carry the new domain. Belongs to the job-search workstream.
+
+**Warned against renaming the repo** to match the domain: it must remain `lifeisarepo.github.io` for user-site Pages behaviour and for the LinkedIn routine, which clones it by that name.
+
+**Update (2026-09-21), Steps 1–2 done and verified; repo change made.** DNS checked via two independent resolvers (Google and Cloudflare DoH): 4 `A` + 4 `AAAA` records all return **GitHub's** addresses rather than Cloudflare's, which proves the grey-cloud / DNS-only step worked; `www` CNAME → `lifeisarepo.github.io`; GitHub's domain-verification TXT record is present. **Canonical host confirmed as the bare `sanjyotdahale.dev`** (not `www`).
+
+Repo change: new `CNAME` file (`sanjyotdahale.dev`) and `_config.yml` `url:` switched. Build-and-diff, **normalising the domain out**: 26 files changed, and the only non-domain difference was `lastmod` on the undated project pages in `sitemap.xml` — `jekyll-sitemap` stamps those with the build time, and the two builds ran 11 seconds apart. So the switch is domain-only, as the rehearsal predicted. `CNAME` is copied into `_site` too. Ready to push: `_config.yml`, `CNAME`, session log.
