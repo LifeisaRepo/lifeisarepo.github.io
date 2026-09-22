@@ -1,0 +1,47 @@
+---
+layout: null
+title: About
+description: "I'm an Unreal Engine developer and technical lead with six years of experience across AR/VR, virtual production, and real-time applications."
+permalink: /about/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Sanjyot Dahale</title>
+  <meta name="description" content="{{ page.description }}" />
+  {% include head-meta.html %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sansation:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}" />
+  <style>
+    .doc { max-width:1140px; margin:0 auto; padding:0 var(--gutter); position:relative; z-index:1; }
+    .back { display:inline-flex; align-items:center; gap:0.5rem; font-family:var(--font-mono); font-size:0.74rem; color:var(--faint); margin:2.5rem 0 2rem; transition:color 0.2s; }
+    .back:hover { color:var(--accent); }
+    .back::before { content:'\2190'; color:var(--accent); }
+    .pg-sec { margin-bottom:4.2rem; }
+  </style>
+</head>
+<body data-palette="amber" data-type="grotesk">
+  <div class="vp-frame" aria-hidden="true">
+    <span class="vp-corner tl"></span><span class="vp-corner tr"></span>
+    <span class="vp-corner bl"></span><span class="vp-corner br"></span>
+  </div>
+
+  {% include header.html %}
+
+  <main class="doc">
+    <a class="back" href="{{ '/' | relative_url }}">home</a>
+
+    <section class="pg-sec">
+      {% include about-content.html index="01" tag="h1" %}
+    </section>
+  </main>
+
+  {% include footer.html %}
+  <script src="{{ '/assets/js/nav.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  {% include analytics.html %}
+</body>
+</html>

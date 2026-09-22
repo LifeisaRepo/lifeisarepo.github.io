@@ -103,4 +103,8 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Sanjyot Dahale","url":{{ site.url | jsonify }},"image":{{ seo_image | jsonify }},"jobTitle":"Unreal Engine Developer","description":{{ site.description | jsonify }},"email":{{ site.email | prepend: 'mailto:' | jsonify }},"sameAs":{{ person_sameas }},"knowsAbout":["Unreal Engine","Game Development","C++","Virtual Production","Extended Reality","Mixed Reality","Generative AI","Real-Time Broadcast"]}
 </script>
+{%- elsif page.url == '/about/' %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AboutPage","name":{{ seo_title | jsonify }},"description":{{ seo_desc | jsonify }},"url":{{ seo_url | jsonify }},"mainEntity":{"@type":"Person","name":"Sanjyot Dahale","url":{{ site.url | jsonify }},"image":{{ seo_image | jsonify }},"jobTitle":"Unreal Engine Developer","sameAs":{{ person_sameas }}}}
+</script>
 {%- endif %}

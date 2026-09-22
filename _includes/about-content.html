@@ -1,0 +1,74 @@
+{%- comment -%}
+  Shared About content: eyebrow, heading, the three approved paragraphs,
+  portrait and Focus/Based-in rows. Used by the homepage's 06 · ABOUT
+  section and by /about/ so the approved copy has one source of truth.
+  Usage: {% include about-content.html index="06" tag="h2" reveal="reveal" %}
+  `reveal` should only be passed on the homepage — `.reveal` starts at
+  opacity:0 and is only un-hidden by main.js, which standalone pages don't load.
+  `tag` picks the heading level ("h1" on /about/, "h2" nested in the homepage).
+  Indentation matches the original _layouts/home.html markup (12-space base)
+  so the homepage's built output stays byte-identical.
+{%- endcomment -%}
+{%- assign heading_tag = include.tag | default: "h2" -%}
+            <div class="s-head{% if include.reveal %} reveal{% endif %}">
+              <div class="s-index">
+                <span class="n">{{ include.index }}</span><span class="ln"></span
+                ><span class="lbl">// whoami</span>
+              </div>
+              <{{ heading_tag }} class="s-title">About.</{{ heading_tag }}>
+            </div>
+            <div class="about-grid">
+              <div class="about-body{% if include.reveal %} reveal{% endif %}">
+                <p>
+                  I'm an Unreal Engine developer and technical lead with six
+                  years of experience across AR/VR, virtual production, and
+                  real-time applications. I started out as a Unity developer
+                  building AR and VR applications, then moved to
+                  <span class="ac">Unreal Engine</span> and into a Virtual
+                  Production Supervisor role. There I helped clients integrate
+                  VP workflows into their production pipelines and worked on-set
+                  across several live productions.
+                </p>
+                <p>
+                  I now lead a cross-functional team shipping Unreal Engine
+                  applications and games across multiple platforms, while also
+                  leading R&D for GenAI-based applications. Some of the work I'm
+                  most proud of came from projects like the MR Cricket Analysis
+                  and the 360 VR Broadcast, which pushed me well outside my
+                  domain and meant picking up entirely new skills along the way.
+                </p>
+                <p>
+                  Through all of it,
+                  <span class="ac">game development</span> has stayed the
+                  constant. Alongside the games I've shipped professionally, I
+                  keep building prototypes in my own time to explore new systems
+                  and mechanics — and it's the kind of work I'd like to be doing
+                  more of.
+                </p>
+              </div>
+              <div class="about-portrait{% if include.reveal %} reveal{% endif %}">
+                <figure class="portrait-frame">
+                  <img
+                    src="{{ '/assets/images/about/me.jpg' | relative_url }}"
+                    alt="Sanjyot Dahale"
+                    loading="lazy"
+                  />
+                  <span class="pf-corner tl"></span
+                  ><span class="pf-corner tr"></span
+                  ><span class="pf-corner bl"></span
+                  ><span class="pf-corner br"></span>
+                </figure>
+                <div class="portrait-meta">
+                  <div class="pm-row">
+                    <span class="pm-k">Focus</span
+                    ><span class="pm-v">Systems &amp; Gameplay</span>
+                  </div>
+                  <div class="pm-row">
+                    <span class="pm-k">Based in</span
+                    ><span class="pm-v"
+                      >Mumbai, India · <span>open to relocation</span></span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>{%- comment -%}{%- endcomment -%}

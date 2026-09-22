@@ -1297,3 +1297,109 @@ Second push deployed. Verified against the live site: sitemap returns **HTTP 200
 **Update (2026-09-21), Steps 1–2 done and verified; repo change made.** DNS checked via two independent resolvers (Google and Cloudflare DoH): 4 `A` + 4 `AAAA` records all return **GitHub's** addresses rather than Cloudflare's, which proves the grey-cloud / DNS-only step worked; `www` CNAME → `lifeisarepo.github.io`; GitHub's domain-verification TXT record is present. **Canonical host confirmed as the bare `sanjyotdahale.dev`** (not `www`).
 
 Repo change: new `CNAME` file (`sanjyotdahale.dev`) and `_config.yml` `url:` switched. Build-and-diff, **normalising the domain out**: 26 files changed, and the only non-domain difference was `lastmod` on the undated project pages in `sitemap.xml` — `jekyll-sitemap` stamps those with the build time, and the two builds ran 11 seconds apart. So the switch is domain-only, as the rehearsal predicted. `CNAME` is copied into `_site` too. Ready to push: `_config.yml`, `CNAME`, session log.
+
+---
+
+### Domain migration live and verified (2026-09-21)
+
+Pushed; Enforce HTTPS on; new domain added to Search Console, where **its sitemap was fetched successfully on the first attempt**.
+
+**Live verification, all passing:**
+- `https://sanjyotdahale.dev/`, `/projects/`, and a deep devlog URL → **200**
+- `http://`, `https://www.` and `http://www.` → **301 → `https://sanjyotdahale.dev/`**
+- `lifeisarepo.github.io` → **301 with the path preserved**, checked on the homepage, a devlog, a project page and the resume PDF — so every old link, including printed resumes, still lands on the right page
+- Certificate: **Let's Encrypt, valid, covers both apex and `www`**, expires 2026-12-20 (GitHub renews automatically)
+- `robots.txt` advertises the new sitemap; **22/22 sitemap URLs return 200**, all on the new domain
+- Homepage, a project and a devlog each have canonical = `og:url` on the new domain, with **no occurrence of the old domain** in the page
+- feed self-link on the new domain; GoatCounter script still present
+
+**On his theory that "there's some issue with github.io websites":** answered carefully rather than endorsed. The old sitemap file was verifiably fine (200, `application/xml`, strict parse). What differed between the two submissions was the property type (URL-prefix vs a DNS-verified Domain property), the host, and elapsed time — and it was never confirmed whether the first submission hit the doubled-URL trap. The cause can't be determined from outside Search Console, and it's now **moot**, since every github.io URL 301s to the new domain.
+
+**Change of Address tool confirmed applicable** from Google's docs: the old property is a root-level URL-prefix property (their definition of "domain level" explicitly includes subdomain roots like `m.example.com` and root URL-prefix properties), both properties are owned by the same account, and 301s are in place. Recommended running it soon, while the old property's verification is still current.
+
+**Remaining list given:** Change of Address; Bing import of the new property; update the website field on LinkedIn, the GitHub profile and the repo's About box; confirm **auto-renew** on the Cloudflare domain (a lapsed domain is worse than never having one — it kills every printed link); GoatCounter's site-domain setting (cosmetic, dashboard links only). **`og-default.png` is still 404 and is now the only thing blocking LinkedIn sharing.** Then `/about/`, the resume refresh, and Phase 2.
+
+---
+
+### Post-migration housekeeping + /about/ handed off (2026-09-21)
+
+**Sanjyot's status on the remaining list:** deleted the old `lifeisarepo.github.io` Search Console property and created one for `sanjyotdahale.dev`; Bing imported; LinkedIn, GitHub profile and repo About links updated; GoatCounter site domain updated. **Cloudflare auto-renew deferred** ("later") and still open. **`og-default.png` and the resume refresh promised for 2026-09-22.**
+
+**Consequences noted:** deleting the old property removes the Change of Address option, but the path-preserving 301s do the real work, and with almost nothing indexed beforehand there was little to transfer. **`google_site_verification` must stay in `_config.yml`**: Search Console HTML-tag tokens are generally per Google account rather than per property, so that same line may be what verifies the new property. Removing it as "stale" could unverify it.
+
+**`/about/` moved to a separate chat at his request; a self-contained handoff prompt was written.** Facts gathered first so the prompt carries real line numbers and approved copy rather than guesses:
+- `about.markdown` is still a meta-refresh stub with `sitemap: false`.
+- Homepage section `06 · ABOUT` is at `_layouts/home.html` ~571–643: three approved paragraphs, portrait `/assets/images/about/me.jpg` (**1000×1000 square**, so unsuitable as a 1.91:1 `og_image`), Focus / Based in rows. Its CSS lives in shared `assets/style.css`, so it's reusable on a standalone page.
+- **The copy guide has a special rule for About copy:** work it line by line from his own draft, never present full rewrite variants. Already rejected: punchy one-line closers, the age-14 origin story, the "figured it out" refrain, LinkedIn filler. His original `aboutme.txt` is **not** in the repo, so the approved text in the copy guide is the only source.
+- `_career/master-resume.md` is the verified fact base, with §7 "Retired claims".
+
+The prompt makes the new chat **ask first** about scope (same content vs a fuller About), about nav links (`about` → `/about/`, plus the still-unanswered `work` → `/projects/`), and restates his three standing terms. It lists every trap already hit: `.reveal` opacity, replacing the stub cleanly, `description:`, not "fixing" his em dashes, a shared include as the single source of truth, Jekyll 3.10 vs 4.4.1, `webrick`, and the build-and-diff method. It ends with a human eyeball check and no commit/push.
+
+**Correction (2026-09-21): /about/ handoff prompt revised to "no new copy".** Sanjyot asked why new copy was involved at all, since the task was only to create a dedicated About page. He was right. The first prompt offered a "fuller About" option that would have required new writing, which was scope widening on my part, and its copy-process section read as though rewriting was expected. **The revised prompt drops the scope question and states no new copy:** reuse the homepage About section verbatim (em dashes included), keep the text in a single shared include so it can't drift, take `description:` from the approved first sentence verbatim, and stop and ask if anything seems to need new wording. Navbar links are the only decision left for him. Also added: because the homepage needs `.reveal` and /about/ must not have it, a shared include has to take that class as a parameter, which is where two of the known traps combine.
+
+---
+
+### Real /about/ page built (2026-09-21)
+
+**Replaces the `<meta http-equiv="refresh">` stub**, same fix as `/projects/`. Asked the one open decision first: **both navbar links stay as they are** — `about` keeps pointing to `/#about` and `work` keeps pointing to `/#client`. No `header.html` change made.
+
+**Single source of truth built as instructed:** new `_includes/about-content.html` holds the eyebrow, the "About." heading, the three approved paragraphs, the portrait and the Focus/Based-in rows — parameterized on `index` (section number), `tag` (heading level) and `reveal` (the opacity-starts-at-0 class, passed only by the homepage). `_layouts/home.html`'s `06 · ABOUT` section now calls `{% include about-content.html index="06" tag="h2" reveal="reveal" %}` instead of carrying the markup inline. `about.html` calls the same include with `index="01" tag="h1"` (no `reveal`, since standalone pages don't load `main.js`) — the page's own single section, so it gets its own "01" rather than inheriting the homepage's "06". Not a wording change, same pattern `/projects/` already used for its own sub-section numbering.
+
+**Proved the homepage didn't change, not just eyeballed it.** Built `_site` before touching anything and copied it to scratch as a baseline. First pass left a whitespace-only diff (the include's own indentation didn't match the 12-space depth of the markup it replaced, plus a trailing blank line from the include file's EOF newline) — fixed by re-indenting the include to match the original exactly and trimming the trailing newline with `{%- comment -%}{%- endcomment -%}`. Second build-and-diff came back **byte-identical** on `index.html`. Full-tree diff after that touched exactly three files: `about/index.html` (new), `sitemap.xml` (now 23 URLs, `/about/` added, plus the usual undated-page `lastmod` build-time churn already seen in the domain-migration diff), and `feed.xml` (its `<updated>` build timestamp only, one line).
+
+**`about.markdown` deleted, `about.html` created** with `permalink: /about/`, no `sitemap: false`. `description:` front matter is the approved About text's first sentence, verbatim, copied not reworded. Page chrome mirrors `projects.html`'s template: `layout: null`, `head-meta.html` in `<head>`, `header.html`, `footer.html`, `nav.js`, `analytics.html` before `</body>`, same `data-palette="amber" data-type="grotesk"` body tag.
+
+**Added the optional `AboutPage` JSON-LD block** to `head-meta.html`, gated on `page.url == '/about/'`, with a `Person` `mainEntity` following the existing `Person`/`CreativeWork`/`BlogPosting` pattern. Parsed it back out of the built HTML with Ruby's JSON library to confirm it's valid.
+
+**Verification run, all passing:** homepage build byte-identical to baseline; About body text extracted and diffed programmatically between `index.html` and `about/index.html` — word-for-word match; `reveal` class occurs zero times on `/about/`; sitemap and feed XML both parse; 30 unique internal link targets sitewide, 0 broken; canonical/og/twitter/robots/analytics tags all present on `/about/`; `og_image` correctly falls through to the site default (`og-default.png`), not the square portrait. Not yet checked: rendered appearance at desktop and phone width — asked Sanjyot to look since this agent can't see the page render.
+
+**Not committed or pushed**, per standing instruction.
+
+---
+
+### /about/ built in the separate chat; verified, not yet pushed (2026-09-23)
+
+**Important: the work exists only locally.** `about.html`, `_includes/about-content.html`, the `home.html` edit, the `head-meta.html` edit and the deletion of `about.markdown` are all uncommitted; the **live `/about/` is still the meta-refresh stub**. The other session correctly honoured "don't commit or push".
+
+**Independent verification method:** built the **committed** state (`git archive HEAD` into scratch) and the **working tree** separately, then diffed the two — i.e. "what is live now" vs "what you would push", rather than trusting either build alone.
+
+**Results, all clean:**
+- **`index.html` is byte-identical** — extracting the About markup into a shared include was lossless, which was the main risk of the change.
+- Only `/about/` changed (stub → real page, +190 lines), `sitemap.xml` gained `https://sanjyotdahale.dev/about/`, and `feed.xml` differed **only in its `<updated>` timestamp** (the two builds ran two seconds apart).
+- **About text is identical on the homepage and /about/**, 1024 chars, **em dashes preserved** — the copy was not "improved".
+- /about/: real page, correct title/description/canonical/og:url, navbar + footer + analytics present, **no `.reveal`** (the invisible-page trap avoided), exactly one `<h1>`, and a valid `AboutPage` → `mainEntity: Person` JSON-LD.
+- 326 internal links checked, 0 genuinely broken (the single flag was `//gc.zgo.at/count.js`, a protocol-relative external URL my checker mis-read as a site path).
+
+The other session's `about-content.html` is well made: it takes `reveal` and `tag` parameters so the homepage keeps its animation class and its `h2` while /about/ gets neither and an `h1`, and it preserves the original 12-space indentation so the homepage output stays byte-identical.
+
+**New problem found, and it is not from this change: `/about/` and `/projects/` are both orphan pages — nothing on the site links to either.** The navbar still points at `/#about` and `/#client`; the nav question was raised twice and never answered, and it now has a concrete consequence. They are discoverable via the sitemap, so they will be indexed, but they get no internal link signal and no human browsing the site can reach them. **Recommendation: add `projects` and `about` to `_includes/footer.html`** — smallest possible change, gives both pages an inbound link from every page, and preserves the deliberate single-page scroll design of the homepage, which changing the navbar would undermine. Proposed, not done — the footer appears on every page and that is a visual change.
+
+**Also still outstanding:** `og-default.png` (promised 2026-09-22) is **still 404**, and /about/'s `og:image` points at it.
+
+---
+
+## Session — 2026-09-23 · CLAUDE.md drift audit
+
+**Context:** `/design-sync` was invoked twice. It cannot run on this repo — it converts a compiled JS/React component library (needs `package.json`, a lockfile, a built `dist/`, optionally Storybook) into the format claude.ai/design consumes. This repo has none of those; the "components" are Liquid partials rendered by Jekyll. Building a React mirror was offered and declined. Instead: audit `CLAUDE.md` against the real files and fix the drift. `_design_system/` was explicitly excluded as outdated.
+
+**Drift found and corrected in `CLAUDE.md`:**
+
+| Claim | Reality |
+|---|---|
+| Fonts: Sora + JetBrains Mono | Sansation (display), Hanken Grotesk (body), JetBrains Mono (mono). Bricolage Grotesque is also fetched from Google Fonts but bound to no token. |
+| Palette: bg `#0f0f12`, accent `#00aaff`, purple `#aa6be8` | `oklch()` surfaces; accent `#ff9133` (amber); semantic `--live` `--onair` `--wire` `--c-xr`. 27 tokens, all in one `:root` block in `style.css`. |
+| "three CSS files: style.css, home.css, projects.css" | Four on disk, **two live**: `style.css` (every page) + `syntax.css` (posts only). `home.css` and `projects.css` are referenced by nothing — already flagged dead in Sessions 2 and 3. |
+| `default.html` = base for all other pages; post extends default | Only `404.html` uses `layout: default`. `home` / `post` / `project` are standalone full documents; `about` / `projects` / `devlog` are `layout: null`. |
+| `_includes/` = header + carousel | Seven includes: `head-meta`, `header`, `footer`, `analytics`, `project-card`, `about-content`, and `carousel` (dead). |
+| Navbar = Home / Projects / About | skills · experience · work · personal · devlog · about — five of six are homepage anchors. |
+| `_posts/` "3 so far" | 7 posts. |
+| `order: -1` hides a card | `order` must be **> 0** to show; `-1`, `0`, or missing all hide. |
+| Frontmatter schema: 12 keys | Missing `status`, `status_note`, `filter_tags`, `gallery_images`, `gallery_captions`, `cta_primary_*`, `cta_secondary_*`, `published`, `noindex`, `sitemap`. `_projects/TEMPLATE.md` is the real reference and is now cited as such. |
+| "Key decisions: none locked in yet" | Custom domain, IST timezone pin, GoatCounter, the SEO layer, and the homepage-as-hub nav model are all shipped and in the code. |
+| Not documented at all | `_data/experience.yml`, `assets/js/` (`nav.js` / `main.js` / `lightbox.js`), root pages, `CNAME`, `robots.txt`, gitignored dirs, the `doc-numbered` body convention. |
+
+Also added: a note that `_design_system/components|layout|tokens` are stale pre-redesign swatch pages and that `assets/style.css` is the source of truth. The four `.md` guides there are still current, so the write-up-system section was left untouched — all four of its file claims verify.
+
+**Re-confirmed, not new:** `og-default.png` is still missing. `_config.yml` still points `og_image` at it, and it is the last fallback in head-meta's resolution order, so every page without its own image emits an `og:image` 404. Now recorded as an open bug in `CLAUDE.md` rather than only living in this log.
+
+**Verification:** every claim written into `CLAUDE.md` was checked against the files before committing. Two of my own first-pass claims failed that check and were corrected — the token count (29 → 27; the extra two live in the dead CSS files) and `og-default.png`, which I had listed under `assets/images/` as if it existed. `CLAUDE.md` is in `_config.yml`'s `exclude:` list, so none of this affects the build.
