@@ -1403,3 +1403,27 @@ Also added: a note that `_design_system/components|layout|tokens` are stale pre-
 **Re-confirmed, not new:** `og-default.png` is still missing. `_config.yml` still points `og_image` at it, and it is the last fallback in head-meta's resolution order, so every page without its own image emits an `og:image` 404. Now recorded as an open bug in `CLAUDE.md` rather than only living in this log.
 
 **Verification:** every claim written into `CLAUDE.md` was checked against the files before committing. Two of my own first-pass claims failed that check and were corrected — the token count (29 → 27; the extra two live in the dead CSS files) and `og-default.png`, which I had listed under `assets/images/` as if it existed. `CLAUDE.md` is in `_config.yml`'s `exclude:` list, so none of this affects the build.
+
+---
+
+### og-default card delivered and verified; /about/ live (2026-09-23)
+
+**`/about/` is live** (commit `e58639a`) — a real page, title "About — Sanjyot Dahale", no longer a redirect stub.
+
+**`og-default.png` delivered**, generated from a Claude Design prompt written here off the site's actual tokens rather than a generic brief. Explained first what the image is *for*: it never appears on the site, it exists only as the picture on link-preview cards, "default" means the fallback for pages without their own image (homepage, `/about/`, and five of seven devlogs — project pages use their heroes), and it is seen at roughly thumbnail size in a scrolling feed, which is the real design constraint.
+
+**Verified rather than eyeballed, and every spec hit exactly:** 1200×630 (exact), **80px margins on all four sides** (exactly the safe area specified), background `#0d0e11` = the `--bg` token, accent `#ff9133` = `--accent`, corner-bracket stroke **5px** as asked so it survives downscaling, **fully opaque** (no alpha for apps to misrender), 60 KB. Downscaled renders at **400px and 240px** were inspected directly — the name stays clearly legible at both, which is the only test that matters for a feed. All `og:image` references across the built site now resolve: **zero broken**, 10 pages on the default card.
+
+**Loose end flagged:** `assets/images/og-card-left.png` (68 KB) is untracked and referenced by nothing — presumably the other design direction. Delete before committing, or it ships as a publicly reachable unused file.
+
+**Still to push:** the image files themselves (untracked, which is why the live URL is still 404).
+
+**Orphan-pages recommendation corrected after Sanjyot challenged it (2026-09-23).** He asked why linking `/about/` and `/projects/` matters at all if their content duplicates `#about` and `#client`/`#personal`. Checking the code weakened my own case, and the recommendation was revised rather than defended:
+
+- **Discovery was never at risk.** All 22 pages, including the three personal project pages, are already in the submitted sitemap. Calling orphan pages "a problem" overstated it.
+- **The homepage is less of a dead end than claimed.** The served HTML contains **all 8** client-project `<a href>` links — `main.js` hides the 4 beyond `DEFAULT = 4` with a `.hide` class *after* load, so the links are present in what Google receives. Only the **3 personal projects** lack real links (still `onclick` divs).
+- What remains is the distinction between discovery and **signal**: a sitemap says a page exists, a link says it matters and how it relates. The chain to the personal project pages currently ends loose, since nothing links to `/projects/`. Real, but modest on a 23-page site.
+- **His instinct on duplication was right.** `/about/` is word-for-word the homepage section, so linking it gains a visitor nothing.
+- **`/projects/` is the exception precisely because it is *not* duplicated** — the homepage shows 4 of 8 client projects before a click and keeps personal work elsewhere, so `/projects/` is the only single list of all 11 and the only place the personal projects are real links.
+
+**Revised: skip `/about/` entirely; give `/projects/` one link, and prefer a contextual "all projects →" in the homepage client-work section over the footer** (truthful to a human, and strengthens the path to the personal pages). Stated plainly that this is a small optimisation rather than a fix, and that going straight to Phase 2 instead is a reasonable call. Also noted that two URLs with identical content simply means Google picks one — no penalty, but `/about/` adds no reach unless it eventually holds something the homepage doesn't.
