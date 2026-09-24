@@ -1427,3 +1427,27 @@ Also added: a note that `_design_system/components|layout|tokens` are stale pre-
 - **`/projects/` is the exception precisely because it is *not* duplicated** — the homepage shows 4 of 8 client projects before a click and keeps personal work elsewhere, so `/projects/` is the only single list of all 11 and the only place the personal projects are real links.
 
 **Revised: skip `/about/` entirely; give `/projects/` one link, and prefer a contextual "all projects →" in the homepage client-work section over the footer** (truthful to a human, and strengthens the path to the personal pages). Stated plainly that this is a small optimisation rather than a fix, and that going straight to Phase 2 instead is a reasonable call. Also noted that two URLs with identical content simply means Google picks one — no penalty, but `/about/` adds no reach unless it eventually holds something the homepage doesn't.
+
+**Card live and verified (2026-09-23).** `og-default.png` serves **200, image/png, 61694 bytes** — byte-for-byte the local file. Checked the `og:image` on the homepage, `/about/`, `/projects/`, `/devlog/`, a devlog post and a project page: **all resolve**, with the project page correctly using its own hero rather than the fallback. `og-card-left.png` was kept out of the commit and returns 404, as intended. Sanjyot also confirmed it in LinkedIn Post Inspector.
+
+**This closes the workstream opened on 2026-09-15.** The original question — "what is my current exposure and how do I improve it, and can I have a visitor counter" — is fully answered: the site went from unindexed, unmeasured and rendering as a grey box on every share, to a custom domain with canonical URLs, structured data, a sitemap, working link previews, private analytics collecting since day one, and previously unreachable project pages now crawlable.
+
+**Remaining: Cloudflare auto-renew (deferred twice), the resume refresh, and Phase 2 — the plugin repo funnel, now the highest-value work left.**
+
+---
+
+### Devlog layout fixes: inline icons and list styling (2026-09-24)
+
+All changes are in `_layouts/post.html`; nothing in `style.css` changed.
+
+**Inline icon fixed.** The `chill-guy.jpg` icon in `ipstream_1` (`{:.inline-icon}`) had stopped sitting inline with the text and floated above it. The `img.inline-icon` rule in `style.css` was correct. The cause was post.html's `.dl-body img` rule, which is meant for full-size screenshots (border, zoom cursor, `0.5rem 0 1.7rem` margins). Both selectors have the same specificity, and the post.html rule comes later, so it wins. Its vertical margins pushed the icon off the text line. That rule and the lightbox click-binding are now scoped to `:not(.inline-icon)`, so inline icons also no longer open the lightbox. Sanjyot confirmed the fix.
+
+**Ordered lists styled for the first time.** The global `*` reset zeroes padding, and post.html only styled `ul`, so numbered lists had their numbers hanging outside the text column and were missing the muted colour, size and spacing. Added a `.dl-body ol` rule: `padding-left: 1.4rem`, the same text styling and item gap as `ul`, and `::marker` numbers in accent mono.
+
+**Tried and rejected: matching the `ol` marker position to the `ul` chevron.** Sanjyot pointed out that the numbers sat at the paragraph edge while the `›` chevrons were indented. To line them up exactly, I switched `ol` to the same absolutely-positioned `::before` as `ul`, but the dot had to go (`1` instead of `1.`), and numbers of 10 or more would touch the text. **He rejected this: the dot is required, and multi-digit numbers must not collide with the text.** I reverted to the `::marker` version, which right-aligns the numbers so that 10+ hang left instead of into the text. I checked this with a 13-item list.
+
+**Final state, confirmed by Sanjyot:**
+- The `ol` numbers use `::marker` in accent mono at weight **700**, so they read as clearly different from the small `01` section numbers.
+- Both `ul` and `ol` are indented **1.5rem** (`margin-left`) from the paragraph edge. Change the value on both rules together.
+
+**Loose ends:** the `ipstream_5` post still has the test `- Hello / - World!` bullets and the repeated test items in its numbered list. Remove them before publishing. None of this session's changes are committed yet.

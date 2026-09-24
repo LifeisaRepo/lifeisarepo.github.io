@@ -200,7 +200,7 @@
         border-bottom-color: var(--accent);
       }
       .dl-body ul {
-        margin: 0 0 1.25rem;
+        margin: 0 0 1.25rem 1.5rem;
         padding-left: 0;
         list-style: none;
         display: flex;
@@ -221,6 +221,24 @@
         top: -0.05rem;
         color: var(--accent);
         font-family: var(--font-mono);
+      }
+      .dl-body ol {
+        margin: 0 0 1.25rem 1.5rem;
+        padding-left: 1.4rem;
+      }
+      .dl-body ol li {
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.6;
+      }
+      .dl-body ol li + li {
+        margin-top: 0.55rem;
+      }
+      .dl-body ol li::marker {
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.85em;
+        font-weight: 700;
       }
       .dl-body code {
         font-family: var(--font-mono);
@@ -246,14 +264,14 @@
         padding: 1.05rem 1.15rem;
         overflow-x: auto;
       }
-      .dl-body img {
+      .dl-body img:not(.inline-icon) {
         border: 1px solid var(--line-2);
         border-radius: 10px;
         margin: 0.5rem 0 1.7rem;
         cursor: zoom-in;
         transition: opacity 0.2s;
       }
-      .dl-body img:hover {
+      .dl-body img:not(.inline-icon):hover {
         opacity: 0.92;
       }
       .dl-body blockquote {
@@ -421,7 +439,9 @@
     <script src="{{ '/assets/js/lightbox.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
     <script>
       (function () {
-        var imgs = Array.from(document.querySelectorAll(".dl-body img"));
+        var imgs = Array.from(
+          document.querySelectorAll(".dl-body img:not(.inline-icon)"),
+        );
         if (!imgs.length) return;
 
         var items = imgs.map(function (im) {
