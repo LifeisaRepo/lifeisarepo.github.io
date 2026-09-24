@@ -43,6 +43,44 @@ Sanjyot's 6-year career is a mix of VR games, XR applications, live broadcast pr
 
 ---
 
+## Devlog `description:` front matter — policy, locked 2026-09-25
+
+**Descriptions are hooks, not summaries.** The rule: **name the problem, withhold
+the resolution.** The title already gives the subject; the description's job is to
+make that subject feel worth seven minutes. The failure mode is not "says what it
+is about", it is "answers the question" — a snippet that resolves the tension
+removes the reason to click through. Sanjyot's framing: like a news headline, a
+not-so-obvious hook. *"We want people to visit the website, not just read the
+description and leave."*
+
+**Three fields, three jobs:** **title** carries the search term, **description**
+carries the hook, **subtitle** carries the voice (human, mildly humorous — see the
+2026-09-15 decision).
+
+**Keep the problem concrete.** Google replaces meta descriptions it judges
+irrelevant to the query with text lifted from the page, so a pure tease with no
+anchors is likely to be discarded. Error codes and real symptoms (`GetLastError=126`,
+"blocks the game thread") do both jobs at once: they match what was searched *and*
+they are the part that creates curiosity. Hooks and keywords only conflict when the
+*answer* is what gets included.
+
+**Scope:** this applies to **narrative / problem-solving posts** (the IPStreamMedia
+series). **Reference and tutorial posts state plainly what they teach** — someone
+searching "unreal custom log category" wants confirmation they are in the right
+place, and teasing them loses the click rather than winning it. `Log it Right` and
+`Essentials #1` were deliberately left as plain statements.
+
+**Length:** ~155 characters max. Google truncates past roughly that.
+
+**The failure that produced this rule:** Devlog #5's first description read
+*"Why FFmpeg DLLs fail to load in Unreal Engine with GetLastError=126: BtbN's builds
+ship GNU-format import libraries that MSVC's /DELAYLOAD silently ignores."* — the
+entire root cause, given away in the snippet. Rewritten to state only the symptom.
+A second draft for #4 leaked the measured timings, which are that post's payoff
+section. **Both failures were the same mistake: including the answer.**
+
+---
+
 ## Approved copy — section by section
 
 ### Hero line (`.hero-line`)

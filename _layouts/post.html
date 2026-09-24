@@ -6,7 +6,7 @@
     <title>{{ page.title }}</title>
     <meta
       name="description"
-      content="{{ page.excerpt | strip_html | truncate: 160 }}"
+      content="{{ page.description | default: page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}"
     />
     {% include head-meta.html %}
     <link rel="preconnect" href="https://fonts.googleapis.com" />

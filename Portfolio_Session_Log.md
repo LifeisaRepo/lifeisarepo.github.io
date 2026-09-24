@@ -1451,3 +1451,45 @@ All changes are in `_layouts/post.html`; nothing in `style.css` changed.
 - Both `ul` and `ol` are indented **1.5rem** (`margin-left`) from the paragraph edge. Change the value on both rules together.
 
 **Loose ends:** the `ipstream_5` post still has the test `- Hello / - World!` bullets and the repeated test items in its numbered list. Remove them before publishing. None of this session's changes are committed yet.
+
+---
+
+### Devlog descriptions fixed + search snippets restored site-wide (2026-09-25)
+
+**Context:** Sanjyot split the FFmpeg delay-load material out of Devlog #4 into its own post, **Devlog #5** — *"Why FFmpeg (and other) DLLs might not load in Unreal Engine ? (IPStreamMedia #5)"*, live since 2026-09-16. He also rewrote the plugin README (99 → 825 bytes, honest about status, links the series), added **8 repo topics**, and set the repo's website field — most of the plugin plan's Stage 1, done himself.
+
+**Two live bugs found on review:**
+
+1. **Devlog #5 carried Devlog #4's description** verbatim (*"First working code… UTexture2D… AVIOInterruptCB"*), so his most searchable post was advertising a different post on its social card, Twitter card, and in the LinkedIn draft routine's summary.
+2. **Every devlog post emitted an empty `<meta name="description">`.** `post.html:9` fed it from `page.excerpt`, which is blank for these posts because they open with `<div class="doc-numbered" markdown="1">` before any prose — the same broken-excerpt root cause already documented for `jekyll-feed`. Confirmed on three posts including the two oldest, so systemic and long-standing. Google was writing its own snippet from the body instead.
+
+**Correction to his request:** he asked for both #4 and #5 to be rewritten, but **#4's description was already accurate** — the DLL section had been moved out and replaced by a pointer to #5, so the remaining content still matched. #4 was therefore only *tightened* (173 → 142 chars, inside Google's ~155 cut), not rewritten.
+
+**Applied:**
+- **#5** → *"Why FFmpeg DLLs fail to load in Unreal Engine with GetLastError=126: BtbN's builds ship GNU-format import libraries that MSVC's /DELAYLOAD silently ignores."* (156 chars — leads with the exact error string someone would paste into Google.)
+- **#4** → *"Decoding an RTSP stream with FFmpeg into a UTexture2D in Unreal Engine, and using AVIOInterruptCB so a dead stream can't hang the game thread."* (142 chars.)
+- **`post.html`** meta description now reads `page.description` with `page.excerpt` as fallback — matching `head-meta.html`'s existing resolution order, which Sanjyot agreed to ("we can use these descriptions for google as well").
+
+**Verified by build-and-diff:** only the 8 devlog pages plus `feed.xml` and `sitemap.xml` changed; **sitemap URLs byte-identical** (the 11 changed lines are `<lastmod>` build stamps on undated pages), and exactly the two intended feed summaries differ. **All 8 posts now emit a real search snippet** where every one was previously empty.
+
+**Not yet pushed.** Plugin/LFS work explicitly parked at his request; resume refresh he is doing today.
+
+**Description policy locked (2026-09-25).** Sanjyot set a standing rule after reviewing the first drafts: **descriptions are hooks, not TL;DRs** — *"a not-so-obvious hook, kind of like a news headline... We want people to visit the website, not just read the description and leave."*
+
+Restated operationally as **name the problem, withhold the resolution**, with three refinements he accepted: **three fields, three jobs** (title = search term, description = hook, subtitle = voice); **keep the problem concrete**, because Google replaces descriptions it judges irrelevant to the query with page text, so error codes and real symptoms serve *both* the hook and the match — hooks and keywords only conflict when the **answer** is what gets included; and **scope it to narrative posts**, since reference/tutorial posts should state plainly what they teach (teasing someone searching "unreal custom log category" loses the click). `Log it Right`, `Essentials #1` and `Hello World` were deliberately left alone.
+
+**Five rewritten and locked**, every claim traceable to the posts themselves (the 150x compression figure, the CCTV camera, the HLS-but-not-RTSP gap, "block it indefinitely"), no em dashes, all ≤150 chars:
+
+| Post | Description |
+|---|---|
+| #1 | Unreal Engine can play HLS out of the box. It cannot play RTSP, and there is no first-party plugin that will. So I started building one. |
+| #2 | Video compression can shrink a stream by 150x. The same trick is why a livestream sometimes shows you nothing at all for the first few seconds. |
+| #3 | Pointing ffprobe at a CCTV camera on my own network, to find out whether I-frames, P-frames and GOPs are real or just something the textbooks claim. |
+| #4 | The simplest way to pull an RTSP frame into Unreal with FFmpeg blocks the game thread. If the stream is dead, it can block it indefinitely. |
+| #5 | Everything was configured correctly. The FFmpeg DLLs sat in the right folder, delay-loading was set up, and Unreal still refused to launch. Error 126. |
+
+**Two drafts were rejected for the same mistake — including the answer.** #5's first version gave away the whole root cause; a #4 draft leaked the measured timings, which are that post's payoff section (*"Bro, just give me the figures"*). Sanjyot caught the second one.
+
+**Verified:** build-and-diff shows **zero lines removed that were not an old description or a build timestamp**, and sitemap URLs byte-identical. Policy written into `_design_system/copy-guide.md` as a new section so it governs future posts and the `/write-project` skill, not just this conversation.
+
+**Not yet pushed:** 5 posts, `_layouts/post.html`, `_design_system/copy-guide.md`.
