@@ -92,7 +92,8 @@ assets/
   docs/           ← Resume PDF
 
 Gitignored (present locally, not committed): _site, .jekyll-cache,
-  /design_handoff_portfolio_site/, /_career/, *.vsix, /Portfolio_Session_Log.md
+  /design_handoff_portfolio_site/, /_career/, *.vsix, /Portfolio_Session_Log.md,
+  /_briefs/ (private working notes; the repo is public)
 ```
 
 ## Project frontmatter schema
