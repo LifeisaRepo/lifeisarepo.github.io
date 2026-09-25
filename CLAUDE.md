@@ -92,7 +92,7 @@ assets/
   docs/           ← Resume PDF
 
 Gitignored (present locally, not committed): _site, .jekyll-cache,
-  /design_handoff_portfolio_site/, /_career/, *.vsix
+  /design_handoff_portfolio_site/, /_career/, *.vsix, /Portfolio_Session_Log.md
 ```
 
 ## Project frontmatter schema
@@ -157,3 +157,5 @@ Note: `_design_system/components/`, `_design_system/layout/`, and `_design_syste
 ## Session log
 
 `Portfolio_Session_Log.md` in this directory is the running discussion history for the redesign project. Append to it after every meaningful exchange — never overwrite from scratch.
+
+It is **local-only**: the repo is public, so the log was untracked and gitignored on 2026-09-25. Never `git add` it back.
