@@ -210,6 +210,37 @@ section. **Both failures were the same mistake: including the answer.**
 
 ---
 
+### Title, hero badge and link preview (2026-10-13)
+
+**One title everywhere: "Unreal Engine Programmer."** This follows the anchor rule in
+`_career/master-resume.md` §0: the site describes the kind of work and carries one title.
+- **"game developer"** was replaced in the navigation subtitle, footer, hero role line and
+  home page title.
+- **"Unreal Engine Developer"** was replaced in the social title, the JSON-LD `jobTitle`, the
+  devlog author line and the 404 title.
+- **The official job title,** "Lead Unreal Engine Developer & Tech Lead", stays wherever it
+  appears as a job title (the experience timeline and project role fields).
+
+**Hero badge, now static:** `open to unreal programming roles · remote`.
+- The five-role rotation was removed. A blank-slate review (2026-09-25) found that cycling
+  through five roles reads to a hiring manager as "will take anything".
+- The new line names the kind of role and the work arrangement, not a specialism.
+- Rejected:
+  - "open to work · remote or relocation": names no role.
+  - "open to engine and tools programming roles": names a specialism, while the site
+    describes work, not roles.
+
+**Hero line, kept:** Sanjyot preferred it to three new variants. Only "developer" became
+"programmer", to match the title.
+
+**Link-preview text (`site.description`):** "Unreal Engine programmer, six years in C++ and
+Blueprint: plugins, third-party SDKs, native platform code, live video and multiplayer."
+- It's the first text a LinkedIn or Google click shows. The previous version named virtual
+  production and GenAI, the two fields being left.
+- It mirrors the resume summary, so the preview and the resume agree.
+
+---
+
 *All home-page sections now have approved copy.*
 
 *"Shipped under fire." (h2.s-title under #client) — reviewed and kept intentionally. The rest of the page is restrained enough that one punchy title earns its place. Alternatives were tried (options: "It shipped.", "On deadline, every time.", "All of it shipped.", "The client work.") — all felt too mellow. Original stands.*

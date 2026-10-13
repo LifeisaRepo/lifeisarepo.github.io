@@ -18,7 +18,7 @@
 
 {%- comment -%} ---------- title ---------- {%- endcomment -%}
 {%- if page.layout == 'home' or page.url == '/' -%}
-  {%- assign seo_title = 'Sanjyot Dahale — Unreal Engine Developer' -%}
+  {%- assign seo_title = 'Sanjyot Dahale — Unreal Engine Programmer' -%}
 {%- elsif page.title -%}
   {%- assign seo_title = page.title | append: ' · Sanjyot Dahale' -%}
 {%- else -%}
@@ -101,10 +101,10 @@
 </script>
 {%- elsif page.layout == 'home' or page.url == '/' %}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Sanjyot Dahale","url":{{ site.url | jsonify }},"image":{{ seo_image | jsonify }},"jobTitle":"Unreal Engine Developer","description":{{ site.description | jsonify }},"email":{{ site.email | prepend: 'mailto:' | jsonify }},"sameAs":{{ person_sameas }},"knowsAbout":["Unreal Engine","Game Development","C++","Virtual Production","Extended Reality","Mixed Reality","Generative AI","Real-Time Broadcast"]}
+{"@context":"https://schema.org","@type":"Person","name":"Sanjyot Dahale","url":{{ site.url | jsonify }},"image":{{ seo_image | jsonify }},"jobTitle":"Unreal Engine Programmer","description":{{ site.description | jsonify }},"email":{{ site.email | prepend: 'mailto:' | jsonify }},"sameAs":{{ person_sameas }},"knowsAbout":["Unreal Engine","C++","Game Development","Unreal Engine plugins","Third-party SDK integration","Multiplayer networking","Performance optimisation","Extended Reality"]}
 </script>
 {%- elsif page.url == '/about/' %}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"AboutPage","name":{{ seo_title | jsonify }},"description":{{ seo_desc | jsonify }},"url":{{ seo_url | jsonify }},"mainEntity":{"@type":"Person","name":"Sanjyot Dahale","url":{{ site.url | jsonify }},"image":{{ seo_image | jsonify }},"jobTitle":"Unreal Engine Developer","sameAs":{{ person_sameas }}}}
+{"@context":"https://schema.org","@type":"AboutPage","name":{{ seo_title | jsonify }},"description":{{ seo_desc | jsonify }},"url":{{ seo_url | jsonify }},"mainEntity":{"@type":"Person","name":"Sanjyot Dahale","url":{{ site.url | jsonify }},"image":{{ seo_image | jsonify }},"jobTitle":"Unreal Engine Programmer","sameAs":{{ person_sameas }}}}
 </script>
 {%- endif %}
