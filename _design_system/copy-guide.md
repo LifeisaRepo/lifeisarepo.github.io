@@ -233,11 +233,35 @@ section. **Both failures were the same mistake: including the answer.**
 **Hero line, kept:** Sanjyot preferred it to three new variants. Only "developer" became
 "programmer", to match the title.
 
-**Link-preview text (`site.description`):** "Unreal Engine programmer, six years in C++ and
-Blueprint: plugins, third-party SDKs, native platform code, live video and multiplayer."
-- It's the first text a LinkedIn or Google click shows. The previous version named virtual
-  production and GenAI, the two fields being left.
-- It mirrors the resume summary, so the preview and the resume agree.
+**Link-preview text (`site.description`):** "Portfolio and devlog of Sanjyot Dahale, an Unreal
+Engine programmer: shipped projects, the calls behind them, and engine-plugin deep dives."
+- Its job is to say what's behind the link. The previous version named virtual production and
+  GenAI, the two fields being left.
+- A first replacement mirrored the resume summary almost word for word and was swapped out
+  the same day (see "One job per surface" below).
+
+### One job per surface (2026-10-13)
+
+Sanjyot noticed "Unreal Engine programmer with six years…" opening everything. The rule
+that came out of it:
+
+- **Consistent facts and title** across surfaces are intended.
+- **The same opening sentence** on every surface, or the same phrase several times on one
+  screen, reads as copy-pasted.
+
+| Surface | Its job |
+|---|---|
+| LinkedIn headline | The searchable title. The title lives here. |
+| LinkedIn About | The one-startup story, in Sanjyot's voice. It doesn't restate the headline above it. |
+| Site hero | The title appears once (nav subtitle and hero line). The role line names the tools: `> c++ · blueprint · plugins`. |
+| Link preview | What's behind the link. |
+| Resume summary | The dense scan line. "Where the engine meets something else" lives only here. |
+| Site About | The longer story, tuned from Sanjyot's draft. |
+
+**The trap:** swapping in one title made an existing problem obvious. The hero showed the
+title four times on one screen (nav, role line, hero line, badge). Before writing anything
+new, check what else is on the same screen and in the same reader's path
+(LinkedIn → site → resume).
 
 ---
 
