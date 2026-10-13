@@ -43,6 +43,19 @@ Sanjyot's 6-year career is a mix of VR games, XR applications, live broadcast pr
 
 ---
 
+### Standing curation rule (2026-10-13)
+
+**Lead with the target, keep the range, cut only by quality.**
+- **The top of every surface** (hero, first projects, skills headings) leads with the target
+  roles.
+- **Work from other fields stays,** lower and smaller.
+- **A piece is removed only if it's weak or doesn't show what Sanjyot did.** Being from a
+  different field is never the reason.
+
+Source of truth: `_career/master-resume.md` §0.
+
+---
+
 ## Devlog `description:` front matter — policy, locked 2026-09-25
 
 **Descriptions are hooks, not summaries.** The rule: **name the problem, withhold
@@ -262,6 +275,32 @@ that came out of it:
 title four times on one screen (nav, role line, hero line, badge). Before writing anything
 new, check what else is on the same screen and in the same reader's path
 (LinkedIn → site → resume).
+
+---
+
+### Skills grid: capabilities, not industries (2026-10-13)
+
+**Structure:**
+- **Five capability cards:**
+  - Engine & C++ (core)
+  - Integration & Plugins
+  - Multiplayer & Networking
+  - Performance & Platforms
+  - Tools & Pipeline
+- **One smaller range line underneath:** "also shipped in · virtual production: nDisplay, ICVFX, Live Chroma · live broadcast: Composure-to-SDI output, SRT, 360° video".
+
+**Why:**
+- The old cards were named after industries (XR, Virtual Production, Real-Time Broadcast, GenAI), which read as six identities.
+- Capability names map the past work onto what a game studio hires for.
+- Under the standing rule, VP and broadcast stay, lower and smaller, in the range line. Their tracking and Live Link skills sit under Integration.
+- XR became platforms you've shipped on.
+
+**Removed for quality, not field:**
+- AI tool and chatbot names: tool names aren't skills.
+- "SMPTE": a paper, not a skill.
+- RTMP: evaluated, not shipped.
+
+**Card descriptions are deliberately empty.** Sanjyot rejected all three description sets (plain, dry, evidence-led) and chose chips only for now. Don't add descriptions back without asking.
 
 ---
 

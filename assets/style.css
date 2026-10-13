@@ -978,34 +978,53 @@ body[data-hero="split"] .hero-visual {
   border-color: rgba(var(--accent-rgb), 0.22);
   color: var(--accent);
 }
-/* per-subsystem accent */
-.sys--xr::before {
-  background: var(--c-xr);
-}
-.sys--xr .sys-id .dot {
-  background: var(--c-xr);
-  box-shadow: 0 0 9px var(--c-xr);
-}
-.sys--vp::before {
+/* per-capability accent */
+.sys--int::before {
   background: var(--wire);
 }
-.sys--vp .sys-id .dot {
+.sys--int .sys-id .dot {
   background: var(--wire);
   box-shadow: 0 0 9px var(--wire);
 }
-.sys--cast::before {
-  background: var(--onair);
+.sys--net::before {
+  background: var(--c-xr);
 }
-.sys--cast .sys-id .dot {
-  background: var(--onair);
-  box-shadow: 0 0 9px var(--onair);
+.sys--net .sys-id .dot {
+  background: var(--c-xr);
+  box-shadow: 0 0 9px var(--c-xr);
 }
-.sys--ai::before {
+.sys--perf::before {
   background: var(--live);
 }
-.sys--ai .sys-id .dot {
+.sys--perf .sys-id .dot {
   background: var(--live);
   box-shadow: 0 0 9px var(--live);
+}
+/* the cards carry no description for now, so the chips sit closer to the title */
+.sys-top + .sys-chips {
+  margin-top: 0.35rem;
+}
+/* range line under the grid: other fields the work shipped in */
+.sys-range {
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: var(--faint);
+  letter-spacing: 0.01em;
+}
+.sys-range .lbl {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-right: 0.6rem;
+}
+.sys-range .seg + .seg::before {
+  content: "·";
+  margin: 0 0.6rem;
+}
+.sys-range b {
+  font-weight: 500;
+  color: var(--muted);
 }
 .sys--tools::before {
   background: var(--faint);
@@ -1993,6 +2012,10 @@ body[data-motion="off"] .commit-node {
   .sys.wide {
     grid-column: span 2;
   }
+  /* an odd card out fills its row instead of sitting alone at half width */
+  .sys-grid > .sys:last-child:nth-child(odd) {
+    grid-column: span 4;
+  }
 }
 @media (max-width: 960px) {
   :root {
@@ -2074,7 +2097,8 @@ body[data-motion="off"] .commit-node {
   }
   .sys,
   .sys.core,
-  .sys.wide {
+  .sys.wide,
+  .sys-grid > .sys:last-child:nth-child(odd) {
     grid-column: span 1;
   }
   /* phones always show cards (list variant is gated to >=721px), single column */
