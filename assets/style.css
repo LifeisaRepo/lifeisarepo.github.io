@@ -744,6 +744,10 @@ section {
   top: -0.05em;
   margin-left: 0.1em;
 }
+/* single-symbol units ("+", "×") are small glyphs, so they get 1.5× the text-unit size */
+.hstat .v .u.u-sym {
+  font-size: 1.35rem;
+}
 .hstat .k {
   font-family: var(--font-mono);
   font-size: 0.62rem;

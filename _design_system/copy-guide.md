@@ -278,6 +278,54 @@ new, check what else is on the same screen and in the same reader's path
 
 ---
 
+### About section, revised (2026-10-13)
+
+**Final text (applied by Sanjyot to `_includes/about-content.html`):**
+> I'm an Unreal Engine programmer and technical lead who started out as a Unity developer at an XR studio, building AR and VR applications, before moving to Unreal Engine and into a Virtual Production Supervisor role. There I helped clients integrate VP workflows into their production pipelines and worked on-set across several live productions.
+>
+> I was the studio's first Unreal hire and built its Unreal team from there; today I lead a cross-functional team shipping Unreal Engine applications and games across multiple platforms, alongside its R&D into GenAI-based applications. Some of the work I'm most proud of came from projects like the MR Cricket Analysis and the 360 VR Broadcast, which pushed me well outside my domain and meant picking up entirely new skills along the way.
+>
+> Games came later in my career than the rest, but they're what I keep coming back to. Alongside the games I've shipped professionally, I build prototypes in my own time to explore new systems and mechanics — and it's the kind of work I'd like to be doing more of.
+
+**Labels under the photo:** Focus "Systems, Tools & Integration" (Sanjyot's own wording); Based in "Mumbai, India · remote or relocation".
+
+**What changed from the 2026-06-27 version, and why:**
+- **"developer" became "programmer":** one title everywhere.
+- **Removed "with six years of experience across AR/VR, virtual production, and real-time applications":** the hero already says it.
+- **First sentence merged into the career story.** A bare "I'm an Unreal Engine programmer and technical lead." read as forced and incomplete.
+- **Team-building added:** first Unreal hire, built the team. It's the strongest leadership fact that wasn't on the site.
+- **The GenAI clause was shortened, not cut:** standing rule, keep the range smaller.
+- **"Game development has stayed the constant" replaced.** Every dated game project is from 2024 or later, so it was the one line a careful reader could disprove. The new line is honest about the timeline.
+- **"I keep building" became "I build":** avoids two "keep"s in a row.
+
+**Rejected:** a clause about having spent the whole career at "one XR startup that changed direction every year or so". Sanjyot felt a sense of intentionality in it. The experience timeline already shows one company, and the Skills intro already explains the range, so saying it a third time turns a fact into an argument. It does a job on LinkedIn (no timeline above it), not here.
+
+**Still applies:** the soft ending, Sanjyot's em dash, and MR Cricket and 360 VR Broadcast as the only named projects.
+
+**After 2026-10-31:** "today I lead" needs to become past tense.
+
+---
+
+### Client work intro, revised (2026-10-13)
+
+**Approved (home `#client` and the /projects/ page):**
+> Client work from games to live broadcast. My role ranged from writing the core systems to leading the team that did, and every write-up is specific about which.
+
+**Why it replaced "…I led the technical teams on all of these projects and built the systems end to end, from architecture to delivery":**
+- **An accuracy fix, not a matter of taste.** Sanjyot wrote no code on Riddler's Ransom. On Swadeshi, Sanjyot handled the GenAI side while the web developer built the app.
+- **"Six years" was repeating** the hero and the stats.
+- **The new line states the real spread,** from hands-on systems work to leading, and points to the write-ups, which are the source of truth.
+
+Chosen from eight options; Sanjyot picked this one ("option 5").
+
+### Small preview texts (2026-10-13)
+
+- **/about/ (`about.html` description):** "Unreal Engine programmer and technical lead: from Unity and virtual production to building a studio's Unreal team and shipping games."
+- **IPStreamMedia #6:** "Unreal's own WMF player claims it can play rtsp:// links. It can't, and it gets asked first. So how do you make the engine pick your player instead?" A hook in line with the devlog policy above.
+- **Aura card:** "A top-down RPG built over five months to learn Unreal's Gameplay Ability System, course-guided." The card now matches the resume's disclosure.
+
+---
+
 ### Skills grid: capabilities, not industries (2026-10-13)
 
 **Structure:** five capability cards:

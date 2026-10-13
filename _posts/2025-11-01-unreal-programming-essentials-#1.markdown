@@ -1,5 +1,6 @@
 ---
 layout: post
+published: false
 title: "Game Mode, Player Controller and Pawn (Essentials #1)"
 date: 2025-11-01 22:24:00 +0530
 category: devlogs

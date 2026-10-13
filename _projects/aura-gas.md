@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "Aura - Master of Elements"
-description: "Top Down RPG made using Unreal's Gameplay Ability System"
+description: "A top-down RPG built over five months to learn Unreal's Gameplay Ability System, course-guided."
 category: "Personal"
 order: 2
 domain: "Gameplay + Systems"
@@ -47,7 +47,7 @@ The Gameplay Ability System is made up of different components like **Attribute 
 
 Aura and the enemies have their own attributes like Health, Mana, Strength, Resilience, etc. These attributes are handled by a `UAttributeSet` class. The attributes are classified into different categories as follows,
 
-- **Primary Attributes:** These attributes are the basis of all the gameplay stats. Players can spend the Attribute Points they earn after leveling up to upgrade these attibutes. Upgrading an attribute results in an upgrade of the secondary and vital attributes that are dependent on it.
+- **Primary Attributes:** These attributes are the basis of all the gameplay stats. Players can spend the Attribute Points they earn after leveling up to upgrade these attributes. Upgrading an attribute results in an upgrade of the secondary and vital attributes that are dependent on it.
 - **Secondary Attributes:** These values cannot be modified by the player directly, specific formulas and calculations are done using the Primary Attributes to derive the Secondary Attributes.
 - **Vital Attributes:** These are also technically Secondary attributes as they cannot be modified by the player directly. Health and Mana are the Vital attributes in this game which define if the player has enough HP to continue and if the player has enough Mana points to launch the next attack.
 - **Meta Attributes:** These values are the values that handle modification of certain critical values. In case the player takes damage, we set the incoming damage in a meta attribute which validates the damage on the server and then reduces it from the actual Health attribute. This ensures that the players/clients don't have direct access to modifying important stats.
@@ -98,7 +98,7 @@ Outside of the GAS system, I also learned a lot of other skills while making thi
 - Learned inheritance in **Animation Blueprints** by creating a master ABP for enemies and then deriving child ABPs for each enemy to avoid repeated code.
 - Implemented **Motion Warping** in Animation Montages to make characters face target locations.
 - Created custom **Async Tasks** for use in Gameplay Abilities.
-- Learned and implemented both the **View-Controller-Model (VCM)** and the **Model-View-ViewModel (MVVM)** frameworks while developing UI for this game. The Main Menu and Load Menu were made using the `MVVM` framework, while the in-game UI like the Main HUD, Attributes Panel and Spell Panels were all made using the `VCM` framework.
+- Learned and implemented both the **Model-View-Controller (MVC)** and the **Model-View-ViewModel (MVVM)** frameworks while developing UI for this game. The Main Menu and Load Menu were made using the `MVVM` framework, while the in-game UI like the Main HUD, Attributes Panel and Spell Panels were all made using the `MVC` framework.
 
 ## Final Notes
 

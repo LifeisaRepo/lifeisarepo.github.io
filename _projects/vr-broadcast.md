@@ -43,7 +43,7 @@ The pipeline was designed by a small core, but live coverage needed many more pe
 
 During IPL 2023 I was on-site as Lead Technical Producer for my own team, the engineer who guaranteed the camera-to-network chain stayed up through every live match, while supervising the technical producers of three other broadcast teams running the same setup elsewhere. In 2024 I stepped off-site: I oversaw four teams' technical producers and focused on redesigning the rig.
 
-In 2023, every camera feed needed two high-performance workstations. The first season left no time to optimize; in the second, we ran tests at JioStar's offices and reconfigured the rig to do the same work on a single workstation per camera. On-site teams shrank from around nine people to four or five, a cut of roughly 30% in hardware and manpower with no drop in broadcast quality.
+In 2023, every camera feed needed two high-performance workstations. The first season left no time to optimize; in the second, we ran tests at JioStar's offices and reconfigured the rig to do the same work on a single workstation per camera. On-site teams shrank from around nine people to four or five with a cut of roughly 30% in hardware with no drop in broadcast quality.
 
 Beyond the IPL, the same pipeline covered Bigg Boss OTT in 2023 and a handful of other tournaments, and in 2024 the team took it to a FIBA basketball match in the Philippines.
 

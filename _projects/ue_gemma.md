@@ -10,7 +10,7 @@ engine_label: "UE · FunctionGemma"
 image: "/assets/images/projects/personal/ue-gemma/hero.png"
 youtube_id: "cHXrmUVGC0M"
 gallery_images: "/assets/images/projects/personal/ue-gemma/flight-mode.png,/assets/images/projects/personal/ue-gemma/rifle.png,/assets/images/projects/personal/ue-gemma/init.png,/assets/images/projects/personal/ue-gemma/user-prompt.png,/assets/images/projects/personal/ue-gemma/gemma-response.png"
-gallery_captions: "No internet required - my phone is on Flight mode::Find me an assualt rifle please 🙂::Function Gemma initialization::This function handles sending user prompts to the model::This function handles receiving natural language responses from the model"
+gallery_captions: "No internet required - my phone is on Flight mode::Find me an assault rifle please 🙂::Function Gemma initialization::This function handles sending user prompts to the model::This function handles receiving natural language responses from the model"
 github_url: "https://github.com/LifeisaRepo/UE_Gemma"
 game_build_url: "https://github.com/LifeisaRepo/UE_Gemma/releases/tag/v1.5.3-beta"
 tags: ["C++", "FunctionGemma", "JNI", "UPL", "Android"]
@@ -39,7 +39,7 @@ I decided to use the First Person Shooter template provided by Unreal Engine as 
 - **Change Time of Day**: A simple function which toggles between day and night in-game.
 - **Find Nearest Weapon**: There are multiple weapon pickups in the level. So this function would find the weapon pickup closest to the player and highlight it on-screen with audio.
 - **Teleport Player**: Similar to weapon pickups I have placed multiple "Teleport" markers across the level, each with a distinct color code. This function can teleport the player to the teleport marker as per the provided input color.
-- **Find Weapon**: This function is similar to the "Find Nearest Weapon" function, but instead of highlighting the nearest weapon, it can find a specific type of weapon pickup for you. In the level there are 3 unique weapons _Assualt Rifle, Pistol (Handgun) and Grenade Launcher_, so you can request for the specific weapon you want and it highlight that for you.
+- **Find Weapon**: This function is similar to the "Find Nearest Weapon" function, but instead of highlighting the nearest weapon, it can find a specific type of weapon pickup for you. In the level there are 3 unique weapons _Assault Rifle, Pistol (Handgun) and Grenade Launcher_, so you can request for the specific weapon you want and it highlight that for you.
 - **Change Weapon Color**: This function can change the color of the weapon that the player is currently holding. I have provided some hard-coded colors like _<span style="color: red;">Red</span>, <span style="color: green;">Green</span>, <span style="color: blue;">Blue</span>, <span style="color: white;">White</span>, <span style="color: #292929;">Black</span>, <span style="color: pink;">Pink</span>_, but if no color input is provided it will paint it in a random color.
 
 ## FunctionGemma Setup

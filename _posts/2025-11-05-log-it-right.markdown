@@ -150,7 +150,7 @@ Let's make one more class just to test it out
 #include "TestLogActor.h"
 
 
-void ATestPawn::BeginPlay()
+void ATestActor2::BeginPlay()
 {
     Super::BeginPlay();
 
@@ -177,7 +177,7 @@ An example of a `CustomLogModes` class,
 <img src="/assets/images/2025-11-04/customlogh.jpg"> <img src="/assets/images/2025-11-04/customlogcpp.jpg">
 
 <br>
-Based to this my updated `TestActor2` looks like this
+Based on this my updated `TestActor2` looks like this
 <img src="/assets/images/2025-11-04/testactor2.jpg">
 
 <br>
@@ -190,9 +190,9 @@ Okay this is the last thing I promise 😅. I'm just gonna explain the syntax of
 
 `DECLARE_LOG_CATEGORY_EXTERN(CategoryName, DefaultVerbosity, CompileTimeVerbosity);`
 
-- `CategoryName` - Name of the new category. You can set this is whatever you wish. Recommended to start with "Log" prefix as per standard Unreal practice.
+- `CategoryName` - Name of the new category. You can set this to whatever you wish. Recommended to start with "Log" prefix as per standard Unreal practice.
 - `DefaultVerbosity` - This is the default verbosity of this category. This is usually set to `Log` or `Display` but you can set it `Warning` or `Error` too, depending on the category's default severity.
-- `CompileTimeVerbosity` - This tells Unreal Engine what maximum verbosity should be logged for this category in a packaged version of the game. When this is kept to `All` it means that any log with this category should be printed no matter the verbosity. ex. If this value is set to `Warning` then we will only see logs which are either `Warning` or `Error` in the packaged game file.
+- `CompileTimeVerbosity` - This is the most verbose level that gets compiled into the code for this category in every build. Anything more verbose is stripped out at compile time, so it can't be switched back on at runtime. When this is kept to `All` nothing is stripped. ex. If this value is set to `Warning`, then `Display`, `Log` and `Verbose` logs in this category are removed from every build, and only `Warning`, `Error` and `Fatal` remain."
 
 <br>
 I guess that is all for this one. I know these devlogs are too long. I will try to keep it short and simple in the upcoming ones. Cheers 🍻!
