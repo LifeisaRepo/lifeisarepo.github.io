@@ -280,20 +280,23 @@ new, check what else is on the same screen and in the same reader's path
 
 ### Skills grid: capabilities, not industries (2026-10-13)
 
-**Structure:**
-- **Five capability cards:**
-  - Engine & C++ (core)
-  - Integration & Plugins
-  - Multiplayer & Networking
-  - Performance & Platforms
-  - Tools & Pipeline
-- **One smaller range line underneath:** "also shipped in · virtual production: nDisplay, ICVFX, Live Chroma · live broadcast: Composure-to-SDI output, SRT, 360° video".
+**Structure:** five capability cards:
+- Engine & C++ (core)
+- Integration & Plugins
+- Multiplayer & Networking
+- Performance & Platforms
+- Tools & Pipeline
 
 **Why:**
 - The old cards were named after industries (XR, Virtual Production, Real-Time Broadcast, GenAI), which read as six identities.
 - Capability names map the past work onto what a game studio hires for.
-- Under the standing rule, VP and broadcast stay, lower and smaller, in the range line. Their tracking and Live Link skills sit under Integration.
 - XR became platforms you've shipped on.
+
+**Where the range lives, per the standing rule:**
+- **The subtitle names the fields:** "Most of the range here came through production work across games, XR, virtual production and live broadcast — a brief landed in a new domain, and the skills followed."
+- **VP keywords sit under Integration & Plugins:** nDisplay, ICVFX and Composure, next to Live Link, camera tracking and MoCap. In Unreal, VP mostly means getting the engine to work with stage hardware.
+- **Broadcast keywords were dropped by Sanjyot's choice.** The broadcast projects stay in client work.
+- **Rejected:** a separate "also shipped in" line under the grid. It read as a last-minute add-on.
 
 **Removed for quality, not field:**
 - AI tool and chatbot names: tool names aren't skills.

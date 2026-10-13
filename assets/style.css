@@ -1004,28 +1004,6 @@ body[data-hero="split"] .hero-visual {
 .sys-top + .sys-chips {
   margin-top: 0.35rem;
 }
-/* range line under the grid: other fields the work shipped in */
-.sys-range {
-  margin-top: 1.1rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  line-height: 1.7;
-  color: var(--faint);
-  letter-spacing: 0.01em;
-}
-.sys-range .lbl {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-right: 0.6rem;
-}
-.sys-range .seg + .seg::before {
-  content: "·";
-  margin: 0 0.6rem;
-}
-.sys-range b {
-  font-weight: 500;
-  color: var(--muted);
-}
 .sys--tools::before {
   background: var(--faint);
 }
