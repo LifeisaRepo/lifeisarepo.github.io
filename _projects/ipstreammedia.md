@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "UE_IPStream"
+title: "IPStreamMedia"
 description: "An Unreal Engine 5.3 plugin that plays live RTSP camera streams through Unreal's own Media Player, with FFmpeg doing the decoding."
 category: "Personal"
 order: 1
