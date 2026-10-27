@@ -3,7 +3,7 @@ layout: project
 title: "Bow & Arrow Mechanics"
 description: "A modular, reusable bow-and-arrow combat system — clean codebase, designed to drop into any project and tune the feel fast."
 category: "Personal"
-order: 4
+order: 5
 domain: "Game Mechanics"
 role: "Solo Developer"
 engine_label: "Unreal Engine"
