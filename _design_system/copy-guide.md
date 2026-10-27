@@ -287,7 +287,7 @@ new, check what else is on the same screen and in the same reader's path
 >
 > Games came later in my career than the rest, but they're what I keep coming back to. Alongside the games I've shipped professionally, I build prototypes in my own time to explore new systems and mechanics — and it's the kind of work I'd like to be doing more of.
 
-**Labels under the photo:** Focus "Systems, Tools & Integration" (Sanjyot's own wording); Based in "Mumbai, India · remote or relocation".
+**Labels under the photo:** Focus "Systems, Tools & Gameplay" (Sanjyot's own wording; was "Integration" until 2026-10-28); Based in "Mumbai, India · remote or relocation".
 
 **What changed from the 2026-06-27 version, and why:**
 - **"developer" became "programmer":** one title everywhere.

@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /card.vcf
+sitemap: false
+---
+BEGIN:VCARD
+VERSION:3.0
+N:Dahale;Sanjyot;;;
+FN:Sanjyot Dahale
+TITLE:Unreal Engine Programmer
+EMAIL;TYPE=INTERNET:{{ site.email }}
+URL:{{ site.url }}
+URL:https://www.linkedin.com/in/{{ site.linkedin_username }}/
+URL:https://github.com/{{ site.github_username }}
+END:VCARD

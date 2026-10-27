@@ -1,0 +1,149 @@
+---
+layout: null
+title: Card
+description: "Unreal Engine programmer. Portfolio, LinkedIn, GitHub, email and resume."
+permalink: /card/
+noindex: true
+sitemap: false
+---
+{%- comment -%}
+  Contact card — the QR-code landing page for in-person networking.
+  Deliberately not linked from the navbar, footer or homepage, and kept
+  out of search (noindex + sitemap:false). Copy is reused from the
+  approved About / Contact text; don't write new copy here.
+  "save contact" downloads /card.vcf (see card.vcf at the repo root).
+{%- endcomment -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#111317" />
+  <title>Sanjyot Dahale — Unreal Engine Programmer</title>
+  <meta name="description" content="{{ page.description }}" />
+  {% include head-meta.html %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sansation:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}" />
+  <style>
+    /* mobile-first: one column, thumb-sized rows; widens into a centered card */
+    .cc { position:relative; z-index:1; max-width:440px; margin:0 auto; padding:1.25rem 16px 2rem; padding-bottom:max(2rem, env(safe-area-inset-bottom)); }
+
+    .cc-top { display:flex; align-items:center; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem; margin-bottom:2rem; }
+    .cc-top .brand-txt { color:var(--text); font-weight:600; }
+    .cc-top .dot { color:var(--accent); }
+    .cc-status { display:inline-flex; align-items:center; gap:0.45rem; color:var(--live); letter-spacing:0.08em; text-transform:uppercase; font-size:0.64rem; }
+    .cc-status .d { width:7px; height:7px; border-radius:50%; background:var(--live); box-shadow:0 0 8px var(--live); animation:pulse 2s ease-in-out infinite; }
+
+    .cc-id { text-align:center; margin-bottom:1.6rem; }
+    .cc-photo { width:112px; margin:0 auto 1.1rem; border:1px solid var(--line-2); border-radius:12px; }
+    .cc-photo .pf-corner { width:9px; height:9px; }
+    .cc-photo .pf-corner.tl, .cc-photo .pf-corner.tr { top:6px; }
+    .cc-photo .pf-corner.bl, .cc-photo .pf-corner.br { bottom:6px; }
+    .cc-photo .pf-corner.tl, .cc-photo .pf-corner.bl { left:6px; }
+    .cc-photo .pf-corner.tr, .cc-photo .pf-corner.br { right:6px; }
+    .cc-eye { font-family:var(--font-mono); font-size:0.68rem; color:var(--faint); margin-bottom:0.35rem; }
+    .cc-name { font-family:var(--font-display); font-size:1.85rem; font-weight:700; color:#fff; letter-spacing:-0.02em; line-height:1.15; }
+    .cc-role { color:var(--accent); font-family:var(--font-mono); font-size:0.8rem; margin-top:0.35rem; }
+    .cc-blurb { color:var(--muted); font-size:0.98rem; text-align:center; margin:0 auto 1.6rem; max-width:34ch; }
+
+    .cc-meta { border:1px solid var(--line); border-radius:12px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); margin-bottom:1.6rem; }
+    .cc-meta .pm-row { padding:0.8rem 0.95rem; }
+    .cc-meta .pm-v { font-size:0.86rem; line-height:1.35; }
+    .cc-meta .pm-v span { display:block; font-size:0.7rem; margin-top:0.15rem; }
+
+    .cc-links { display:flex; flex-direction:column; gap:0.6rem; }
+    .clink { display:flex; align-items:center; gap:0.85rem; min-height:56px; padding:0.7rem 1rem; border-radius:10px; border:1px solid var(--line-2); background:rgba(255,255,255,0.025); transition:border-color 0.2s, background 0.2s; }
+    .clink:hover, .clink:focus-visible { border-color:rgba(var(--accent-rgb),0.5); background:rgba(var(--accent-rgb),0.06); }
+    .clink:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    .clink .ic { width:1.6rem; flex:none; text-align:center; font-family:var(--font-mono); font-weight:600; color:var(--accent); }
+    .clink .tx { display:flex; flex-direction:column; min-width:0; flex:1; }
+    .clink .lb { color:#fff; font-weight:600; font-size:0.98rem; line-height:1.25; }
+    .clink .sub { font-family:var(--font-mono); font-size:0.7rem; color:var(--faint); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .clink .go { color:var(--dim); font-family:var(--font-mono); }
+    .clink.primary { border-color:rgba(var(--accent-rgb),0.4); background:rgba(var(--accent-rgb),0.09); }
+    .clink.primary .sub { color:var(--accent); opacity:0.8; }
+
+    .cc-foot { margin-top:2rem; text-align:center; font-family:var(--font-mono); font-size:0.66rem; color:var(--dim); }
+
+    @media (min-width:721px) {
+      .cc { padding-top:4rem; }
+    }
+  </style>
+</head>
+<body data-palette="amber" data-type="grotesk">
+  <div class="vp-frame" aria-hidden="true">
+    <span class="vp-corner tl"></span><span class="vp-corner tr"></span>
+    <span class="vp-corner bl"></span><span class="vp-corner br"></span>
+  </div>
+
+  <main class="cc">
+    <div class="cc-top">
+      <span class="brand-txt">life&nbsp;is&nbsp;a&nbsp;repo<span class="dot">.</span></span>
+      <span class="cc-status"><span class="d"></span> open to work</span>
+    </div>
+
+    <div class="cc-id">
+      <figure class="portrait-frame cc-photo">
+        <img src="{{ '/assets/images/about/me-card.jpg' | relative_url }}" alt="Sanjyot Dahale" width="112" height="112" />
+        <span class="pf-corner tl"></span><span class="pf-corner tr"></span
+        ><span class="pf-corner bl"></span><span class="pf-corner br"></span>
+      </figure>
+      <p class="cc-eye">// whoami</p>
+      <h1 class="cc-name">Sanjyot Dahale</h1>
+      <p class="cc-role">Unreal Engine programmer</p>
+    </div>
+
+    <p class="cc-blurb">I'm looking for a full-time role in game development, and I'm always open to a good collaboration.</p>
+
+    <div class="cc-meta">
+      <div class="pm-row">
+        <span class="pm-k">Focus</span>
+        <span class="pm-v">Systems, Tools &amp; Gameplay</span>
+      </div>
+      <div class="pm-row">
+        <span class="pm-k">Based in</span>
+        <span class="pm-v">Mumbai, India<span>remote or relocation</span></span>
+      </div>
+    </div>
+
+    <nav class="cc-links" aria-label="Links">
+      <a class="clink primary" href="{{ '/' | relative_url }}">
+        <span class="ic">$</span>
+        <span class="tx"><span class="lb">Portfolio</span><span class="sub">{{ site.url | remove: 'https://' }}</span></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="clink" href="https://www.linkedin.com/in/{{ site.linkedin_username }}/" target="_blank" rel="noopener">
+        <span class="ic">in</span>
+        <span class="tx"><span class="lb">LinkedIn</span><span class="sub">in/{{ site.linkedin_username }}</span></span>
+        <span class="go" aria-hidden="true">↗</span>
+      </a>
+      <a class="clink" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">
+        <span class="ic">⌥</span>
+        <span class="tx"><span class="lb">GitHub</span><span class="sub">{{ site.github_username }}</span></span>
+        <span class="go" aria-hidden="true">↗</span>
+      </a>
+      <a class="clink" href="mailto:{{ site.email }}">
+        <span class="ic">✉</span>
+        <span class="tx"><span class="lb">Email</span><span class="sub">{{ site.email }}</span></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="clink" href="{{ '/assets/docs/Sanjyot-Dahale-Unreal-Programmer.pdf' | relative_url }}" target="_blank" rel="noopener">
+        <span class="ic">↓</span>
+        <span class="tx"><span class="lb">Resume</span><span class="sub">PDF</span></span>
+        <span class="go" aria-hidden="true">↗</span>
+      </a>
+      <a class="clink" href="{{ '/card.vcf' | relative_url }}" download="Sanjyot-Dahale.vcf">
+        <span class="ic">+</span>
+        <span class="tx"><span class="lb">Save contact</span><span class="sub">add to your phone</span></span>
+        <span class="go" aria-hidden="true">↓</span>
+      </a>
+    </nav>
+
+    <p class="cc-foot">© {{ 'now' | date: "%Y" }} sanjyot dahale</p>
+  </main>
+
+  {% include analytics.html %}
+</body>
+</html>
