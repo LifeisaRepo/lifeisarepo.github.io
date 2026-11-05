@@ -203,11 +203,16 @@
         color: #fff;
         font-weight: 600;
       }
-      .doc-body a {
+      /* .doc-cta is listed here because the action buttons used to live inside
+         .doc-body and took their amber look from this rule. They now sit in the
+         header / rail, so they opt back in to keep the same appearance. */
+      .doc-body a,
+      .doc-cta a {
         color: var(--accent);
         border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
       }
-      .doc-body a:hover {
+      .doc-body a:hover,
+      .doc-cta a:hover {
         border-bottom-color: var(--accent);
       }
       .doc-body ul,
@@ -355,11 +360,28 @@
         transform: translateY(0);
       }
       /* fullscreen lightbox — shared CSS lives in style.css (.lightbox-*) */
+      /* action buttons (source / build / CTAs) — same markup rendered twice:
+         desktop → top of the sticky rail, above the facts box;
+         mobile  → a row at the bottom of the header, before the media + article */
       .doc-cta {
         display: flex;
         gap: 0.7rem;
         flex-wrap: wrap;
-        margin: 3rem 0 1rem;
+      }
+      .doc-cta .btn {
+        justify-content: center;
+      }
+      .doc-cta--rail {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+      }
+      .doc-cta--rail .btn {
+        flex: 1 1 auto;
+      }
+      .doc-cta--head {
+        display: none;
+        margin-top: 1.6rem;
       }
       .doc-video {
         position: relative;
@@ -385,6 +407,18 @@
           max-height: none;
           overflow: visible;
         }
+        /* rail drops below the article here, so the buttons move up into the header */
+        .doc-cta--rail {
+          display: none;
+        }
+        .doc-cta--head {
+          display: flex;
+        }
+        /* share the row evenly and stay thumb-sized */
+        .doc-cta--head .btn {
+          flex: 1 1 auto;
+          min-height: 44px;
+        }
       }
     </style>
   </head>
@@ -404,6 +438,45 @@
       {% else %}
       <a class="back" href="{{ '/' | relative_url }}#client">all work</a>
       {% endif %}
+
+      {% assign has_primary = false %}{% if page.cta_primary_url and page.cta_primary_text %}{% assign has_primary = true %}{% endif %}
+      {% assign has_secondary = false %}{% if page.cta_secondary_url and page.cta_secondary_text %}{% assign has_secondary = true %}{% endif %}
+      {% assign has_links = false %}{% if has_primary or page.github_url or page.game_build_url or has_secondary %}{% assign has_links = true %}{% endif %}
+      {% capture cta_buttons %}
+          {% if has_primary %}
+          <a
+            class="btn btn-primary"
+            href="{{ page.cta_primary_url }}"
+            target="_blank"
+            rel="noopener"
+            >{{ page.cta_primary_text }}</a
+          >
+          {% endif %} {% if page.github_url %}
+          <a
+            class="btn btn-ghost"
+            href="{{ page.github_url }}"
+            target="_blank"
+            rel="noopener"
+            >⌥ source</a
+          >
+          {% endif %} {% if page.game_build_url %}
+          <a
+            class="btn btn-ghost"
+            href="{{ page.game_build_url }}"
+            target="_blank"
+            rel="noopener"
+            >↓ build</a
+          >
+          {% endif %} {% if has_secondary %}
+          <a
+            class="btn btn-ghost"
+            href="{{ page.cta_secondary_url }}"
+            target="_blank"
+            rel="noopener"
+            >{{ page.cta_secondary_text }}</a
+          >
+          {% endif %}
+      {% endcapture %}
 
       <header class="doc-head">
         <div class="doc-meta">
@@ -427,6 +500,9 @@
           <span class="tag">{{ tag }}</span>
           {% endfor %}
         </div>
+        {% if has_links %}
+        <div class="doc-cta doc-cta--head">{{ cta_buttons }}</div>
+        {% endif %}
       </header>
 
       {% if page.youtube_id %}
@@ -462,47 +538,13 @@
       <div class="doc-grid">
         <div class="doc-body">
           {{ content }}
-
-          <div class="doc-cta">
-            {% if page.cta_primary_url and page.cta_primary_text %}
-            <a
-              class="btn btn-primary"
-              href="{{ page.cta_primary_url }}"
-              target="_blank"
-              rel="noopener"
-              >{{ page.cta_primary_text }}</a
-            >
-            {% endif %} {% if page.github_url %}
-            <a
-              class="btn btn-ghost"
-              href="{{ page.github_url }}"
-              target="_blank"
-              rel="noopener"
-              >⌥ source</a
-            >
-            {% endif %} {% if page.game_build_url %}
-            <a
-              class="btn btn-ghost"
-              href="{{ page.game_build_url }}"
-              target="_blank"
-              rel="noopener"
-              >↓ build</a
-            >
-            {% endif %} {% if page.cta_secondary_url and page.cta_secondary_text
-            %}
-            <a
-              class="btn btn-ghost"
-              href="{{ page.cta_secondary_url }}"
-              target="_blank"
-              rel="noopener"
-              >{{ page.cta_secondary_text }}</a
-            >
-            {% endif %}
-          </div>
         </div>
 
         <aside>
           <div class="doc-rail">
+            {% if has_links %}
+            <div class="doc-cta doc-cta--rail">{{ cta_buttons }}</div>
+            {% endif %}
             <div class="doc-aside">
               {% if page.role %}
               <div class="fact">
