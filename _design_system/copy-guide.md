@@ -283,7 +283,7 @@ new, check what else is on the same screen and in the same reader's path
 **Final text (applied by Sanjyot to `_includes/about-content.html`):**
 > I'm an Unreal Engine programmer and technical lead who started out as a Unity developer at an XR studio, building AR and VR applications, before moving to Unreal Engine and into a Virtual Production Supervisor role. There I helped clients integrate VP workflows into their production pipelines and worked on-set across several live productions.
 >
-> I was the studio's first Unreal hire and built its Unreal team from there; today I lead a cross-functional team shipping Unreal Engine applications and games across multiple platforms, alongside its R&D into GenAI-based applications. Some of the work I'm most proud of came from projects like the MR Cricket Analysis and the 360 VR Broadcast, which pushed me well outside my domain and meant picking up entirely new skills along the way.
+> I was the studio's first Unreal hire and built its Unreal team from there, and went on to lead a cross-functional team shipping Unreal Engine applications and games across multiple platforms, alongside its R&D into GenAI-based applications. Some of the work I'm most proud of came from projects like the MR Cricket Analysis and the 360 VR Broadcast, which pushed me well outside my domain and meant picking up entirely new skills along the way.
 >
 > Games came later in my career than the rest, but they're what I keep coming back to. Alongside the games I've shipped professionally, I build prototypes in my own time to explore new systems and mechanics — and it's the kind of work I'd like to be doing more of.
 
@@ -302,7 +302,7 @@ new, check what else is on the same screen and in the same reader's path
 
 **Still applies:** the soft ending, Sanjyot's em dash, and MR Cricket and 360 VR Broadcast as the only named projects.
 
-**After 2026-10-31:** "today I lead" needs to become past tense.
+**Past tense applied (2026-11-07):** "today I lead" became "and went on to lead" once Sanjyot left Liminal (Jan 2023 → Oct 2026).
 
 ---
 
