@@ -1,12 +1,12 @@
 - hash: "a3f9c21"
-  date_range: "Jan 2023 → Oct 2026"
+  date_range: "Nov 2022 → Oct 2026"
   head: true
   role: "Lead Unreal Engine Developer & Tech Lead"
   company: "Liminal XR Solutions"
   description: "Owned architecture, build pipelines and technical direction across Games, XR, Virtual Production and GenAI workflows."
 
 - hash: "7b1e4d8"
-  date_range: "Sep 2020 → Jan 2023"
+  date_range: "Sep 2020 → Nov 2022"
   role: "Unreal Developer & Virtual Production Supervisor"
   company: "Liminal XR Solutions"
   description: "Shipped real-time UE experiences and ran on-set virtual production — LED volumes, nDisplay and live broadcast graphics for shows and events."
