@@ -290,7 +290,7 @@
                     <span class="commit-date">{{ job.date_range }}</span>
                     {% if job.head %}<span class="commit-head-tag"
                       >HEAD → main</span
-                    ><span class="commit-now">now</span>{% endif %}
+                    >{% endif %}
                   </div>
                   <h3 class="commit-role">{{ job.role }}</h3>
                   <p class="commit-co">{{ job.company }}</p>
